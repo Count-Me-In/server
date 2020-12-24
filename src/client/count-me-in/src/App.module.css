@@ -1,0 +1,84 @@
+.navbar {
+  background-color: #ff9800 ;
+  flex-direction: row;
+}
+
+.logout {
+  text-decoration: none;
+  color: inherit;
+  padding: 0px 20px 0px 20px;
+}
+
+.percents {
+  margin-right: auto;
+  margin-left: 2vw;
+}
+
+.clickedLink {
+  text-decoration: none;
+  color: inherit;
+  padding: 0px 0px 0px 20px;
+  background-color: #ffac33;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  padding: 0px 0px 0px 20px;
+}
+
+.tabs {
+  margin-right: 2vw;
+  display: flex;
+  flex-direction: row;
+}
+
+.link:hover {
+  background-color: #ffac33;
+}
+
+.link > .icon {
+  margin: 0 0 0 10px;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.titleContainer > .mainTitle {
+  font-size: 22px;
+}
+
+.titleContainer > .points {
+  font-size: 22px;
+  margin-left: auto;
+}
+
+.titleContainer > .logout {
+  font-size: 22px;
+}
+
+.titleContainer > .slogan {
+  font-size: 16px;
+  color: #d2cbcb;
+}
+
+.login {
+  margin-right: auto !important;
+}
+
+.Icon {
+  width: 20px;
+  height: 20px;
+  margin: 0px 0px -3px 5px;
+}
+
+.Info {
+  margin-right: 1vw!important;
+}
+
+.typography {
+  width: 20vw;
+}
