@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import classes from './HomePage.module.css';
 import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
 import { ViewState, EditingState, IntegratedEditing } from '@devexpress/dx-react-scheduler';
 import {
     Scheduler,
-    WeekView,
+    MonthView,
     Appointments,
     AppointmentTooltip,
     Toolbar,
@@ -13,16 +14,20 @@ import {
     Resources,
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { teal, grey } from '@material-ui/core/colors';
+import { Button } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab';
+
+
 
 const schedulerData = [
-    { startDate: '2020-09-13T09:45', endDate: '2020-09-13T11:00', title: 'מבוא למדמ"ח', isIn: 0 },
-    { startDate: '2020-09-20T09:45', endDate: '2020-09-20T11:00', title: 'מבוא למדמ"ח', isIn: 1 },
-    { startDate: '2020-09-13T12:00', endDate: '2020-09-13T13:30', title: 'קומפילציה', isIn: 1 },
+    { startDate: '2020-12-24T09:45', endDate: '2020-12-24T10:45', isIn: 0 },
+    { startDate: '2020-12-25T09:45', endDate: '2020-12-25T10:45', isIn: 1 },
+    { startDate: '2021-01-01T09:45', endDate: '2021-01-01T10:45', isIn: 1 },
 ];
 
 const allocations = [
-    { text: 'סחתיין! שובצת לשיעור', id: 1, color: teal },
-    { text: 'תמיד יש פעם הבאה', id: 0, color: grey },
+    { text: 'We will see you at the office!', id: 1, color: teal },
+    { text: 'Maybe next time', id: 0, color: grey },
 ];
 
 function HomePage() {
@@ -41,11 +46,26 @@ function HomePage() {
 
     }
     const TimeTableCell = ({ onDoubleClick, ...restProps }) => {
-        return <WeekView.TimeTableCell onDoubleClick={undefined} {...restProps} />;
+        return <MonthView.TimeTable onDoubleClick={undefined} {...restProps} />;
     };
+
+    const employees = ["Shenhav", "Noy", "Nufar", "Shauli"];
+    const [employeeID, setEmployeeID] = useState('');
 
     return (
         <div >
+            <Button className={classes.customActions}> Back to Schedule</Button>
+            {<div className={classes.customActions}>
+                <Autocomplete
+                id="autoComplete"
+                options={employees}
+                getOptionLabel={(option) => option}
+                style={{ width: 300 }}
+                renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+                onChange={(event, value) => {setEmployeeID(value); console.log(value)} }
+            />
+            </div>}
+           
             <Paper dir={'ltr'}>
                 <Scheduler
                     data={appointments}
@@ -56,20 +76,18 @@ function HomePage() {
                         onCurrentDateChange={(date) => setDate(date)}
 
                     />
-                    <WeekView
+                    <MonthView
                         onDoubleClick={undefined}
-                        startDayHour={9}
-                        endDayHour={21}
-                        timeTableCellComponent={TimeTableCell}
-                        cellDuration={60}
+
                     />
                     <Toolbar />
+                    
                     <DateNavigator />
                     <TodayButton />
                     <Appointments dir={'rtl'} />
                     <Resources
                         data={resources}
-                    />
+                    />  
                     <AppointmentTooltip
                         showCloseButton
                     />
@@ -80,3 +98,4 @@ function HomePage() {
 }
 
 export default HomePage;
+

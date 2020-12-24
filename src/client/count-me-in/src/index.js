@@ -3,15 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { StylesProvider, jssPreset } from "@material-ui/core/styles";
-import { create } from "jss";
 import * as serviceWorker from './serviceWorker';
-import rtl from "jss-rtl";
-
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 ReactDOM.render(
   <React.StrictMode>
-    <StylesProvider jss={jss}>
+    <StylesProvider>
       <App />
     </StylesProvider>
   </React.StrictMode>,

@@ -37,14 +37,13 @@ const theme = createMuiTheme({
       contrastText: "#000",
     },
   },
-  direction: "rtl", // Both here and <body dir="rtl">
 });
 
 
 function App() {
   const [loggedUser, setUser] = useState({});
   const [tab, setTab] = useState();
-  const [currP, setCurrP] = useState();
+  const [currP, setCurrP] = useState();//TODO: ask from server
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isLoggedIn = Object.keys(loggedUser).length != 0;
 
@@ -65,8 +64,8 @@ function App() {
       <Router>
         <AppBar position="static">
           <Toolbar className={classes.navbar}>
-            <div dir={'ltr'} className={classes.titleContainer}>
-              <label className={classes.mainTitle}><strong>Count Me In!</strong></label>
+            <div className={classes.titleContainer}>
+              <label className={classes.mainTitle}><strong>Count Me In The Office!</strong></label>
             </div>
             {!isLoggedIn &&
               <div>
@@ -87,32 +86,33 @@ function App() {
                     horizontal: 'center',
                   }}
                 >
-                <Typography className={classes.typography}>
-                  שלום, ברוכים הבאים לcount me in!
-באתר זה תוכלו להרשם להרצאות המתקיימות הסמסטר בצורה היברידית והמערכת תחשב ותבחר מי יורשה להכנס לשיעור הפרונטלי בצורה הוגנת. הינך מקבל סך נקודות שבועיות אשר מצטברות משבוע לשבוע. עלייך לחלק את הנקודות שברשותך בין הקורסים הנמצאים במערכת השעות שלך. החלוקה תעשה בעזרת חלוקת אחוזים. ברשותך 100% אותם תוכל לחלק בין הקורסים השונים. שים לב כי החלוקה נתונה לשיקול דעתך, אינך חייב לחלק את כל האחוזים ואינך חייב לחלק אחוזים לכל קורס. לאחר מכן המערכת תשקלל את בחירות כל התלמידים ותבחר מי ייכנס לכל שיעור. את חלוקת האחוזים תוכל לשנות באופן דינאמי בלשונית biding.
-את מערכת השעות והשיבוצים לשבועיים הקרובים תוכל לראות בלשונית schedule כאשר השיעורים אליהם הצלחת להיכנס יסומנו בירוק, ואלה שלא יסומנו באפור. שים לב שכל חלוקת אחוזים רלוונטית לשבוע השלישי.</Typography>
+                  <Typography className={classes.typography}>
+                    שלום, ברוכים הבאים לcount me in!
+    באתר זה תוכלו להרשם להרצאות המתקיימות הסמסטר בצורה היברידית והמערכת תחשב ותבחר מי יורשה להכנס לשיעור הפרונטלי בצורה הוגנת. הינך מקבל סך נקודות שבועיות אשר מצטברות משבוע לשבוע. עלייך לחלק את הנקודות שברשותך בין הקורסים הנמצאים במערכת השעות שלך. החלוקה תעשה בעזרת חלוקת אחוזים. ברשותך 100% אותם תוכל לחלק בין הקורסים השונים. שים לב כי החלוקה נתונה לשיקול דעתך, אינך חייב לחלק את כל האחוזים ואינך חייב לחלק אחוזים לכל קורס. לאחר מכן המערכת תשקלל את בחירות כל התלמידים ותבחר מי ייכנס לכל שיעור. את חלוקת האחוזים תוכל לשנות באופן דינאמי בלשונית biding.
+    את מערכת השעות והשיבוצים לשבועיים הקרובים תוכל לראות בלשונית schedule כאשר השיעורים אליהם הצלחת להיכנס יסומנו בירוק, ואלה שלא יסומנו באפור. שים לב שכל חלוקת אחוזים רלוונטית לשבוע השלישי.</Typography>
                 </Popover>
               </div>
             }
             {isLoggedIn && !loggedUser.isSegel &&
+              <label className={classes.points}><strong>points: 1500</strong></label>
+            }
+            {isLoggedIn && !loggedUser.isSegel &&
+              <label className={classes.percents}><strong>Percents: {currP}%</strong></label>
+            }
+            {isLoggedIn && !loggedUser.isSegel &&
               <div className={classes.tabs}>
                 <Link to="/Home" onClick={() => setTab(1)} className={!isLoggedIn || tab != 1 ? classes.link : classes.clickedLink}>
-                  <h3>מערכת שעות</h3>
+                  <h3>Schedule</h3>
                 </Link>
                 <Link to="/bidding" onClick={() => setTab(2)} className={!isLoggedIn || tab != 2 ? classes.link : classes.clickedLink} >
-                  <h3>מכרז</h3>
+                  <h3>Bidding</h3>
                 </Link>
               </div>
             }
-            {isLoggedIn && !loggedUser.isSegel &&
-              <label className={classes.percents}><strong>אחוזים: {currP}%</strong></label>
-            }
-            {isLoggedIn && !loggedUser.isSegel &&
-              <label className={classes.points}><strong>נקודות: 1500</strong></label>
-            }
+            
             {isLoggedIn &&
               <Link onClick={() => { setUser({}) }} to="/" className={classes.logout}>
-                <h3>התנתקות</h3>
+                <h3>log out</h3>
               </Link>
             }
           </Toolbar>

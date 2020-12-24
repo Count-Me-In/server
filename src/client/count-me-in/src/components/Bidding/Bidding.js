@@ -12,9 +12,16 @@ import { TextField, IconButton } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 
 const schedulerData = [
-    { id: 1, startDate: '2020-09-13T09:45', endDate: '2020-09-13T11:00', title: 'מבוא למדמ"ח', percents: 30 },
-    { id: 2, startDate: '2020-09-15T10:45', endDate: '2020-09-15T12:00', title: 'מבוא למדמ"ח', percents: 40 },
-    { id: 3, startDate: '2020-09-13T12:00', endDate: '2020-09-13T13:30', title: 'קומפילציה', percents: 30 },
+    // { id: 1, startDate: '2020-12-27T09:00', endDate: '2020-12-27T19:00', percents: 30 },
+    // { id: 2, startDate: '2020-12-28T09:00', endDate: '2020-12-28T19:00', percents: 40 },
+    // { id: 3, startDate: '2020-12-29T09:00', endDate: '2020-12-29T19:30', percents: 20 },
+    // { id: 4, startDate: '2020-12-30T09:00', endDate: '2020-12-30T19:30', percents: 5 },
+    // { id: 5, startDate: '2020-12-31T09:00', endDate: '2020-12-31T19:30', percents: 5 },
+    { id: 1, startDate: '2020-12-20T09:00', endDate: '2020-12-20T19:00', percents: 30 },
+    { id: 2, startDate: '2020-12-21T09:00', endDate: '2020-12-21T19:00', percents: 40 },
+    { id: 3, startDate: '2020-12-22T09:00', endDate: '2020-12-22T19:30', percents: 20 },
+    { id: 4, startDate: '2020-12-23T09:00', endDate: '2020-12-23T19:30', percents: 5 },
+    { id: 5, startDate: '2020-12-24T09:00', endDate: '2020-12-24T19:30', percents: 5 },
 ];
 
 function Bidding({ updatePercents }) {
@@ -88,8 +95,8 @@ function Bidding({ updatePercents }) {
                 {showAlert &&
                     <div className={classes.alert}>
                         <Alert className={classes.innerMessage} severity="warning">
-                            <AlertTitle>שים לב</AlertTitle>
-                    סך האחוזים חייב להיות עד 100.
+                            <AlertTitle>Notice</AlertTitle>
+                    You must fill 100% 
                 </Alert>
                     </div>
                 }
@@ -100,9 +107,10 @@ function Bidding({ updatePercents }) {
                     <WeekView
                         startDayHour={9}
                         endDayHour={21}
+                        
                         excludedDays={[7, 6]}
                         timeTableCellComponent={TimeTableCell}
-                        cellDuration={30}
+                        cellDuration={60}
                     />
 
                     <Appointments

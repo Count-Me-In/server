@@ -34,30 +34,32 @@ function Login({ onLogin }) {
     return (
         <div className={classes.container}>
             <div className={classes.formLayout}>
-                <h2 className={classes.title}>התחברות</h2>
+                <h2 className={classes.title}>Login</h2>
                 <form className={classes.loginBox}>
-                    <TextField className={classes.loginInput} value={id} onChange={(event) => setId(event.target.value)} id="id" label="תעודת זהות" variant="filled" color="secondary" />
-                    <TextField className={classes.loginInput} value={email} onChange={(event) => setEmail(event.target.value)} id="email" label="מייל" variant="filled" color="secondary" />
-                    <TextField className={classes.loginInput} value={password} onChange={(event) => setPassword(event.target.value)} id="password" label="סיסמא" type="password" variant="filled" color="secondary" />
+                    <TextField className={classes.loginInput} value={id} onChange={(event) => setId(event.target.value)} id="id" label="id" variant="filled" color="secondary"/>
+                    <TextField className={classes.loginInput} value={email} onChange={(event) => setEmail(event.target.value)} id="email" label="email" variant="filled" color="secondary"/>
+                    <TextField className={classes.loginInput} value={password} onChange={(event) => setPassword(event.target.value)} id="password" label="password" type="password" variant="filled" color="secondary" />
                     <FormControlLabel
                         control={
-                            <Checkbox
+                            <Checkbox className={classes.checkbox}
                                 value={isSegel}
                                 onChange={(event) => setIsSegel(event.target.checked)}
                                 color="default"
                                 inputProps={{ 'aria-label': 'checkbox with default color' }}
+
                             />
-                        }
-                        label="התחבר כאיש סגל"
+                                }
+                        label="login as faculty" className={classes.checkboxFaculty}
+
                     />
-                    <Button className={classes.loginBtn} variant="outlined" size="medium" color={'#000000'} onClick={validate}>
-                        התחבר
+                    <Button className={classes.loginBtn} variant="outlined" size="medium" color={'#f4c368'} onClick={validate}>
+                        Login
                 </Button>
                 </form>
                 {showAlert &&
                 <Alert severity="error">
-                    <AlertTitle>שגיאה</AlertTitle>
-                    חייב להכניס מייל וסיסמא
+                    <AlertTitle>Error</AlertTitle>
+                    Password and email are required
                 </Alert>
             }
             </div>
