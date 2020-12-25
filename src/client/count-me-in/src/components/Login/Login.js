@@ -13,7 +13,7 @@ function Login({ onLogin }) {
     const history = useHistory();
     const [showAlert, setAlert] = useState(false);
     const [id, setId] = useState('');
-    const [isSegel, setIsSegel] = useState(false);
+    const [isManager, setIsManager] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const validate = () => {
@@ -23,11 +23,8 @@ function Login({ onLogin }) {
                 setAlert(false)
             }, 3000);
         } else {
-            onLogin({ email: email, isSegel: isSegel })
-            if (isSegel)
-                history.replace("faculty");
-            else 
-                history.replace("home");
+            onLogin({ email: email, isManager: true })
+            history.replace("home");
         }
     }
 
@@ -39,20 +36,7 @@ function Login({ onLogin }) {
                     <TextField className={classes.loginInput} value={id} onChange={(event) => setId(event.target.value)} id="id" label="id" variant="filled" color="secondary"/>
                     <TextField className={classes.loginInput} value={email} onChange={(event) => setEmail(event.target.value)} id="email" label="email" variant="filled" color="secondary"/>
                     <TextField className={classes.loginInput} value={password} onChange={(event) => setPassword(event.target.value)} id="password" label="password" type="password" variant="filled" color="secondary" />
-                    <FormControlLabel
-                        control={
-                            <Checkbox className={classes.checkbox}
-                                value={isSegel}
-                                onChange={(event) => setIsSegel(event.target.checked)}
-                                color="default"
-                                inputProps={{ 'aria-label': 'checkbox with default color' }}
-
-                            />
-                                }
-                        label="login as faculty" className={classes.checkboxFaculty}
-
-                    />
-                    <Button className={classes.loginBtn} variant="outlined" size="medium" color={'#f4c368'} onClick={validate}>
+                    <Button className={classes.loginBtn} variant="outlined" size="medium" onClick={validate}>
                         Login
                 </Button>
                 </form>

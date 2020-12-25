@@ -17,8 +17,6 @@ import { teal, grey } from '@material-ui/core/colors';
 import { Button } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 
-
-
 const schedulerData = [
     { startDate: '2020-12-24T09:45', endDate: '2020-12-24T10:45', isIn: 0 },
     { startDate: '2020-12-25T09:45', endDate: '2020-12-25T10:45', isIn: 1 },
@@ -30,7 +28,7 @@ const allocations = [
     { text: 'Maybe next time', id: 0, color: grey },
 ];
 
-function HomePage() {
+function HomePage({ loggedUser }) {
     const [currentDate, setDate] = useState(Date.now);
     const [appointments, setData] = useState(schedulerData);
     const resources = [{
@@ -51,20 +49,23 @@ function HomePage() {
 
     const employees = ["Shenhav", "Noy", "Nufar", "Shauli"];
     const [employeeID, setEmployeeID] = useState('');
-
+    
     return (
-        <div >
-            <Button className={classes.customActions}> Back to Schedule</Button>
-            {<div className={classes.customActions}>
+        <div>
+          {loggedUser.isManager &&
+            <div className={classes.customActions}>
+                <Button>My Schedule</Button>
                 <Autocomplete
-                id="autoComplete"
+                id="employees"
+                size='small'
                 options={employees}
                 getOptionLabel={(option) => option}
                 style={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+                renderInput={(params) => <TextField {...params} label="Emplyee name" variant="outlined" />}
                 onChange={(event, value) => {setEmployeeID(value); console.log(value)} }
-            />
-            </div>}
+                />
+            </div>
+            }
            
             <Paper dir={'ltr'}>
                 <Scheduler

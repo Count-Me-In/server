@@ -1,9 +1,8 @@
 .customActions {
-    float: left;
-    padding-left: 50%;
-    padding: 0px 0px 0px 16px !important;
-    border: none;
-    vertical-align: middle;
-    height: 48px;
-    line-height: 48px;
+    display: flex;
+    flex-direction: row;
+    position: absolute!important;
+    right: 15px;
+    margin-top: 5px;
+    z-index: 1;
 }

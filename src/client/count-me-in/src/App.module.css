@@ -1,6 +1,51 @@
 .navbar {
-  background-color: #ff9800 ;
+  background-color: #4d79ff;
   flex-direction: row;
+}
+
+.navbarChild {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.navbarChild > label {
+  margin-top: 3vh;
+}
+
+.dropMenu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.dropMenu > button > span {
+    display: block;
+    text-transform: none;
+    font-size: 1.32em;
+    font-weight: bold;
+}
+
+
+.MenuList {
+  /* opacity: 1!important; */
+  z-index: 10000000!important;
+  background-color:#3366ff!important; 
+}
+
+.MenuList a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.biddindData {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: auto;
 }
 
 .logout {
@@ -9,33 +54,28 @@
   padding: 0px 20px 0px 20px;
 }
 
-.percents {
-  margin-right: auto;
-  margin-left: 2vw;
-  margin-right: 400px;
-}
-
 .clickedLink {
   text-decoration: none;
-  color: inherit;
-  padding: 0px 0px 0px 20px;
-  background-color: #ffac33;
+  color: white!important;
+  background-color: #3366ff;
 }
 
 .link {
-  text-decoration: none;
-  color: inherit;
-  padding: 0px 0px 0px 20px;
+  text-decoration: none!important;
+  color: inherit!important;
+  /* padding: 0px 0px 0px 20px!important; */
 }
 
 .tabs {
   margin-right: 2vw;
+  width: 40%;
   display: flex;
   flex-direction: row;
+  justify-content: space-around
 }
 
 .link:hover {
-  background-color: #ffac33;
+  background-color: #3366ff;
 }
 
 .link > .icon {
@@ -46,17 +86,14 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-right: auto;
+  margin-right: 2vw;
+  min-width: 250px;
 }
+
 
 .titleContainer > .mainTitle {
   font-size: 22px;
 }
-
-.titleContainer > .points {
-  font-size: 22px;
-}
-
 .titleContainer > .logout {
   font-size: 22px;
 }
