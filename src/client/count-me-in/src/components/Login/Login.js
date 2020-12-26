@@ -23,7 +23,7 @@ function Login({ onLogin }) {
                 setAlert(false)
             }, 3000);
         } else {
-            onLogin({ email: email, isManager: true })
+            onLogin({ email: email, isManager: true})
             history.replace("home");
         }
     }

@@ -7,7 +7,7 @@ function EmployeeDayList({name}) {
 
     return (
         <div className={classes.employee}>
-            <label className={classes.checkbox}>name</label>
+            <label className={classes.checkbox}>{name}</label>
         </div>)
 }
 

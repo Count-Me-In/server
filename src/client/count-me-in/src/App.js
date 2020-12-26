@@ -126,7 +126,7 @@ function App() {
               <div className={classes.navbarChild}>
                 <div className={classes.biddindData}>
                   <label><strong>points: 1500</strong></label>
-                  <label><strong>Percents: {currP}%</strong></label>
+                  {currP ? <label><strong>Percents: {currP}%</strong></label> : null }
                 </div>
                 <div className={classes.tabs}>
                   <Link to="/Home" onClick={() => setTab(1)} className={!isLoggedIn || tab != 1 ? classes.link : classes.clickedLink}>
