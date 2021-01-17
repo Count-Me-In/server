@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+// TODO: add spring annotations to all classes and Data Objects
 public class SystemHandler {
 
     public static Bid[] getBids(UUID employee_id) {
