@@ -1,4 +1,4 @@
-package com.example.restservice;
+package server.restservice.repository.restservice;
 
 public class Item {
     public int id;

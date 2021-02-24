@@ -1,13 +1,13 @@
-package main.application;
+package server.restservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestServiceApplication {
+public class RestserviceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RestServiceApplication.class, args);
+        SpringApplication.run(RestserviceApplication.class, args);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.restservice;
+package server.restservice.repository.restservice;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -7,12 +7,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ItemFetcher {
 
-    public static Item[] getAllItems(){
+    public static Item[] getAllItems() {
         try {
             URL url = new URL("https://f6ezbrrlgb.execute-api.us-east-2.amazonaws.com/internal/biddings");
 
@@ -41,15 +39,15 @@ public class ItemFetcher {
             conn.disconnect();
 
             return items;
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public static Item getItemById(int id){
+    public static Item getItemById(int id) {
         try {
-            URL url = new URL("https://f6ezbrrlgb.execute-api.us-east-2.amazonaws.com/internal/biddings/"+id);
+            URL url = new URL("https://f6ezbrrlgb.execute-api.us-east-2.amazonaws.com/internal/biddings/" + id);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -75,7 +73,7 @@ public class ItemFetcher {
             conn.disconnect();
 
             return it;
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }

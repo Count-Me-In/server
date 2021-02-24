@@ -1,4 +1,4 @@
-package com.example.restservice;
+package server.restservice.repository.restservice;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +11,7 @@ public class ItemController {
 
     @GetMapping(value = "/")
     public Item[] getAllItems() {
-        Item[] output =  ItemFetcher.getAllItems();
+        Item[] output = ItemFetcher.getAllItems();
         return output;
     }
 

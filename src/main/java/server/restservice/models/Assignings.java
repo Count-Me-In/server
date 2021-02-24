@@ -1,4 +1,4 @@
-package business_logic.models;
+package server.restservice.models;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,24 +9,25 @@ public class Assignings {
 
     public UUID _employeeId;
     public List<Date> _assignedDays;
-    public Assignings(UUID employeeId){
+
+    public Assignings(UUID employeeId) {
         this._employeeId = employeeId;
         this._assignedDays = new ArrayList<>();
     }
 
-    public UUID get_employeeId(){
+    public UUID get_employeeId() {
         return this._employeeId;
     }
 
-    public void set_employeeId(UUID employeeId){
+    public void set_employeeId(UUID employeeId) {
         this._employeeId = employeeId;
     }
 
-    public List<Date> get_assignedDays(){
+    public List<Date> get_assignedDays() {
         return this._assignedDays;
     }
 
-    public void set_assignedDays(List<Date> assignedDays){
+    public void set_assignedDays(List<Date> assignedDays) {
         this._assignedDays = assignedDays;
     }
 }

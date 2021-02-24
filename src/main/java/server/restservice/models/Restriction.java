@@ -1,4 +1,4 @@
-package business_logic.models;
+package server.restservice.models;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package business_logic.models;
+package server.restservice.models;
 
 public class Bid {
     private final String _employee_id;
