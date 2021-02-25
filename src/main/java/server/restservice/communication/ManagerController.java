@@ -2,47 +2,44 @@ package server.restservice.communication;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import server.restservice.models.Employee;
 import server.restservice.models.Restriction;
 import server.restservice.service.ManagerService;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/managers")
+@RequestMapping(path = "managers")
 @AllArgsConstructor
 public class ManagerController {
 
     private final ManagerService managerService;
 
-    @GetMapping(value = "/{manager_id}/assignedEmployees")
-    public List<String> getAssignedEmployeesPerDay(@PathVariable UUID manager_id, @RequestBody Date date) {
-        return managerService.getAssignedEmployees(date);
+    @GetMapping(path = "assignedEmployees")
+    public List<String> getAssignedEmployeesPerDay(Authentication authentication, @RequestBody Date date) {
+        return managerService.getAssignedEmployees(authentication.getName(), date);
     }
 
-    //TODO: how to send manager id??
-    @PostMapping(value = "/{employee_id}/addRestriction")
-    public void addRestriction(@PathVariable UUID employee_id, @RequestBody Restriction restriction) {
-        managerService.addRestriction(employee_id, restriction);
+    @PostMapping(path = "addRestriction")
+    public void addRestriction(Authentication authentication, @RequestBody Restriction restriction, @RequestBody String employee_username) {
+        managerService.addRestriction(authentication.getName(), restriction, employee_username);
     }
 
-    //TODO: return list of employees or just employees name+id??
-    @GetMapping(value = "{manager_id}/getEmployees")
-    public List<Employee> getEmployees(@PathVariable UUID manager_id) {
-        return managerService.getEmployees(manager_id);
+    @GetMapping(path = "getEmployees")
+    public List<String> getEmployees(Authentication authentication) {
+        return managerService.getEmployees(authentication.getName());
     }
 
-    @PutMapping(value = "/{employee_id}/setEmployeePoints")
-    public void setEmployeePoints(@PathVariable UUID employee_id, @RequestBody Integer points) {
-        managerService.setEmployeePoints(employee_id, points);
+    @PutMapping(path = "setEmployeePoints")
+    public void setEmployeePoints(Authentication authentication, @RequestBody String employee_username, @RequestBody Integer points) {
+        managerService.setEmployeePoints(authentication.getName(), employee_username, points);
     }
 
-    //TODO: day or date????
-    @PostMapping(value = "/{employee_id}/planArrival")
-    public void planArrival(@PathVariable UUID employee_id, @RequestBody Integer day) {
-        managerService.planArrival(employee_id, day);
+    //TODO: day or date
+    @PostMapping(path = "planArrival")
+    public void planArrival(Authentication authentication, @RequestBody Integer day) {
+        managerService.planArrival(authentication.getName(), day);
     }
 }

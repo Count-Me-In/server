@@ -7,31 +7,30 @@ import server.restservice.models.Bid;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor
 public class EmployeeService {
 
-    public Bid[] getBids(UUID employee_id) {
-        //TODO: get employee id from session
+    public Bid[] getBids(String username) {
+        //TODO: get employee bids from repo
         return new Bid[5];
     }
 
 
-    public void updateBids(UUID employee_id, Bid[] bids) {
-        //TODO: update employee bids field and save employee to db
+    public void updateBids(String username, Bid[] bids) {
+        //TODO: update employee bids field and save employee to repo
     }
 
 
-    public int getEmployeesPoints(UUID employee_id) {
-        //TODO: call to lambda that retrieves employee's points
+    public int getEmployeesPoints(String username) {
+        //TODO: get employee points from repo
         return 0;
     }
 
 
-    public List<Assignings> getEmployeeAssignings(UUID employee_id) {
-        //TODO: call engine
+    public List<Assignings> getEmployeeAssignings(String username) {
+        //TODO: get employee's assignings from repo
         return new ArrayList<>();
     }
 }
