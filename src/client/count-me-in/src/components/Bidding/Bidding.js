@@ -11,20 +11,35 @@ import {
 import { TextField, IconButton } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 
-const schedulerData = [
-    // { id: 1, startDate: '2020-12-27T09:00', endDate: '2020-12-27T19:00', percents: 30 },
-    // { id: 2, startDate: '2020-12-28T09:00', endDate: '2020-12-28T19:00', percents: 40 },
-    // { id: 3, startDate: '2020-12-29T09:00', endDate: '2020-12-29T19:30', percents: 20 },
-    // { id: 4, startDate: '2020-12-30T09:00', endDate: '2020-12-30T19:30', percents: 5 },
-    // { id: 5, startDate: '2020-12-31T09:00', endDate: '2020-12-31T19:30', percents: 5 },
-    { id: 1, startDate: '2020-12-20T09:00', endDate: '2020-12-20T19:00', percents: 30 },
-    { id: 2, startDate: '2020-12-21T09:00', endDate: '2020-12-21T19:00', percents: 40 },
-    { id: 3, startDate: '2020-12-22T09:00', endDate: '2020-12-22T19:30', percents: 20 },
-    { id: 4, startDate: '2020-12-23T09:00', endDate: '2020-12-23T19:30', percents: 5 },
-    { id: 5, startDate: '2020-12-24T09:00', endDate: '2020-12-24T19:30', percents: 5 },
-];
+
+
 
 function Bidding({ updatePercents }) {
+
+    console.log('ffffffffffuck')
+    const getMonday = () => {
+        var d = new Date();
+        var day = d.getDay(),
+            diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+        return new Date(d.setDate(diff));
+    }
+
+    let monday = getMonday();
+    let sunday = monday - 1;
+    let tuesday = monday + 1;
+    let wednesday = monday + 2;
+    let thursday = monday + 3;
+
+    console.log(new Date());
+
+    const schedulerData = [
+        { id: 1, startDate: sunday, endDate: sunday, percents: 30 },
+        { id: 2, startDate: monday, endDate: monday, percents: 40 },
+        { id: 3, startDate: tuesday, endDate: tuesday, percents: 20 },
+        { id: 4, startDate: wednesday, endDate: wednesday, percents: 5 },
+        { id: 5, startDate: '2020-12-24T09:00', endDate: '2020-12-24T19:30', percents: 5 },
+    ];
+
     const [appointments, setAppointments] = useState(schedulerData);
     const [showAlert, setAlert] = useState(false);
 

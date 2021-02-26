@@ -2,6 +2,7 @@ import React, { useState, Text} from 'react';
 import classes from './Restrictions.module.css'
 import { TextField} from '@material-ui/core';
 import EmployeeCheckbox from '../EmployeeDayList/EmployeeDayList';
+import DaysCheckBox from '../DaysCheckBox/DaysCheckBox';
 
 function Restrictions() {
 
@@ -26,7 +27,7 @@ function Restrictions() {
             <div className={classes.empBox}>
                 {employees.map((emp) => <EmployeeCheckbox name={emp.name}></EmployeeCheckbox>)}
             </div>
-            
+            <DaysCheckBox/>
         </div>)
 }
 
