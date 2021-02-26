@@ -10,34 +10,29 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { TextField, IconButton } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
-
-
-
+import { ViewState } from '@devexpress/dx-react-scheduler';
 
 function Bidding({ updatePercents }) {
 
-    console.log('ffffffffffuck')
-    const getMonday = () => {
+    const getNextSunday = () => {
         var d = new Date();
-        var day = d.getDay(),
-            diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
-        return new Date(d.setDate(diff));
+        const diff = d.getDay();
+        return new Date(d.setDate(d.getDate() - diff + 7));
     }
 
-    let monday = getMonday();
-    let sunday = monday - 1;
-    let tuesday = monday + 1;
-    let wednesday = monday + 2;
-    let thursday = monday + 3;
-
-    console.log(new Date());
+    let sunday = getNextSunday();
+    const tempDate = new Date(sunday);
+    let monday = new Date(tempDate.setDate(tempDate.getDate() + 1));
+    let tuesday = new Date(tempDate.setDate(tempDate.getDate() + 1))
+    let wednesday = new Date(tempDate.setDate(tempDate.getDate() + 1))
+    let thursday = new Date(tempDate.setDate(tempDate.getDate() + 1))
 
     const schedulerData = [
         { id: 1, startDate: sunday, endDate: sunday, percents: 30 },
         { id: 2, startDate: monday, endDate: monday, percents: 40 },
         { id: 3, startDate: tuesday, endDate: tuesday, percents: 20 },
         { id: 4, startDate: wednesday, endDate: wednesday, percents: 5 },
-        { id: 5, startDate: '2020-12-24T09:00', endDate: '2020-12-24T19:30', percents: 5 },
+        { id: 5, startDate: thursday, endDate: thursday, percents: 5 },
     ];
 
     const [appointments, setAppointments] = useState(schedulerData);
@@ -111,7 +106,7 @@ function Bidding({ updatePercents }) {
                     <div className={classes.alert}>
                         <Alert className={classes.innerMessage} severity="warning">
                             <AlertTitle>Notice</AlertTitle>
-                    You must fill 100% 
+                    You must fill 100%
                 </Alert>
                     </div>
                 }
@@ -119,10 +114,13 @@ function Bidding({ updatePercents }) {
                     data={appointments}
                     height={650}
                 >
+                    <ViewState
+                        defaultCurrentDate={sunday}
+                    />
                     <WeekView
                         startDayHour={9}
                         endDayHour={21}
-                        
+
                         excludedDays={[7, 6]}
                         timeTableCellComponent={TimeTableCell}
                         cellDuration={60}
