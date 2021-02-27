@@ -11,12 +11,8 @@ import {
 import { TextField, IconButton } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 
-
-
-
 function Bidding({ updatePercents }) {
 
-    console.log('ffffffffffuck')
     const getMonday = () => {
         var d = new Date();
         var day = d.getDay(),
