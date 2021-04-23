@@ -12,12 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "managers")
+@CrossOrigin
 @AllArgsConstructor
 public class ManagerController {
 
     private final ManagerService managerService;
 
-    @GetMapping(path = "assignedEmployees")
+    @GetMapping(path = "assignedEmployees}")
     public List<String> getAssignedEmployeesPerDay(Authentication authentication, @RequestBody Date date) {
         return managerService.getAssignedEmployees(authentication.getName(), date);
     }

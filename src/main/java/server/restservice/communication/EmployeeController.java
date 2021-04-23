@@ -10,6 +10,7 @@ import server.restservice.service.EmployeeService;
 import java.util.List;
 
 @RestController
+@CrossOrigin()
 @RequestMapping(path = "employees")
 @AllArgsConstructor
 public class EmployeeController {
