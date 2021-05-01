@@ -1,10 +1,10 @@
 package server.restservice.models;
 
 public class Bid {
-    private final String _employee_username;
-    private final Integer _day;
-    private Integer _percentage;
-    private Double _invested_points;
+    public String _employee_username;
+    public Integer _day;
+    public Integer _percentage;
+    public Double _invested_points;
 
     public Bid(String employee_username, Integer day) {
         this._employee_username = employee_username;

@@ -7,6 +7,7 @@ import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.service.EmployeeService;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -19,16 +20,20 @@ public class EmployeeController {
 
     @GetMapping()
     public String test(Authentication authentication) {
+        System.out.println("inside test");
         return "test - " + authentication.getName();
     }
 
     @GetMapping(path = "bids_collection")
     public Bid[] getBidsCollection(Authentication authentication) {
+        System.out.println("inside bids_collection");
         return employeeService.getBids(authentication.getName());
     }
 
+
     @PutMapping(path = "updateBids")
-    public void updateBids(Authentication authentication, @RequestBody Bid[] bids) {
+    public void updateBids(Authentication authentication, @RequestParam Bid[] bids) {
+        System.out.println("inside update bids");
         employeeService.updateBids(authentication.getName(), bids);
     }
 
@@ -38,7 +43,7 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "getEmployeeAssigning")
-    public List<Assignings> getEmployeeAssigning(Authentication authentication) {
+    public Assignings getEmployeeAssigning(Authentication authentication) throws ParseException {
         return employeeService.getEmployeeAssignings(authentication.getName());
     }
 

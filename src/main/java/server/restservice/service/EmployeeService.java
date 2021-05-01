@@ -5,8 +5,13 @@ import org.springframework.stereotype.Service;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Date;  
+
+import java.text.SimpleDateFormat;  
 
 @Service
 @AllArgsConstructor
@@ -14,7 +19,8 @@ public class EmployeeService {
 
     public Bid[] getBids(String username) {
         //TODO: get employee bids from repo
-        return new Bid[5];
+        Bid[] bids = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
+        return bids;
     }
 
 
@@ -28,9 +34,16 @@ public class EmployeeService {
         return 0;
     }
 
-
-    public List<Assignings> getEmployeeAssignings(String username) {
+    public Assignings getEmployeeAssignings(String username) throws ParseException {
         //TODO: get employee's assignings from repo
-        return new ArrayList<>();
+        Assignings as = new Assignings(username);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
+        List<Date> lst = Arrays.asList( sdf.parse("2021-04-12T09:45"),
+                                        sdf.parse("2021-04-19T09:45"),
+                                        sdf.parse("2021-04-27T09:45"),
+                                        sdf.parse("2021-04-28T09:45"),
+                                        sdf.parse("2021-04-29T09:45"));
+        as.addAssinedDays(lst);
+        return as;
     }
 }
