@@ -22,18 +22,18 @@ public class ManagerController {
     private final ManagerService managerService;
 
     @GetMapping(path = "assignedEmployees}")
-    public List<String> getAssignedEmployeesPerDay(Authentication authentication, @RequestBody Date date) {
+    public List<String> getAssignedEmployeesPerDay(Authentication authentication, @RequestParam Date date) {
         return managerService.getAssignedEmployees(authentication.getName(), date);
-    }
-
-    @PostMapping(path = "addRestriction")
-    public void addRestriction(Authentication authentication, @RequestBody Restriction restriction, @RequestBody String employee_username) {
-        managerService.addRestriction(authentication.getName(), restriction, employee_username);
     }
 
     @GetMapping(path = "getEmployees")
     public List<String> getEmployees(Authentication authentication) {
         return managerService.getEmployees(authentication.getName());
+    }
+
+    @GetMapping(path = "getEmployeesPoints")
+    public Map<String, Integer> getEmployeesPoints(Authentication authentication) throws ParseException {
+        return managerService.getEmployeePoints(authentication.getName());
     }
 
     @PostMapping(path = "setEmployeePoints")
@@ -42,10 +42,14 @@ public class ManagerController {
         return true;
     }
 
-    //TODO: day or date
-    @PostMapping(path = "planArrival")
-    public void planArrival(Authentication authentication, @RequestBody Integer day) {
-        managerService.planArrival(authentication.getName(), day);
+    @GetMapping(path = "getEmployeesRestrictions")
+    public Map<String, Restriction> getEmployeesRestrictions(Authentication authentication) {
+        return managerService.getEmployeeRestrictions(authentication.getName());
+    }
+
+    @PostMapping(path = "setRestrictions")
+    public void addRestriction(Authentication authentication, @RequestParam Restriction restriction, @RequestParam String employee_username) {
+        managerService.addRestriction(authentication.getName(), restriction, employee_username);
     }
 
     @GetMapping(path = "getEmployeeAssigning")
@@ -53,13 +57,17 @@ public class ManagerController {
         return managerService.getEmployeeAssignings(authentication.getName(), employeename);
     }
 
-    @GetMapping(path = "getEmployeesPoints")
-    public Map<String, Integer> getEmployeesPoints(Authentication authentication) throws ParseException {
-        return managerService.getEmployeePoints(authentication.getName());
+
+
+    //TODO: day or date
+    @PostMapping(path = "planArrival")
+    public void planArrival(Authentication authentication, @RequestParam Integer day) {
+        managerService.planArrival(authentication.getName(), day);
     }
 
-    @GetMapping(path = "getEmployeesRestrictions")
-    public Map<String, Restriction> getEmployeesRestrictions(Authentication authentication) {
-        return managerService.getEmployeeRestrictions(authentication.getName());
-    }
+
+
+
+
+
 }
