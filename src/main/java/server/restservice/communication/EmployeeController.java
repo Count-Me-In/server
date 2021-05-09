@@ -1,10 +1,13 @@
 package server.restservice.communication;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
+import server.restservice.models.Employee;
 import server.restservice.service.EmployeeService;
 
 import java.text.ParseException;
@@ -16,7 +19,8 @@ import java.util.List;
 @AllArgsConstructor
 public class EmployeeController {
 
-    private final EmployeeService employeeService;
+    @Autowired
+    private final EmployeeService employeeService = new EmployeeService();
 
     @GetMapping()
     public String test(Authentication authentication) {
@@ -24,12 +28,18 @@ public class EmployeeController {
         return "test - " + authentication.getName();
     }
 
+    @GetMapping(path = "all")
+    public String[] getEmployees(Authentication authentication) {
+        System.out.println("inside getEmployees");
+        String[] emp =  employeeService.getEmployees(authentication.getName());
+        return emp;
+    }
+
     @GetMapping(path = "bids_collection")
     public Bid[] getBidsCollection(Authentication authentication) {
         System.out.println("inside bids_collection");
         return employeeService.getBids(authentication.getName());
     }
-
 
     @PutMapping(path = "updateBids")
     public void updateBids(Authentication authentication, @RequestParam Bid[] bids) {

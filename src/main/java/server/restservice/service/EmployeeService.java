@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
+import server.restservice.models.Employee;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -45,5 +46,15 @@ public class EmployeeService {
                                         sdf.parse("2021-04-29T09:45"));
         as.addAssinedDays(lst);
         return as;
+    }
+
+    public String[] getEmployees(String username) {
+//        Employee emp[] = {new Employee("nuf@gmail.com", "Nufar Carmel","Itay Haizler", 60, false),
+//                new Employee("navi@gmail.com", "Shenhav Carmel","Moshik Shin", 25, false),
+//                new Employee("noych@gmail.com", "Noy Ezra","Maor Rozen", 95, false)
+//        };
+
+        String[] emp = {"Nufar Carmel", "Shenhav Carmel", "Noych Ezra"};
+        return emp;
     }
 }

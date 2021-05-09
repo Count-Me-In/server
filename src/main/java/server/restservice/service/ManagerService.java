@@ -14,6 +14,7 @@ import java.util.*;
 @Service
 @AllArgsConstructor
 public class ManagerService {
+
     public List<String> getAssignedEmployees(String username, Date date) {
         //ToDo: Check if user is manager --> fetch all employee's names from engine
         return new ArrayList<>();
@@ -80,6 +81,10 @@ public class ManagerService {
             as.addAssinedDays(lst);
         }
         return as;
+    }
+
+    public int getTotalPoints(String name) {
+        return 1000;
     }
 
     public Map<String, Integer> getEmployeePoints(String username) {

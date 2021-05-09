@@ -19,7 +19,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class ManagerController {
 
-    private final ManagerService managerService;
+    private final ManagerService managerService = new ManagerService();
 
     @GetMapping(path = "assignedEmployees}")
     public List<String> getAssignedEmployeesPerDay(Authentication authentication, @RequestParam Date date) {
@@ -34,6 +34,11 @@ public class ManagerController {
     @GetMapping(path = "getEmployeesPoints")
     public Map<String, Integer> getEmployeesPoints(Authentication authentication) throws ParseException {
         return managerService.getEmployeePoints(authentication.getName());
+    }
+
+    @GetMapping(path = "getTotalPoints")
+    public int getTotalPoints(Authentication authentication) throws ParseException {
+        return managerService.getTotalPoints(authentication.getName());
     }
 
     @PostMapping(path = "setEmployeePoints")
