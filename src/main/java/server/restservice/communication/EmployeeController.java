@@ -1,14 +1,14 @@
 package server.restservice.communication;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.Employee;
 import server.restservice.service.EmployeeService;
-import java.text.ParseException;
+import server.restservice.service.MailService;
+
 
 @RestController
 @CrossOrigin()
@@ -16,17 +16,9 @@ import java.text.ParseException;
 @AllArgsConstructor
 public class EmployeeController {
 
-    @Autowired
-    private final EmployeeService employeeService = new EmployeeService();
+    private EmployeeService employeeService;
 
-    @Autowired
-    private final MailService mailService = new MailService();
-
-    @GetMapping()
-    public String test(Authentication authentication) {
-        System.out.println("inside test");
-        return "test - " + authentication.getName();
-    }
+    private MailService mailService;
 
     @GetMapping(path = "all")
     public Employee[] getEmployees(Authentication authentication) {
@@ -52,7 +44,7 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "getEmployeeAssigning")
-    public Assignings getEmployeeAssigning(Authentication authentication) throws ParseException {
+    public Assignings getEmployeeAssigning(Authentication authentication) {
         return employeeService.getEmployeeAssignings(authentication.getName());
     }
 

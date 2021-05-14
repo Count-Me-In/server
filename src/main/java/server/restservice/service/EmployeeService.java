@@ -5,56 +5,88 @@ import org.springframework.stereotype.Service;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.Employee;
+import server.restservice.models.Restriction;
+import server.restservice.repository.EmployeeRepository;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Date;  
-
-import java.text.SimpleDateFormat;  
+import java.security.InvalidParameterException;
 
 @Service
 @AllArgsConstructor
 public class EmployeeService {
 
+    private EmployeeRepository employeeRepository;
+
     public Bid[] getBids(String username) {
-        //TODO: get employee bids from repo
-        Bid[] bids = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
-        return bids;
+        Employee emp = employeeRepository.findEmployeeByUsername(username);
+        if (emp != null) {
+            emp.readlock();
+            Bid[] bids = emp.getBids();
+            emp.readunlock();
+            return bids;
+        } else {
+            throw new InvalidParameterException("Employee username doesn't exists");
+        }
     }
 
+    private boolean checkValidBids(Bid[] bids, String username, Restriction restriction, Integer points) {
+        Double sumPoints = 0.0;
+        Integer sumPercent = 0;
+        for (Bid bid : bids) {
+            if (!bid.getUsername().equals(username) || !restriction.get_allowed_days().contains(bid.getDay())) {
+                return false;
+            }
+            sumPoints += bid.getPoints();
+            sumPercent += bid.getPercentage();
+        }
+        if (sumPercent != 100 || Math.abs(sumPoints - points) > 1) {
+            return false;
+        }
+        return true;
+    }
 
     public void updateBids(String username, Bid[] bids) {
-        //TODO: update employee bids field and save employee to repo
-    }
+        Employee emp = employeeRepository.findEmployeeByUsername(username);
+        if (emp != null) {
+            emp.writelock();
 
+            if (!checkValidBids(bids, username, emp.getRestriction(), emp.getPoints())) {
+                emp.writeunlock();
+                throw new InvalidParameterException("Bids aren't valid");
+            } else {
+                emp.setBids(bids);
+                emp.writeunlock();
+            }
+        } else {
+            throw new InvalidParameterException("Employee username doesn't exists");
+        }
+    }
 
     public int getEmployeesPoints(String username) {
-        //TODO: get employee points from repo
-        return 0;
+        Employee emp = employeeRepository.findEmployeeByUsername(username);
+        if (emp != null) {
+            emp.readlock();
+            int output = emp.getPoints();
+            emp.readunlock();
+            return output;
+        } else {
+            throw new InvalidParameterException("Employee username doesn't exists");
+        }
     }
 
-    public Assignings getEmployeeAssignings(String username) throws ParseException {
-        //TODO: get employee's assignings from repo
-        Assignings as = new Assignings(username);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
-        List<Date> lst = Arrays.asList( sdf.parse("2021-04-12T09:45"),
-                                        sdf.parse("2021-04-19T09:45"),
-                                        sdf.parse("2021-04-27T09:45"),
-                                        sdf.parse("2021-04-28T09:45"),
-                                        sdf.parse("2021-04-29T09:45"));
-        as.addAssinedDays(lst);
-        return as;
+    public Assignings getEmployeeAssignings(String username) {
+        Employee emp = employeeRepository.findEmployeeByUsername(username);
+        if (emp != null) {
+            emp.readlock();
+            Assignings output = emp.getAssignings();
+            emp.readunlock();
+            return output;
+        } else {
+            throw new InvalidParameterException("Employee username doesn't exists");
+        }
+
     }
 
     public String[] getEmployees(String username) {
-//        Employee emp[] = {new Employee("nuf@gmail.com", "Nufar Carmel","Itay Haizler", 60, false),
-//                new Employee("navi@gmail.com", "Shenhav Carmel","Moshik Shin", 25, false),
-//                new Employee("noych@gmail.com", "Noy Ezra","Maor Rozen", 95, false)
-//        };
-
-        String[] emp = {"Nufar Carmel", "Shenhav Carmel", "Noych Ezra"};
-        return emp;
+        return employeeRepository.getAllEmployeeNames();
     }
 }
