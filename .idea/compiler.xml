@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="restservice" />
+        <module name="CountMeInTheOffice" />
         <module name="serving-web-content" />
         <module name="rest-service" />
       </profile>
@@ -14,6 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="CountMeInTheOffice" options="-parameters" />
       <module name="rest-service" options="-parameters" />
       <module name="restservice" options="-parameters" />
       <module name="serving-web-content" options="-parameters" />

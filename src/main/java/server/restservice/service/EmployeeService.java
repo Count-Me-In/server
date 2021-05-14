@@ -1,6 +1,7 @@
 package server.restservice.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
