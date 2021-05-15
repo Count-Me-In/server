@@ -9,7 +9,9 @@ import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.Employee;
 import server.restservice.service.EmployeeService;
+import server.restservice.service.MailService;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.util.List;
 
@@ -21,6 +23,9 @@ public class EmployeeController {
 
     @Autowired
     private final EmployeeService employeeService = new EmployeeService();
+
+    @Autowired
+    private final MailService mailService = new MailService();
 
     @GetMapping()
     public String test(Authentication authentication) {
@@ -56,10 +61,13 @@ public class EmployeeController {
         return employeeService.getEmployeeAssignings(authentication.getName());
     }
 
-//    @GetMapping(path = "notifyByMail")
-//    public void notifyByMail(Authentication authentication) throws ParseException {
-//        return employeeService.notifyByMail(authentication.getName());
-//    }
+    @PostMapping(path = "sendMails")
+    public void sendMails(Authentication authentication, @RequestParam String[][] mails) throws ParseException {
+        for(int i = 0; i < mails.length; i++){
+            mailService.sendEmail(authentication.getName(),i, mails[i]);
+        }
+
+    }
 
 
 }

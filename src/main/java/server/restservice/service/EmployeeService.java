@@ -1,19 +1,15 @@
 package server.restservice.service;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.Employee;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Date;
-//import org.springframework.mail.SimpleMailMessage;
-
 
 import java.text.SimpleDateFormat;  
 
@@ -21,8 +17,7 @@ import java.text.SimpleDateFormat;
 @AllArgsConstructor
 public class EmployeeService {
 
-//    @Autowired
-//    private JavaMailSender sender;
+
 
     public Bid[] getBids(String username) {
         //TODO: get employee bids from repo
@@ -63,8 +58,7 @@ public class EmployeeService {
         return emp;
     }
 
-    public void notifyByMail(String name) {
 
 
-    }
+
 }
