@@ -29,10 +29,9 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "all")
-    public String[] getEmployees(Authentication authentication) {
+    public Employee[] getEmployees(Authentication authentication) {
         System.out.println("inside getEmployees");
-        String[] emp =  employeeService.getEmployees(authentication.getName());
-        return emp;
+        return employeeService.getEmployees(authentication.getName());
     }
 
     @GetMapping(path = "bids_collection")
@@ -56,5 +55,8 @@ public class EmployeeController {
     public Assignings getEmployeeAssigning(Authentication authentication) throws ParseException {
         return employeeService.getEmployeeAssignings(authentication.getName());
     }
+
+
+
 
 }

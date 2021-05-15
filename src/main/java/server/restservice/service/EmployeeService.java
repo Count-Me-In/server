@@ -48,13 +48,12 @@ public class EmployeeService {
         return as;
     }
 
-    public String[] getEmployees(String username) {
-//        Employee emp[] = {new Employee("nuf@gmail.com", "Nufar Carmel","Itay Haizler", 60, false),
-//                new Employee("navi@gmail.com", "Shenhav Carmel","Moshik Shin", 25, false),
-//                new Employee("noych@gmail.com", "Noy Ezra","Maor Rozen", 95, false)
-//        };
+    public Employee[] getEmployees(String username) {
+        Employee[] emp= {new Employee("nuf@gmail.com", "Nufar Carmel","Itay Haizler", 60, false),
+                new Employee("navi@gmail.com", "Shenhav Carmel","Moshik Shin", 25, false),
+                new Employee("noych@gmail.com", "Noy Ezra","Maor Rozen", 95, false)
+        };
 
-        String[] emp = {"Nufar Carmel", "Shenhav Carmel", "Noych Ezra"};
         return emp;
     }
 }

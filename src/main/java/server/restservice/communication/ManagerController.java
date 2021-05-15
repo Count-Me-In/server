@@ -21,7 +21,7 @@ public class ManagerController {
 
     private final ManagerService managerService = new ManagerService();
 
-    @GetMapping(path = "assignedEmployees}")
+    @GetMapping(path = "assignedEmployees")
     public List<String> getAssignedEmployeesPerDay(Authentication authentication, @RequestParam Date date) {
         return managerService.getAssignedEmployees(authentication.getName(), date);
     }

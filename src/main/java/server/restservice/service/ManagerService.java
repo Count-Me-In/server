@@ -32,7 +32,7 @@ public class ManagerService {
     }
 
     public void setEmployeePoints(String username, String employee_username, Integer points) {
-        //TODO
+        //TODO - need to update invested points according to the employees total points
         System.out.println("inside setEmployeePoints");
         System.out.println("employee_username = " +  employee_username);
         System.out.println("points = " + points);
