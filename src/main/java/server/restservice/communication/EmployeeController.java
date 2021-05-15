@@ -56,7 +56,10 @@ public class EmployeeController {
         return employeeService.getEmployeeAssignings(authentication.getName());
     }
 
-
+//    @GetMapping(path = "notifyByMail")
+//    public void notifyByMail(Authentication authentication) throws ParseException {
+//        return employeeService.notifyByMail(authentication.getName());
+//    }
 
 
 }

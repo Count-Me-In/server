@@ -25,67 +25,67 @@ public class Employee {
     }
 
 
-    public String get_username() {
+    public String getUsername() {
         return _username;
     }
 
-    public void set_username(String _username) {
+    public void setUsername(String _username) {
         this._username = _username;
     }
 
-    public String get_name() {
+    public String getName() {
         return _name;
     }
 
-    public void set_name(String _name) {
+    public void setName(String _name) {
         this._name = _name;
     }
 
-    public String get_direct_manager() {
+    public String getDirectManager() {
         return _direct_manager;
     }
 
-    public void set_direct_manager(String _direct_manager) {
+    public void setDirectManager(String _direct_manager) {
         this._direct_manager = _direct_manager;
     }
 
-    public Restriction get_restrictions() {
+    public Restriction getRestrictions() {
         return _restrictions;
     }
 
-    public void set_restrictions(Restriction _restrictions) {
+    public void setRestrictions(Restriction _restrictions) {
         this._restrictions = _restrictions;
     }
 
-    public Bid[] get_bids_collection() {
+    public Bid[] getBidsCollection() {
         return _bids_collection;
     }
 
-    public void set_bids_collection(Bid[] _bids_collection) {
+    public void setBidsCollection(Bid[] _bids_collection) {
         this._bids_collection = _bids_collection;
     }
 
-    public Integer get_total_points() {
+    public Integer getTotalPoints() {
         return _total_points;
     }
 
-    public void set_total_points(Integer _total_points) {
+    public void setTotalPoints(Integer _total_points) {
         this._total_points = _total_points;
     }
 
-    public List<String> get_employees_list() {
+    public List<String> getEmployeesList() {
         return _employees_list;
     }
 
-    public void set_employees_list(List<String> _employees_list) {
+    public void setEmployeesList(List<String> _employees_list) {
         this._employees_list = _employees_list;
     }
 
-    public Assignings get_assignings() {
+    public Assignings getAssignings() {
         return _assignings;
     }
 
-    public void set_assignings(Assignings _assignings) {
+    public void setAssignings(Assignings _assignings) {
         this._assignings = _assignings;
     }
 
