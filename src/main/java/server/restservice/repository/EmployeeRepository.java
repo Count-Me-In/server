@@ -1,14 +1,15 @@
 package server.restservice.repository;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
+
 import java.time.Instant;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.concurrent.ConcurrentHashMap;
-
 import java.util.ArrayList;
-
-import org.springframework.stereotype.Repository;
+import java.util.Arrays;
 
 import server.restservice.models.Employee;
 
@@ -18,8 +19,8 @@ import server.restservice.models.Employee;
 @Repository
 public class EmployeeRepository {
 
-    // TODO: Get from configurations
-    private static final int MAX_SIZE = 1000;
+    @Value("${cacheSize}")
+    private int MAX_SIZE;
 
     private ConcurrentHashMap<String, SimpleEntry<Employee, Long>> _employee_cacheMap = new ConcurrentHashMap<String, SimpleEntry<Employee, Long>>();
 
@@ -40,7 +41,7 @@ public class EmployeeRepository {
                     _employee_cacheMap.remove(userToRemove.getKey().getUsername());
                 }
 
-                Employee empToAdd = getEmployeeFromSource(username);
+                Employee empToAdd = _getEmployeeFromSource(username);
 
                 SimpleEntry<Employee, Long> userToAdd = new SimpleEntry<Employee, Long>(empToAdd,
                         Instant.now().getEpochSecond());
@@ -65,9 +66,24 @@ public class EmployeeRepository {
         return (String[]) names.toArray();
     }
 
-    private Employee getEmployeeFromSource(String username) {
+    public String getUsernamePass(String username) {
         // TODO: get from lambdas
-        return new Employee(username, username, "admin", 0, username.equals("admin"));
+        if (Arrays.asList("admin", "shauli", "nufar", "shenhav", "noy", "a").contains(username)) {
+            return "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6";
+        } else {
+            return null;
+        }
+    }
+
+    public void cleanCache() {
+        synchronized (this) {
+            _employee_cacheMap.clear();
+        }
+    }
+
+    private Employee _getEmployeeFromSource(String username) {
+        // TODO: get from lambdas
+        return new Employee(username, username, "admin", 0, username.equals("admin"), 0);
     }
 
 }

@@ -14,12 +14,13 @@ public class Employee {
     private Integer _total_points;
     private List<String> _employees_list;
     private Assignings _assignings;
+    private Integer _totalManagerPoints;
 
     // Synchronization lock
     private ReentrantReadWriteLock _lock;
 
     // Constructor
-    public Employee(String username, String name, String directed_manager, Integer total_points, Boolean is_manager) {
+    public Employee(String username, String name, String directed_manager, Integer total_points, Boolean is_manager, Integer totalManagerPoints) {
         this._username = username;
         this._name = name;
         this._direct_manager = directed_manager;
@@ -28,6 +29,7 @@ public class Employee {
         this._total_points = total_points;
         this._employees_list = new ArrayList<>();
         this._assignings = new Assignings(this._username);
+        this._totalManagerPoints = totalManagerPoints;
     }
 
     // Getters and Setters
@@ -73,6 +75,18 @@ public class Employee {
 
     public Assignings getAssignings() {
         return _assignings;
+    }
+
+    public Integer getManagerPoints() {
+        return _totalManagerPoints;
+    }
+
+    public void setManagerPoints(Integer points) {
+        _totalManagerPoints = points;
+    }
+
+    public Boolean isManager(){
+        return _employees_list.size() > 0;
     }
 
     // Synchronization functions

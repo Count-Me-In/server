@@ -29,4 +29,9 @@ public class Bid {
         return _invested_points;
     }
 
+    public void clearPoints() {
+        _percentage = 0;
+        _percentage = 0;
+    }
+
 }

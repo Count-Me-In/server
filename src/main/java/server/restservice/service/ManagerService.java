@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import server.restservice.models.Assignings;
+import server.restservice.models.Bid;
 import server.restservice.models.Employee;
 import server.restservice.models.Restriction;
 import server.restservice.repository.EmployeeRepository;
@@ -26,15 +27,19 @@ public class ManagerService {
     }
 
     public void addRestriction(String username, Restriction restriction, String employee_username) {
-        // TODO: what if employee has bid on the day
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
         if (emp != null) {
             emp.writelock();
-
             if (!emp.getManager().equals(username)) {
                 emp.writeunlock();
                 throw new InvalidParameterException("Can't update employee");
             } else {
+                Bid[] empBids = emp.getBids();
+                for (Bid bid : empBids) {
+                    if (!restriction.get_allowed_days().contains(bid.getDay())) {
+                        bid.clearPoints();
+                    }
+                }
                 emp.setRestrictions(restriction);
                 emp.writeunlock();
             }
@@ -56,7 +61,6 @@ public class ManagerService {
     }
 
     public void setEmployeePoints(String username, String employee_username, Integer points) {
-        // TODO: change manager points?
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
         if (emp != null) {
             emp.writelock();
@@ -65,7 +69,21 @@ public class ManagerService {
                 emp.writeunlock();
                 throw new InvalidParameterException("Can't update employee");
             } else {
-                emp.setPoints(points);
+                if (emp.isManager()) {
+                    double ratio = points / emp.getManagerPoints();
+                    emp.setManagerPoints(points);
+                    emp.setPoints((int)(emp.getPoints()*ratio));
+                    for (String empUsername : emp.getEmployees()) {
+                        // TODO: improve
+                        Employee dirEmp = employeeRepository.findEmployeeByUsername(empUsername);
+                        dirEmp.readlock();
+                        int newPoints = (int)(dirEmp.getPoints()*ratio);
+                        dirEmp.readunlock();
+                        setEmployeePoints(employee_username, empUsername, newPoints);
+                    }
+                } else {
+                    emp.setPoints(points);
+                }
                 emp.writeunlock();
             }
         } else {
@@ -92,11 +110,10 @@ public class ManagerService {
     }
 
     public int getTotalPoints(String username) {
-        // TODO: Add field to employee? Manager points?
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            int points = emp.getPoints();
+            int points = emp.getManagerPoints();
             emp.readunlock();
             return points;
         } else {
