@@ -14,4 +14,8 @@ public class Assignings {
         this._assignedDays = new ArrayList<>();
     }
 
+    public void addAssinedDays(List<Date> dates){
+        this._assignedDays.addAll(dates);
+    }
+
 }

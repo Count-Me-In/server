@@ -1,8 +1,8 @@
 package server.restservice.models;
 
 public class Bid {
-    private final String _employee_username;
-    private final Integer _day;
+    private String _employee_username;
+    private Integer _day;
     private Integer _percentage;
     private Double _invested_points;
 
@@ -11,6 +11,27 @@ public class Bid {
         this._day = day;
         this._percentage = 0;
         this._invested_points = 0.0;
+    }
+
+    public String getUsername() {
+        return _employee_username;
+    }
+
+    public Integer getDay() {
+        return _day;
+    }
+
+    public Integer getPercentage() {
+        return _percentage;
+    }
+
+    public Double getPoints() {
+        return _invested_points;
+    }
+
+    public void clearPoints() {
+        _percentage = 0;
+        _percentage = 0;
     }
 
 }

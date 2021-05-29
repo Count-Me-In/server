@@ -5,9 +5,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
+import server.restservice.models.Employee;
 import server.restservice.service.EmployeeService;
+import server.restservice.service.MailService;
 
-import java.util.List;
 
 @RestController
 @CrossOrigin()
@@ -15,20 +16,25 @@ import java.util.List;
 @AllArgsConstructor
 public class EmployeeController {
 
-    private final EmployeeService employeeService;
+    private EmployeeService employeeService;
 
-    @GetMapping()
-    public String test(Authentication authentication) {
-        return "test - " + authentication.getName();
+    private MailService mailService;
+
+    @GetMapping(path = "all")
+    public Employee[] getEmployees(Authentication authentication) {
+        System.out.println("inside getEmployees");
+        return employeeService.getEmployees(authentication.getName());
     }
 
     @GetMapping(path = "bids_collection")
     public Bid[] getBidsCollection(Authentication authentication) {
+        System.out.println("inside bids_collection");
         return employeeService.getBids(authentication.getName());
     }
 
     @PutMapping(path = "updateBids")
-    public void updateBids(Authentication authentication, @RequestBody Bid[] bids) {
+    public void updateBids(Authentication authentication, @RequestParam Bid[] bids) {
+        System.out.println("inside update bids");
         employeeService.updateBids(authentication.getName(), bids);
     }
 
@@ -38,8 +44,17 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "getEmployeeAssigning")
-    public List<Assignings> getEmployeeAssigning(Authentication authentication) {
+    public Assignings getEmployeeAssigning(Authentication authentication) {
         return employeeService.getEmployeeAssignings(authentication.getName());
     }
+
+    @PostMapping(path = "sendMails")
+    public void sendMails(Authentication authentication, @RequestParam String[][] mails) {
+        for(int i = 0; i < mails.length; i++){
+            mailService.sendEmail(authentication.getName(),i, mails[i]);
+        }
+
+    }
+
 
 }
