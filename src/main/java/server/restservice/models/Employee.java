@@ -20,7 +20,7 @@ public class Employee {
     private ReentrantReadWriteLock _lock;
 
     // Constructor
-    public Employee(String username, String name, String directed_manager, Integer total_points, Boolean is_manager, Integer totalManagerPoints) {
+    public Employee(String username, String name, String directed_manager, Integer total_points, Integer totalManagerPoints) {
         this._username = username;
         this._name = name;
         this._direct_manager = directed_manager;

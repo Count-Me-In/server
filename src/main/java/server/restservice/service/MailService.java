@@ -1,7 +1,9 @@
 package server.restservice.service;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import server.restservice.models.Employee;
+import server.restservice.repository.EmployeeRepository;
+
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -13,7 +15,8 @@ import java.util.Properties;
 @NoArgsConstructor
 public class MailService{
 
-    private JavaMailSender javaMailSender = getJavaMailSender();
+    private JavaMailSender javaMailSender;
+    private EmployeeRepository employeeRepository;
 
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -61,8 +64,10 @@ public class MailService{
         msg.setTo(mails);
 
         msg.setSubject("Schedule Arrival Day");
-        //TODO: get employees name instead of username from db
-        msg.setText(mailText(username, day));
+        Employee emp = employeeRepository.findEmployeeByUsername(username);
+        emp.readlock();
+        msg.setText(mailText(emp.getName(), day));
+        emp.readunlock();
 
         javaMailSender.send(msg);
     }

@@ -57,13 +57,13 @@ public class EmployeeRepository {
         }
     }
 
-    public String[] getAllEmployeeNames() {
+    public Employee[] getAllEmployeeNames() {
         // TODO: get from lambdas
-        ArrayList<String> names = new ArrayList<String>();
+        ArrayList<Employee> names = new ArrayList<Employee>();
         for (SimpleEntry<Employee, Long> entry : _employee_cacheMap.values()) {
-            names.add(entry.getKey().getName());
+            names.add(entry.getKey());
         }
-        return (String[]) names.toArray();
+        return (Employee[]) names.toArray();
     }
 
     public String getUsernamePass(String username) {
@@ -83,7 +83,7 @@ public class EmployeeRepository {
 
     private Employee _getEmployeeFromSource(String username) {
         // TODO: get from lambdas
-        return new Employee(username, username, "admin", 0, username.equals("admin"), 0);
+        return new Employee(username, username, "admin", 0, 0);
     }
 
 }

@@ -10,7 +10,6 @@ import server.restservice.models.Restriction;
 import server.restservice.repository.EmployeeRepository;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,11 +19,6 @@ import java.util.Map;
 public class ManagerService {
 
     private EmployeeRepository employeeRepository;
-
-    public List<String> getAssignedEmployeesPerDay(String username) {
-        // TODO: return type??
-        return new ArrayList<>();
-    }
 
     public void addRestriction(String username, Restriction restriction, String employee_username) {
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
