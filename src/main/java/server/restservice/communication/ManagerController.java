@@ -9,7 +9,6 @@ import server.restservice.models.Restriction;
 import server.restservice.service.ManagerService;
 
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,11 +19,6 @@ import java.util.Map;
 public class ManagerController {
 
     private final ManagerService managerService = new ManagerService();
-
-    @GetMapping(path = "assignedEmployees}")
-    public List<String> getAssignedEmployeesPerDay(Authentication authentication, @RequestParam Date date) {
-        return managerService.getAssignedEmployees(authentication.getName(), date);
-    }
 
     @GetMapping(path = "getEmployees")
     public List<String> getEmployees(Authentication authentication) {
@@ -61,18 +55,5 @@ public class ManagerController {
     public Assignings getEmployeeAssigning(Authentication authentication, @RequestParam String employeename) throws ParseException {
         return managerService.getEmployeeAssignings(authentication.getName(), employeename);
     }
-
-
-
-    //TODO: day or date
-    @PostMapping(path = "planArrival")
-    public void planArrival(Authentication authentication, @RequestParam Integer day) {
-        managerService.planArrival(authentication.getName(), day);
-    }
-
-
-
-
-
 
 }

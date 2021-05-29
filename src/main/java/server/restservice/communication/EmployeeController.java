@@ -1,7 +1,6 @@
 package server.restservice.communication;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -9,9 +8,7 @@ import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.Employee;
 import server.restservice.service.EmployeeService;
-
 import java.text.ParseException;
-import java.util.List;
 
 @RestController
 @CrossOrigin()
@@ -22,6 +19,9 @@ public class EmployeeController {
     @Autowired
     private final EmployeeService employeeService = new EmployeeService();
 
+    @Autowired
+    private final MailService mailService = new MailService();
+
     @GetMapping()
     public String test(Authentication authentication) {
         System.out.println("inside test");
@@ -29,10 +29,9 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "all")
-    public String[] getEmployees(Authentication authentication) {
+    public Employee[] getEmployees(Authentication authentication) {
         System.out.println("inside getEmployees");
-        String[] emp =  employeeService.getEmployees(authentication.getName());
-        return emp;
+        return employeeService.getEmployees(authentication.getName());
     }
 
     @GetMapping(path = "bids_collection")
@@ -56,5 +55,14 @@ public class EmployeeController {
     public Assignings getEmployeeAssigning(Authentication authentication) throws ParseException {
         return employeeService.getEmployeeAssignings(authentication.getName());
     }
+
+    @PostMapping(path = "sendMails")
+    public void sendMails(Authentication authentication, @RequestParam String[][] mails) throws ParseException {
+        for(int i = 0; i < mails.length; i++){
+            mailService.sendEmail(authentication.getName(),i, mails[i]);
+        }
+
+    }
+
 
 }
