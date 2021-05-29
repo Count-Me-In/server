@@ -83,7 +83,17 @@ public class EmployeeRepository {
 
     private Employee _getEmployeeFromSource(String username) {
         // TODO: get from lambdas
-        return new Employee(username, username, "admin", 0, 0);
+        if (!Arrays.asList("admin", "shauli", "nufar", "shenhav", "noy", "a").contains(username)) {
+            return null;
+        }
+        Employee emp;
+        if (username.equals("admin")) {
+            emp = new Employee(username, username, null, 100, 100);
+            emp.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav", "noy", "a"));
+        } else {
+            emp = new Employee(username, username, "admin", 0, 0);
+        }
+        return emp;
     }
 
 }
