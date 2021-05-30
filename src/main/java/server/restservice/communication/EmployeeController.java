@@ -48,7 +48,7 @@ public class EmployeeController {
         return employeeService.getEmployeeAssignings(authentication.getName());
     }
 
-    @PostMapping(path = "sendMails")
+    @PostMapping(path = "invites")
     public void sendMails(Authentication authentication, @RequestParam String[][] mails) {
         for(int i = 0; i < mails.length; i++){
             mailService.sendEmail(authentication.getName(),i, mails[i]);

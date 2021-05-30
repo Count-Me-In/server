@@ -15,6 +15,7 @@ import server.restservice.models.Assignings;
 import server.restservice.models.Restriction;
 import server.restservice.service.ManagerService;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,9 +43,10 @@ public class ManagerController {
     }
 
     @PostMapping(path = "setEmployeePoints")
-    public Boolean setEmployeePoints(Authentication authentication, @RequestParam String employeename,
-            @RequestParam String points) {
-        managerService.setEmployeePoints(authentication.getName(), employeename, 1);
+    public Boolean setEmployeePoints(Authentication authentication, @RequestParam Map<String, Integer> employeesPoints) {
+        for(Map.Entry<String,Integer> entry : (employeesPoints.entrySet())) {
+            managerService.setEmployeePoints(authentication.getName(), entry.getKey(), entry.getValue());
+        }
         return true;
     }
 

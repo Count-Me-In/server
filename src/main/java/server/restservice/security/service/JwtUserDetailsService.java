@@ -1,5 +1,6 @@
 package server.restservice.security.service;
 
+import lombok.AllArgsConstructor;
 import server.restservice.repository.EmployeeRepository;
 
 import org.springframework.security.core.userdetails.User;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
+@AllArgsConstructor
 public class JwtUserDetailsService implements UserDetailsService {
 
     private EmployeeRepository employeeRepository;

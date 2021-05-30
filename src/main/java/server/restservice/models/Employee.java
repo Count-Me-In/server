@@ -30,6 +30,7 @@ public class Employee {
         this._employees_list = new ArrayList<>();
         this._assignings = new Assignings(this._username);
         this._totalManagerPoints = totalManagerPoints;
+        this._lock = new ReentrantReadWriteLock();
     }
 
     // Getters and Setters
@@ -75,6 +76,10 @@ public class Employee {
 
     public Assignings getAssignings() {
         return _assignings;
+    }
+
+    public void setAssignings(Assignings as) {
+        _assignings = as;
     }
 
     public Integer getManagerPoints() {

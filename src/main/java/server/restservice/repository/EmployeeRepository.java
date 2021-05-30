@@ -3,14 +3,15 @@ package server.restservice.repository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.ArrayList;
-import java.util.Arrays;
 
+import server.restservice.models.Assignings;
+import server.restservice.models.Bid;
 import server.restservice.models.Employee;
 
 /**
@@ -90,8 +91,44 @@ public class EmployeeRepository {
         if (username.equals("admin")) {
             emp = new Employee(username, username, null, 100, 100);
             emp.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav", "noy", "a"));
+
+            Bid[] bids = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
+            emp.setBids(bids);
+
+            try {
+                Assignings as = new Assignings(username);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
+                List<Date> lst = Arrays.asList(sdf.parse("2021-05-12T09:45"),
+                        sdf.parse("2021-05-19T09:45"),
+                        sdf.parse("2021-05-27T09:45"),
+                        sdf.parse("2021-05-28T09:45"),
+                        sdf.parse("2021-05-29T09:45"));
+                as.addAssinedDays(lst);
+                emp.setAssignings(as);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+
         } else {
             emp = new Employee(username, username, "admin", 0, 0);
+            if(username.equals("Shauli")){
+                Assignings as = new Assignings(username);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
+                List<Date> lst = null;
+                try {
+                    lst = Arrays.asList(sdf.parse("2021-05-12T09:45"),
+                            sdf.parse("2021-05-11T09:45"),
+                            sdf.parse("2021-05-22T09:45"),
+                            sdf.parse("2021-05-01T09:45"),
+                            sdf.parse("2021-05-09T09:45"));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                as.addAssinedDays(lst);
+                emp.setAssignings(as);
+
+            }
         }
         return emp;
     }
