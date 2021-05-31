@@ -89,7 +89,7 @@ public class EmployeeRepository {
         }
         Employee emp;
         if (username.equals("admin")) {
-            emp = new Employee(username, username, null, 100, 100);
+            emp = new Employee(username, username, null, 100, 100, 300);
             emp.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav", "noy", "a"));
 
             Bid[] bids = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
@@ -111,7 +111,7 @@ public class EmployeeRepository {
             }
 
         } else {
-            emp = new Employee(username, username, "admin", 0, 0);
+            emp = new Employee(username, username, "admin", 0, 0, 100);
             if(username.equals("Shauli")){
                 Assignings as = new Assignings(username);
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
