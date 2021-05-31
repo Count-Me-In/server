@@ -49,7 +49,7 @@ public class EmployeeService {
         if (emp != null) {
             emp.writelock();
 
-            if (!checkValidBids(bids, username, emp.getRestriction(), emp.getPoints())) {
+            if (!checkValidBids(bids, username, emp.getRestriction(), emp.getTotalPoints())) {
                 emp.writelock();
                 throw new InvalidParameterException("Bids aren't valid");
             } else {
@@ -65,7 +65,7 @@ public class EmployeeService {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            int output = emp.getPoints();
+            int output = emp.getTotalPoints();
             emp.readunlock();
             return output;
         } else {

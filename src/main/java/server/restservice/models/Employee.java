@@ -12,6 +12,7 @@ public class Employee {
     private Restriction _restrictions;
     private Bid[] _bids_collection;
     private Integer _total_points;
+    private Integer _weekly_added_points;
     private List<String> _employees_list;
     private Assignings _assignings;
     private Integer _totalManagerPoints;
@@ -20,13 +21,14 @@ public class Employee {
     private ReentrantReadWriteLock _lock;
 
     // Constructor
-    public Employee(String username, String name, String directed_manager, Integer total_points, Integer totalManagerPoints) {
+    public Employee(String username, String name, String directed_manager, Integer total_points, Integer weekly_added_points, Integer totalManagerPoints) {
         this._username = username;
         this._name = name;
         this._direct_manager = directed_manager;
         this._restrictions = new Restriction();
         this._bids_collection = new Bid[5];
         this._total_points = total_points;
+        this._weekly_added_points = weekly_added_points;
         this._employees_list = new ArrayList<>();
         this._assignings = new Assignings(this._username);
         this._totalManagerPoints = totalManagerPoints;
@@ -46,11 +48,14 @@ public class Employee {
         return _direct_manager;
     }
 
-    public int getPoints() {
+    public int getTotalPoints() {
         return _total_points;
     }
 
-    public void setPoints(int points) {
+    public int getWeeklyPoints() {
+        return _weekly_added_points;
+    }
+    public void setWeeklyPoints(int points) {
         _total_points = points;
     }
 

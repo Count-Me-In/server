@@ -13,4 +13,8 @@ public class Restriction {
     public List<Integer> get_allowed_days() {
         return new ArrayList<>(this._allowed_days);
     }
+
+    public void set_allowed_days(List<Integer> allowed_days) {
+        _allowed_days = allowed_days;
+    }
 }

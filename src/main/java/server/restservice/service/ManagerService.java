@@ -66,17 +66,17 @@ public class ManagerService {
                 if (emp.isManager()) {
                     double ratio = points / emp.getManagerPoints();
                     emp.setManagerPoints(points);
-                    emp.setPoints((int)(emp.getPoints()*ratio));
+                    emp.setWeeklyPoints((int)(emp.getWeeklyPoints()*ratio));
                     for (String empUsername : emp.getEmployees()) {
                         // TODO: improve
                         Employee dirEmp = employeeRepository.findEmployeeByUsername(empUsername);
                         dirEmp.readlock();
-                        int newPoints = (int)(dirEmp.getPoints()*ratio);
+                        int newPoints = (int)(dirEmp.getWeeklyPoints()*ratio);
                         dirEmp.readunlock();
                         setEmployeePoints(employee_username, empUsername, newPoints);
                     }
                 } else {
-                    emp.setPoints(points);
+                    emp.setWeeklyPoints(points);
                 }
                 emp.writeunlock();
             }
@@ -124,7 +124,7 @@ public class ManagerService {
                 Employee direct = employeeRepository.findEmployeeByUsername(emp_username);
                 if (direct != null) {
                     direct.readlock();
-                    output.put(direct.getUsername(), direct.getPoints());
+                    output.put(direct.getUsername(), direct.getWeeklyPoints());
                     direct.readunlock();
                 }
             }
