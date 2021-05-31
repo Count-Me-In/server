@@ -1,4 +1,4 @@
-package server.restservice.UnitTests.Service;
+package server.restservice.service;
 
 import org.junit.jupiter.api.Test;
 import server.restservice.EmployeeRepositoryMock;

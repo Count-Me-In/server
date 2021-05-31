@@ -1,4 +1,4 @@
-package server.restservice.UnitTests.Service;
+package server.restservice.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
