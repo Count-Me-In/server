@@ -7,7 +7,7 @@ import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.Employee;
 import server.restservice.models.Restriction;
-import server.restservice.repository.EmployeeRepository;
+import server.restservice.repository.EmployeeRepositoryImpl;
 
 import java.security.InvalidParameterException;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class ManagerService {
 
-    private EmployeeRepository employeeRepository;
+    private EmployeeRepositoryImpl employeeRepository;
 
     public void addRestriction(String username, Restriction restriction, String employee_username) {
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);

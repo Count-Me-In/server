@@ -2,7 +2,7 @@ package server.restservice.service;
 
 import lombok.NoArgsConstructor;
 import server.restservice.models.Employee;
-import server.restservice.repository.EmployeeRepository;
+import server.restservice.repository.EmployeeRepositoryImpl;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -16,7 +16,7 @@ import java.util.Properties;
 public class MailService{
 
     private JavaMailSender javaMailSender;
-    private EmployeeRepository employeeRepository;
+    private EmployeeRepositoryImpl employeeRepository;
 
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();

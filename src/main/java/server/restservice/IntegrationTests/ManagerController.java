@@ -1,4 +1,4 @@
-package server.restservice.communication;
+package server.restservice.IntegrationTests;
 
 import lombok.AllArgsConstructor;
 
@@ -42,9 +42,12 @@ public class ManagerController {
     }
 
     @PostMapping(path = "setEmployeePoints")
-    public Boolean setEmployeePoints(Authentication authentication, @RequestParam Map<String, Integer> employeesPoints) {
-        for(Map.Entry<String,Integer> entry : (employeesPoints.entrySet())) {
-            managerService.setEmployeePoints(authentication.getName(), entry.getKey(), entry.getValue());
+    public Boolean setEmployeePoints(Authentication authentication, @RequestParam Map employeesPoints) {
+        Map<String, Integer> map = (Map<String, Integer>)employeesPoints.getOrDefault("employeesPoints", null);
+        if (map != null) {
+            for (Map.Entry<String, Integer> entry : (map.entrySet())) {
+                managerService.setEmployeePoints(authentication.getName(), entry.getKey(), entry.getValue());
+            }
         }
         return true;
     }

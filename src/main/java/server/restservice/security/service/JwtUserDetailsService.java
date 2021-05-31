@@ -1,7 +1,7 @@
 package server.restservice.security.service;
 
 import lombok.AllArgsConstructor;
-import server.restservice.repository.EmployeeRepository;
+import server.restservice.repository.EmployeeRepositoryImpl;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class JwtUserDetailsService implements UserDetailsService {
 
-    private EmployeeRepository employeeRepository;
+    private EmployeeRepositoryImpl employeeRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
