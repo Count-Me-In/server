@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import server.restservice.models.Assignings;
+import server.restservice.models.EmployeePoints;
 import server.restservice.models.Restriction;
 import server.restservice.service.ManagerService;
 
@@ -42,10 +43,9 @@ public class ManagerController {
     }
 
     @PostMapping(path = "setEmployeePoints")
-    public Boolean setEmployeePoints(Authentication authentication, @RequestParam Map<String, Integer> employeesPoints) {
-        for(Map.Entry<String,Integer> entry : (employeesPoints.entrySet())) {
-            managerService.setEmployeePoints(authentication.getName(), entry.getKey(), entry.getValue());
-        }
+    public Boolean setEmployeePoints(Authentication authentication, @RequestBody EmployeePoints[] employeesPoints) {
+        System.out.println(employeesPoints);
+//        managerService.setEmployeePoints(authentication.getName(), entry.getKey(), entry.getValue());
         return true;
     }
 
