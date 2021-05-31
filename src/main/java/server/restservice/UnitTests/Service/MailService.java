@@ -1,4 +1,4 @@
-package server.restservice.service;
+package server.restservice.UnitTests.Service;
 
 import lombok.NoArgsConstructor;
 import server.restservice.models.Employee;

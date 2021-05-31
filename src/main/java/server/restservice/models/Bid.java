@@ -34,4 +34,11 @@ public class Bid {
         _percentage = 0;
     }
 
+    public void setPercentage(int percentage){
+        this._percentage = percentage;
+    }
+
+    public void setPoints(double points) {
+        this._invested_points = points;
+    }
 }

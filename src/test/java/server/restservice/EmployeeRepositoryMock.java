@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.Employee;
+import server.restservice.models.Restriction;
 import server.restservice.repository.EmployeeRepository;
 
 import java.text.ParseException;
@@ -39,6 +40,12 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         catch(Exception e){
             e.printStackTrace();
         }
+
+        Restriction rst = new Restriction();
+        List<Integer> allowed = Arrays.asList(0, 1, 2, 3, 4);
+        rst.set_allowed_days(allowed);
+
+        admin.setRestrictions(rst);
 
 
         Employee shauli = new Employee("shauli", "shauli", "admin", 0, 0, 100);

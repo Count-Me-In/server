@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import server.restservice.models.Assignings;
 import server.restservice.models.Restriction;
-import server.restservice.service.ManagerService;
+import server.restservice.UnitTests.Service.ManagerService;
 
 import java.util.List;
 import java.util.Map;

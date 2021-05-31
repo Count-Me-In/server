@@ -5,8 +5,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
-import server.restservice.service.EmployeeService;
-import server.restservice.service.MailService;
+import server.restservice.models.Employee;
+import server.restservice.UnitTests.Service.EmployeeService;
+import server.restservice.UnitTests.Service.MailService;
 
 @RestController
 @CrossOrigin()

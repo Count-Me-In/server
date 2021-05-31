@@ -1,4 +1,4 @@
-package server.restservice.service;
+package server.restservice.UnitTests.Service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,7 +7,6 @@ import server.restservice.models.Bid;
 import server.restservice.models.Employee;
 import server.restservice.models.Restriction;
 import server.restservice.repository.EmployeeRepository;
-import server.restservice.repository.EmployeeRepositoryImpl;
 
 import java.security.InvalidParameterException;
 
