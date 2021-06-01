@@ -28,17 +28,18 @@ public class EmployeeService {
         }
     }
 
-    private boolean checkValidBids(Bid[] bids, String username, Restriction restriction, Integer points) {
-        Double sumPoints = 0.0;
+    private boolean checkValidBids(Bid[] bids, String username, Restriction restriction) {
+        if (bids.length != 7) {
+            return false;
+        }
         Integer sumPercent = 0;
         for (Bid bid : bids) {
-            if (!bid.getUsername().equals(username) || !restriction.get_allowed_days().contains(bid.getDay())) {
+            if (bid.getPercentage() > 0 && !restriction.get_allowed_days().contains(bid.getDay())) {
                 return false;
             }
-            sumPoints += bid.getPoints();
             sumPercent += bid.getPercentage();
         }
-        if (sumPercent != 100 || Math.abs(sumPoints - points) > 1) {
+        if (sumPercent > 100) {
             return false;
         }
         return true;
@@ -49,11 +50,15 @@ public class EmployeeService {
         if (emp != null) {
             emp.writelock();
 
-            if (!checkValidBids(bids, username, emp.getRestriction(), emp.getTotalPoints())) {
-                emp.writelock();
+            if (!checkValidBids(bids, username, emp.getRestriction())) {
+                emp.writeunlock();
                 throw new InvalidParameterException("Bids aren't valid");
             } else {
-                emp.setBids(bids);
+                Bid[] newBids = emp.getBids();
+                for (Bid bid : bids) {
+                    newBids[bid.getDay() - 1].setPercentage(bid.getPercentage());
+                }
+                emp.setBids(newBids);
                 emp.writeunlock();
             }
         } else {
