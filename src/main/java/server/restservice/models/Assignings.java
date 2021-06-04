@@ -18,4 +18,7 @@ public class Assignings {
         this._assignedDays.addAll(dates);
     }
 
+    public List<Date> getAssignedDays(){
+        return this._assignedDays;
+    }
 }

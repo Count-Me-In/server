@@ -2,8 +2,6 @@ package server.restservice.communication;
 
 import lombok.AllArgsConstructor;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +34,7 @@ public class EmployeeController {
     }
 
     @PutMapping(path = "updateBids")
-    public void updateBids(Authentication authentication, @RequestBody List<Bid> bids) {
+    public void updateBids(Authentication authentication, @RequestBody Bid[] bids) {
         employeeService.updateBids(authentication.getName(), bids);
     }
 

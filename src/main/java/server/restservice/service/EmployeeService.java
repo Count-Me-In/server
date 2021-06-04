@@ -1,6 +1,9 @@
 package server.restservice.service;
 
 import lombok.AllArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
@@ -9,12 +12,13 @@ import server.restservice.models.Restriction;
 import server.restservice.repository.EmployeeRepository;
 
 import java.security.InvalidParameterException;
-import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class EmployeeService {
 
+    @Autowired
+    @Qualifier("repositoryImplementation")
     private EmployeeRepository employeeRepository;
 
     public Bid[] getBids(String username) {
@@ -29,8 +33,8 @@ public class EmployeeService {
         }
     }
 
-    private boolean checkValidBids(List<Bid> bids, String username, Restriction restriction) {
-        if (bids.size() != 5) {
+    private boolean checkValidBids(Bid[] bids, String username, Restriction restriction) {
+        if (bids.length != 5) {
             return false;
         }
         Integer sumPercent = 0;
@@ -46,7 +50,7 @@ public class EmployeeService {
         return true;
     }
 
-    public void updateBids(String username, List<Bid> bids) {
+    public void updateBids(String username, Bid[] bids) {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.writelock();
