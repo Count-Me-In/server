@@ -7,7 +7,6 @@ import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.Employee;
 import server.restservice.models.Restriction;
-import server.restservice.repository.EmployeeRepositoryImpl;
 
 import java.security.InvalidParameterException;
 import java.util.HashMap;
@@ -18,7 +17,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class ManagerService {
 
-    private EmployeeRepositoryImpl employeeRepository;
+    private EmployeeRepository employeeRepository;
 
     public void addRestriction(String username, Restriction restriction, String employee_username) {
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
@@ -36,6 +35,21 @@ public class ManagerService {
                 }
                 emp.setRestrictions(restriction);
                 emp.writeunlock();
+            }
+        } else {
+            throw new InvalidParameterException("Employee username doesn't exists");
+        }
+    }
+
+    public Restriction getRestriction(String username, Restriction restriction, String employee_username) {
+        Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
+        if (emp != null) {
+            emp.writelock();
+            if (!emp.getManager().equals(username)) {
+                emp.writeunlock();
+                throw new InvalidParameterException("Can't update employee");
+            } else {
+                return emp.getRestriction();
             }
         } else {
             throw new InvalidParameterException("Employee username doesn't exists");

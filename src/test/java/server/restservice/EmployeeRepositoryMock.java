@@ -20,14 +20,29 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
 
     public EmployeeRepositoryMock(){
         employees = new ArrayList<Employee>();
-        Employee admin = new Employee("admin", "admin", null, 100, 100, 300);
-        admin.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav", "noy", "a"));
-        String username = "admin";
+
+        Employee admin = generateEmployee("admin");
+        this.employees.add(admin);
+        Employee shauli = generateEmployee("shauli");
+        this.employees.add(shauli);
+        Employee noy = generateEmployee("noy");
+        this.employees.add(noy);
+        Employee shenhave = generateEmployee("shenhave");
+        this.employees.add(shenhave);
+        Employee nufar = generateEmployee("nufar");
+        this.employees.add(nufar);
+
+    }
+
+
+    private Employee generateEmployee(String username){
+        Employee user = new Employee("admin", "admin", null, 100, 100, 300);
+        user.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav", "noy", "a"));
         Bid[] bids = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
-        admin.setBids(bids);
+        user.setBids(bids);
 
         try {
-            Assignings as = new Assignings("admin");
+            Assignings as = new Assignings(username);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
             List<Date> lst = Arrays.asList(sdf.parse("2021-05-12T09:45"),
                     sdf.parse("2021-05-19T09:45"),
@@ -35,7 +50,7 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
                     sdf.parse("2021-05-28T09:45"),
                     sdf.parse("2021-05-29T09:45"));
             as.addAssinedDays(lst);
-            admin.setAssignings(as);
+            user.setAssignings(as);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -45,29 +60,8 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         List<Integer> allowed = Arrays.asList(0, 1, 2, 3, 4);
         rst.set_allowed_days(allowed);
 
-        admin.setRestrictions(rst);
-
-
-        Employee shauli = new Employee("shauli", "shauli", "admin", 0, 0, 100);
-        username = "shauli";
-        Bid[] bids1 = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
-        admin.setBids(bids1);
-        Assignings as = new Assignings("shauli");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
-        List<Date> lst = null;
-        try {
-            lst = Arrays.asList(sdf.parse("2021-05-12T09:45"),
-                    sdf.parse("2021-05-11T09:45"),
-                    sdf.parse("2021-05-22T09:45"),
-                    sdf.parse("2021-05-01T09:45"),
-                    sdf.parse("2021-05-09T09:45"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        as.addAssinedDays(lst);
-        shauli.setAssignings(as);
-        this.employees.add(admin);
-        this.employees.add(shauli);
+        user.setRestrictions(rst);
+        return user;
     }
 
     public Employee findEmployeeByUsername(String username) {

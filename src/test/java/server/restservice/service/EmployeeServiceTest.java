@@ -26,11 +26,13 @@ class EmployeeServiceTest {
         String username = "admin";
         Bid[] ans = employeeService.getBids(username);
         Bid[] expected = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
-        assertEquals(ans[0].getPercentage(), expected[0].getPercentage());
-        assertEquals(ans[1].getPercentage(), expected[1].getPercentage());
-        assertEquals(ans[2].getPercentage(), expected[2].getPercentage());
-        assertEquals(ans[3].getPercentage(), expected[3].getPercentage());
-        assertEquals(ans[4].getPercentage(), expected[4].getPercentage());
+//        assertEquals(ans[0].getPercentage(), expected[0].getPercentage());
+//        assertEquals(ans[1].getPercentage(), expected[1].getPercentage());
+//        assertEquals(ans[2].getPercentage(), expected[2].getPercentage());
+//        assertEquals(ans[3].getPercentage(), expected[3].getPercentage());
+//        assertEquals(ans[4].getPercentage(), expected[4].getPercentage());
+//        assertArrayEquals(ans, expected);
+        assertArrayEquals(ans, expected);
     }
 
     @org.junit.Test
@@ -73,11 +75,7 @@ class EmployeeServiceTest {
         employeeService.updateBids(username, newBids);
 
         Bid[] result = employeeService.getBids(username);
-        assertEquals(newBids[0].getPercentage(), result[0].getPercentage());
-        assertEquals(newBids[1].getPercentage(), result[1].getPercentage());
-        assertEquals(newBids[2].getPercentage(), result[2].getPercentage());
-        assertEquals(newBids[3].getPercentage(), result[3].getPercentage());
-        assertEquals(newBids[4].getPercentage(), result[4].getPercentage());
+        assertArrayEquals(newBids, result);
     }
 
     @org.junit.Test
