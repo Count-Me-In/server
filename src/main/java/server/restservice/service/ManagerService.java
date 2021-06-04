@@ -1,6 +1,9 @@
 package server.restservice.service;
 
 import lombok.AllArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import server.restservice.models.Assignings;
@@ -18,6 +21,8 @@ import java.util.Map;
 @AllArgsConstructor
 public class ManagerService {
 
+    @Autowired
+    @Qualifier("repositoryImplementation")
     private EmployeeRepository employeeRepository;
 
     public void addRestriction(String username, Restriction restriction, String employee_username) {
@@ -36,6 +41,21 @@ public class ManagerService {
                 }
                 emp.setRestrictions(restriction);
                 emp.writeunlock();
+            }
+        } else {
+            throw new InvalidParameterException("Employee username doesn't exists");
+        }
+    }
+
+    public Restriction getRestriction(String username, String employee_username) {
+        Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
+        if (emp != null) {
+            emp.writelock();
+            if (!emp.getManager().equals(username)) {
+                emp.writeunlock();
+                throw new InvalidParameterException("Can't update employee");
+            } else {
+                return emp.getRestriction();
             }
         } else {
             throw new InvalidParameterException("Employee username doesn't exists");

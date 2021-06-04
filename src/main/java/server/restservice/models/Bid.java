@@ -59,4 +59,17 @@ public class Bid {
         _percentage = 0;
     }
 
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Bid b = (Bid)o;
+
+        return (this._employee_username.equals(b._employee_username) && (this._day == b._day) && (this._percentage == b._percentage));
+    }
+
 }
