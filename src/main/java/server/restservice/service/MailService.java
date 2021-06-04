@@ -13,7 +13,7 @@ import java.util.Properties;
 
 @Service
 @NoArgsConstructor
-public class MailService{
+public class MailService {
 
     private JavaMailSender javaMailSender;
     private EmployeeRepository employeeRepository;
@@ -35,9 +35,8 @@ public class MailService{
         return mailSender;
     }
 
-
-    private String getDay(int day){
-        switch(day){
+    private String getDay(int day) {
+        switch (day) {
             case 0:
                 return "Sunday";
             case 1:
@@ -53,9 +52,8 @@ public class MailService{
         }
     }
 
-    private String mailText(String username, int day){
-        return "Hello,\n" +
-                username + " wanted to invite you to arrive to the office on next " + getDay(day);
+    private String mailText(String username, int day) {
+        return "Hello,\n" + username + " wanted to invite you to arrive to the office on next " + getDay(day);
     }
 
     public void sendEmail(String username, int day, String[] mails) {

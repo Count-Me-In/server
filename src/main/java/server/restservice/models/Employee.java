@@ -22,7 +22,8 @@ public class Employee {
     private ReentrantReadWriteLock _lock;
 
     // Constructor
-    public Employee(String username, String name, String directed_manager, Integer total_points, Integer weekly_added_points, Integer totalManagerPoints) {
+    public Employee(String username, String name, String directed_manager, Integer total_points,
+            Integer weekly_added_points, Integer totalManagerPoints) {
         this._username = username;
         this._name = name;
         this._direct_manager = directed_manager;
@@ -36,7 +37,8 @@ public class Employee {
         this._lock = new ReentrantReadWriteLock();
     }
 
-    public Employee(UUID id, String username, String name, String directed_manager, Integer total_points, Integer weekly_added_points, Integer totalManagerPoints) {
+    public Employee(UUID id, String username, String name, String directed_manager, Integer total_points,
+            Integer weekly_added_points, Integer totalManagerPoints) {
         _id = id;
         this._username = username;
         this._name = name;
@@ -69,6 +71,7 @@ public class Employee {
     public UUID getID() {
         return _id;
     }
+
     public String getUsername() {
         return _username;
     }
@@ -88,6 +91,7 @@ public class Employee {
     public int getWeeklyPoints() {
         return _weekly_added_points;
     }
+
     public void setWeeklyPoints(int points) {
         _total_points = points;
     }
@@ -128,7 +132,7 @@ public class Employee {
         _totalManagerPoints = points;
     }
 
-    public Boolean isManager(){
+    public Boolean isManager() {
         return _employees_list.size() > 0;
     }
 

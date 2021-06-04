@@ -14,11 +14,16 @@ public class Assignings {
         this._assignedDays = new ArrayList<>();
     }
 
-    public void addAssinedDays(List<Date> dates){
+    public Assignings(Assignings other) {
+        this._employeeUsername = other._employeeUsername;
+        this._assignedDays = new ArrayList<Date>(other._assignedDays);
+    }
+
+    public void addAssinedDays(List<Date> dates) {
         this._assignedDays.addAll(dates);
     }
 
-    public List<Date> getAssignedDays(){
+    public List<Date> getAssignedDays() {
         return this._assignedDays;
     }
 }

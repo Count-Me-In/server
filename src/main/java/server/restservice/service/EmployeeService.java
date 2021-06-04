@@ -64,6 +64,7 @@ public class EmployeeService {
                     newBids[bid.getDay() - 1].setPercentage(bid.getPercentage());
                 }
                 emp.setBids(newBids);
+                employeeRepository.save(emp);
                 emp.writeunlock();
             }
         } else {
@@ -87,7 +88,7 @@ public class EmployeeService {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            Assignings output = emp.getAssignings();
+            Assignings output = new Assignings(emp.getAssignings());
             emp.readunlock();
             return output;
         } else {

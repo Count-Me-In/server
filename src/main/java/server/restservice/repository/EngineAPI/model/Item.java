@@ -3,11 +3,11 @@ package server.restservice.repository.EngineAPI.model;
 import java.util.UUID;
 
 public class Item {
-   private UUID _id ;
+  private UUID _id;
 
-   private Integer _capacity ;
+  private Integer _capacity;
 
-   private ItemAdditionalData _additionalInfo ;
+  private ItemAdditionalData _additionalInfo;
 
   public Item(UUID id, Integer capacity, ItemAdditionalData additionalInfo) {
     _id = id;
@@ -39,13 +39,12 @@ public class Item {
     this._additionalInfo = additionalInfo;
   }
 
-  
   public class ItemAdditionalData {
     private Integer _day;
 
     public Integer getDay() {
-        return _day;
+      return _day;
     }
-}
+  }
 
 }

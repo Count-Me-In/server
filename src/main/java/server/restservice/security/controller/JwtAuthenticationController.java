@@ -29,8 +29,7 @@ public class JwtAuthenticationController {
     private UserDetailsService jwtInMemoryUserDetailsService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
-            throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = jwtInMemoryUserDetailsService
@@ -50,7 +49,7 @@ public class JwtAuthenticationController {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
             throw new Exception("INVALID_CREDENTIALS", e);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new Exception("AUTHENTICATE_NOT_WORKING", e);
         }
     }

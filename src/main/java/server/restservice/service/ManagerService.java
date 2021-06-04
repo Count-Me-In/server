@@ -40,6 +40,7 @@ public class ManagerService {
                     }
                 }
                 emp.setRestrictions(restriction);
+                employeeRepository.save(emp);
                 emp.writeunlock();
             }
         } else {
@@ -48,14 +49,17 @@ public class ManagerService {
     }
 
     public Restriction getRestriction(String username, String employee_username) {
+        Restriction output;
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
         if (emp != null) {
-            emp.writelock();
+            emp.readlock();
             if (!emp.getManager().equals(username)) {
-                emp.writeunlock();
+                emp.readunlock();
                 throw new InvalidParameterException("Can't update employee");
             } else {
-                return emp.getRestriction();
+                output = new Restriction(emp.getRestriction());
+                emp.readunlock();
+                return output;
             }
         } else {
             throw new InvalidParameterException("Employee username doesn't exists");
@@ -86,18 +90,19 @@ public class ManagerService {
                 if (emp.isManager()) {
                     double ratio = points / emp.getManagerPoints();
                     emp.setManagerPoints(points);
-                    emp.setWeeklyPoints((int)(emp.getWeeklyPoints()*ratio));
+                    emp.setWeeklyPoints((int) (emp.getWeeklyPoints() * ratio));
                     for (String empUsername : emp.getEmployees()) {
                         // TODO: improve
                         Employee dirEmp = employeeRepository.findEmployeeByUsername(empUsername);
                         dirEmp.readlock();
-                        int newPoints = (int)(dirEmp.getWeeklyPoints()*ratio);
+                        int newPoints = (int) (dirEmp.getWeeklyPoints() * ratio);
                         dirEmp.readunlock();
                         setEmployeePoints(employee_username, empUsername, newPoints);
                     }
                 } else {
                     emp.setWeeklyPoints(points);
                 }
+                employeeRepository.save(emp);
                 emp.writeunlock();
             }
         } else {
@@ -111,7 +116,7 @@ public class ManagerService {
             emp.readlock();
 
             if (!emp.getManager().equals(username)) {
-                emp.writeunlock();
+                emp.readunlock();
                 throw new InvalidParameterException("Can't update employee");
             } else {
                 Assignings employee_assignings = emp.getAssignings();

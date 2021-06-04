@@ -19,10 +19,10 @@ import server.restservice.repository.EngineAPI.model.Bid;
 import server.restservice.repository.EngineAPI.model.Item;
 
 @Component("mockAPI")
-public class apiMock implements engineAPIInterface{
+public class apiMock implements engineAPIInterface {
 
     private Gson gson = new Gson();
-       @Value("${mockData}")
+    @Value("${mockData}")
     private String mockData;
 
     @Value("${actorsFile}")
@@ -30,7 +30,7 @@ public class apiMock implements engineAPIInterface{
 
     @Value("${bidsFile}")
     private String bidsFile;
-       @Value("${assignmensFile}")
+    @Value("${assignmensFile}")
     private String assignmensFile;
 
     @Value("${itemsFile}")
@@ -41,11 +41,12 @@ public class apiMock implements engineAPIInterface{
         actors.add(actor);
         try {
             // create a writer
-            Writer writer = Files.newBufferedWriter(Paths.get(mockData,actorsFile));
-                       gson.toJson(actors, new TypeToken<List<Actor>>() {}.getType(), writer);
-                   // close reader
+            Writer writer = Files.newBufferedWriter(Paths.get(mockData, actorsFile));
+            gson.toJson(actors, new TypeToken<List<Actor>>() {
+            }.getType(), writer);
+            // close reader
             writer.close();
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -53,48 +54,52 @@ public class apiMock implements engineAPIInterface{
     public void addBid(Bid bid) {
         try {
             // create a reader
-            Reader reader = Files.newBufferedReader(Paths.get(mockData,bidsFile));
-                   // convert JSON string to User object
-            List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {}.getType());
-                   // close reader
+            Reader reader = Files.newBufferedReader(Paths.get(mockData, bidsFile));
+            // convert JSON string to User object
+            List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {
+            }.getType());
+            // close reader
             reader.close();
 
             bids.add(bid);
 
             // create a writer
-            Writer writer = Files.newBufferedWriter(Paths.get(mockData,bidsFile));
-                       gson.toJson(bids, new TypeToken<List<Bid>>() {}.getType(), writer);
-                   // close reader
+            Writer writer = Files.newBufferedWriter(Paths.get(mockData, bidsFile));
+            gson.toJson(bids, new TypeToken<List<Bid>>() {
+            }.getType(), writer);
+            // close reader
             writer.close();
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-           }
+    }
 
     public void addItem(Item item) {
         List<Item> items = getItems();
         items.add(item);
         try {
             // create a writer
-            Writer writer = Files.newBufferedWriter(Paths.get(mockData,itemsFile));
-                       gson.toJson(items, new TypeToken<List<Item>>() {}.getType(), writer);
-                   // close reader
+            Writer writer = Files.newBufferedWriter(Paths.get(mockData, itemsFile));
+            gson.toJson(items, new TypeToken<List<Item>>() {
+            }.getType(), writer);
+            // close reader
             writer.close();
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     public void deleteActor(UUID actorID) {
         List<Actor> actors = getActors();
-        actors.removeIf( actor -> actor.getId().equals(actorID));
+        actors.removeIf(actor -> actor.getId().equals(actorID));
         try {
             // create a writer
-            Writer writer = Files.newBufferedWriter(Paths.get(mockData,actorsFile));
-                       gson.toJson(actors, new TypeToken<List<Actor>>() {}.getType(), writer);
-                   // close reader
+            Writer writer = Files.newBufferedWriter(Paths.get(mockData, actorsFile));
+            gson.toJson(actors, new TypeToken<List<Actor>>() {
+            }.getType(), writer);
+            // close reader
             writer.close();
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -102,34 +107,37 @@ public class apiMock implements engineAPIInterface{
     public void deleteBid(UUID bidID) {
         try {
             // create a reader
-            Reader reader = Files.newBufferedReader(Paths.get(mockData,bidsFile));
-                   // convert JSON string to User object
-            List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {}.getType());
-                   // close reader
+            Reader reader = Files.newBufferedReader(Paths.get(mockData, bidsFile));
+            // convert JSON string to User object
+            List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {
+            }.getType());
+            // close reader
             reader.close();
 
             bids.removeIf(bid -> bid.getId().equals(bidID));
 
             // create a writer
-            Writer writer = Files.newBufferedWriter(Paths.get(mockData,bidsFile));
-                       gson.toJson(bids, new TypeToken<List<Bid>>() {}.getType(), writer);
-                   // close reader
+            Writer writer = Files.newBufferedWriter(Paths.get(mockData, bidsFile));
+            gson.toJson(bids, new TypeToken<List<Bid>>() {
+            }.getType(), writer);
+            // close reader
             writer.close();
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     public void deleteItem(UUID itemId) {
         List<Item> items = getItems();
-        items.removeIf( item -> item.getId().equals(itemId));
+        items.removeIf(item -> item.getId().equals(itemId));
         try {
             // create a writer
-            Writer writer = Files.newBufferedWriter(Paths.get(mockData,itemsFile));
-                       gson.toJson(items, new TypeToken<List<Item>>() {}.getType(), writer);
-                   // close reader
+            Writer writer = Files.newBufferedWriter(Paths.get(mockData, itemsFile));
+            gson.toJson(items, new TypeToken<List<Item>>() {
+            }.getType(), writer);
+            // close reader
             writer.close();
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -144,11 +152,12 @@ public class apiMock implements engineAPIInterface{
         }
         try {
             // create a writer
-            Writer writer = Files.newBufferedWriter(Paths.get(mockData,actorsFile));
-                       gson.toJson(actors, new TypeToken<List<Actor>>() {}.getType(), writer);
-                   // close reader
+            Writer writer = Files.newBufferedWriter(Paths.get(mockData, actorsFile));
+            gson.toJson(actors, new TypeToken<List<Actor>>() {
+            }.getType(), writer);
+            // close reader
             writer.close();
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -156,10 +165,11 @@ public class apiMock implements engineAPIInterface{
     public void editBid(UUID bidID, Bid bid) {
         try {
             // create a reader
-            Reader reader = Files.newBufferedReader(Paths.get(mockData,bidsFile));
-                   // convert JSON string to User object
-            List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {}.getType());
-                   // close reader
+            Reader reader = Files.newBufferedReader(Paths.get(mockData, bidsFile));
+            // convert JSON string to User object
+            List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {
+            }.getType());
+            // close reader
             reader.close();
 
             for (int i = 0; i < bids.size(); i++) {
@@ -170,9 +180,10 @@ public class apiMock implements engineAPIInterface{
             }
 
             // create a writer
-            Writer writer = Files.newBufferedWriter(Paths.get(mockData,bidsFile));
-                       gson.toJson(bids, new TypeToken<List<Bid>>() {}.getType(), writer);
-                   // close reader
+            Writer writer = Files.newBufferedWriter(Paths.get(mockData, bidsFile));
+            gson.toJson(bids, new TypeToken<List<Bid>>() {
+            }.getType(), writer);
+            // close reader
             writer.close();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -189,11 +200,12 @@ public class apiMock implements engineAPIInterface{
         }
         try {
             // create a writer
-            Writer writer = Files.newBufferedWriter(Paths.get(mockData,itemsFile));
-                       gson.toJson(items, new TypeToken<List<Item>>() {}.getType(), writer);
-                   // close reader
+            Writer writer = Files.newBufferedWriter(Paths.get(mockData, itemsFile));
+            gson.toJson(items, new TypeToken<List<Item>>() {
+            }.getType(), writer);
+            // close reader
             writer.close();
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -206,30 +218,31 @@ public class apiMock implements engineAPIInterface{
         Actor output = null;
         try {
             // create a reader
-            Reader reader = Files.newBufferedReader(Paths.get(mockData,actorsFile));
-                   // convert JSON string to User object
-            List<Actor> actors = gson.fromJson(reader, new TypeToken<List<Actor>>() {}.getType());
+            Reader reader = Files.newBufferedReader(Paths.get(mockData, actorsFile));
+            // convert JSON string to User object
+            List<Actor> actors = gson.fromJson(reader, new TypeToken<List<Actor>>() {
+            }.getType());
 
             for (Actor actor : actors) {
-                if (actor.getId().equals(actorID)){
+                if (actor.getId().equals(actorID)) {
                     output = actor;
                     break;
                 }
             }
-                   // close reader
+            // close reader
             reader.close();
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return output;
     }
 
     public List<Assignment> getActorAssignments(UUID actorID) {
-        HashMap<UUID,Assignment> latestItemAssignments = new HashMap<UUID,Assignment>();
+        HashMap<UUID, Assignment> latestItemAssignments = new HashMap<UUID, Assignment>();
         List<Assignment> assignments = getAssignments();
         for (Assignment assignment : assignments) {
-            if ((!latestItemAssignments.containsKey(assignment.getItemID())) 
-            || latestItemAssignments.get(assignment.getItemID()).getDate().before(assignment.getDate())) {
+            if ((!latestItemAssignments.containsKey(assignment.getItemID()))
+                    || latestItemAssignments.get(assignment.getItemID()).getDate().before(assignment.getDate())) {
                 latestItemAssignments.put(assignment.getItemID(), assignment);
             }
         }
@@ -239,10 +252,11 @@ public class apiMock implements engineAPIInterface{
     public List<Actor> getActors() {
         try {
             // create a reader
-            Reader reader = Files.newBufferedReader(Paths.get(mockData,actorsFile));
-                   // convert JSON string to User object
-            List<Actor> actors = gson.fromJson(reader, new TypeToken<List<Actor>>() {}.getType());
-                   // close reader
+            Reader reader = Files.newBufferedReader(Paths.get(mockData, actorsFile));
+            // convert JSON string to User object
+            List<Actor> actors = gson.fromJson(reader, new TypeToken<List<Actor>>() {
+            }.getType());
+            // close reader
             reader.close();
 
             return actors;
@@ -255,14 +269,15 @@ public class apiMock implements engineAPIInterface{
     public List<Assignment> getAssignments() {
         try {
             // create a reader
-            Reader reader = Files.newBufferedReader(Paths.get(mockData,assignmensFile));
-                   // convert JSON string to User object
-            List<Assignment> assignments = gson.fromJson(reader, new TypeToken<List<Assignment>>() {}.getType());
-                   // close reader
+            Reader reader = Files.newBufferedReader(Paths.get(mockData, assignmensFile));
+            // convert JSON string to User object
+            List<Assignment> assignments = gson.fromJson(reader, new TypeToken<List<Assignment>>() {
+            }.getType());
+            // close reader
             reader.close();
 
             return assignments;
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return new ArrayList<Assignment>();
         }
@@ -272,19 +287,20 @@ public class apiMock implements engineAPIInterface{
         Bid output = null;
         try {
             // create a reader
-            Reader reader = Files.newBufferedReader(Paths.get(mockData,bidsFile));
-                   // convert JSON string to User object
-            List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {}.getType());
+            Reader reader = Files.newBufferedReader(Paths.get(mockData, bidsFile));
+            // convert JSON string to User object
+            List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {
+            }.getType());
 
             for (Bid bid : bids) {
-                if (bid.getActorID().equals(actorID) && bid.getItemID().equals(itemID)){
+                if (bid.getActorID().equals(actorID) && bid.getItemID().equals(itemID)
+                        && (output == null || output.getDate().before(bid.getDate()))) {
                     output = bid;
-                    break;
                 }
             }
-                   // close reader
+            // close reader
             reader.close();
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return output;
@@ -294,19 +310,20 @@ public class apiMock implements engineAPIInterface{
         Item output = null;
         try {
             // create a reader
-            Reader reader = Files.newBufferedReader(Paths.get(mockData,itemsFile));
-                   // convert JSON string to User object
-            List<Item> items = gson.fromJson(reader, new TypeToken<List<Item>>() {}.getType());
+            Reader reader = Files.newBufferedReader(Paths.get(mockData, itemsFile));
+            // convert JSON string to User object
+            List<Item> items = gson.fromJson(reader, new TypeToken<List<Item>>() {
+            }.getType());
 
             for (Item item : items) {
-                if (item.getId().equals(itemId)){
+                if (item.getId().equals(itemId)) {
                     output = item;
                     break;
                 }
             }
-                   // close reader
+            // close reader
             reader.close();
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return output;
@@ -315,15 +332,16 @@ public class apiMock implements engineAPIInterface{
     public List<Item> getItems() {
         try {
             // create a reader
-            Reader reader = Files.newBufferedReader(Paths.get(mockData,itemsFile));
-                   // convert JSON string to User object
-            List<Item> items = gson.fromJson(reader, new TypeToken<List<Item>>() {}.getType());
+            Reader reader = Files.newBufferedReader(Paths.get(mockData, itemsFile));
+            // convert JSON string to User object
+            List<Item> items = gson.fromJson(reader, new TypeToken<List<Item>>() {
+            }.getType());
 
             // close reader
             reader.close();
 
             return items;
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return new ArrayList<Item>();
         }
@@ -333,21 +351,22 @@ public class apiMock implements engineAPIInterface{
         Bid output = null;
         try {
             // create a reader
-            Reader reader = Files.newBufferedReader(Paths.get(mockData,bidsFile));
-                   // convert JSON string to User object
-            List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {}.getType());
+            Reader reader = Files.newBufferedReader(Paths.get(mockData, bidsFile));
+            // convert JSON string to User object
+            List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {
+            }.getType());
 
             for (Bid bid : bids) {
-                if (bid.getId().equals(bidID)){
+                if (bid.getId().equals(bidID)) {
                     output = bid;
                     break;
                 }
             }
-                   // close reader
+            // close reader
             reader.close();
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return output;
     }
-   }
+}

@@ -10,6 +10,10 @@ public class Restriction {
         this._allowed_days = new ArrayList<>();
     }
 
+    public Restriction(Restriction other) {
+        this._allowed_days = new ArrayList<>(other._allowed_days);
+    }
+
     public List<Integer> get_allowed_days() {
         return new ArrayList<>(this._allowed_days);
     }

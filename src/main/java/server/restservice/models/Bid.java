@@ -8,7 +8,8 @@ public class Bid {
     private Integer _day;
     private Integer _percentage;
 
-    public Bid() {}
+    public Bid() {
+    }
 
     public Bid(String employee_username, Integer day) {
         this._employee_username = employee_username;
@@ -67,9 +68,10 @@ public class Bid {
             return false;
         }
 
-        Bid b = (Bid)o;
+        Bid b = (Bid) o;
 
-        return (this._employee_username.equals(b._employee_username) && (this._day == b._day) && (this._percentage == b._percentage));
+        return (this._employee_username.equals(b._employee_username) && (this._day == b._day)
+                && (this._percentage == b._percentage));
     }
 
 }

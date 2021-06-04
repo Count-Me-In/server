@@ -4,7 +4,6 @@ import server.restservice.models.Employee;
 
 public interface EmployeeRepository {
 
-
     Employee findEmployeeByUsername(String username);
 
     void save(Employee emp);
@@ -12,6 +11,5 @@ public interface EmployeeRepository {
     Employee[] getAllEmployeeNames();
 
     String getUsernamePass(String username);
-
 
 }

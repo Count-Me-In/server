@@ -18,7 +18,8 @@ public class Assignment {
     _itemID = itemID;
     _actorID = actorID;
   }
-   public UUID getId() {
+
+  public UUID getId() {
     return _id;
   }
 
@@ -26,21 +27,23 @@ public class Assignment {
     this._id = id;
   }
 
-   public Date getDate() {
+  public Date getDate() {
     return _date;
   }
 
   public void setDate(Date date) {
     this._date = date;
   }
-   public UUID getItemID() {
+
+  public UUID getItemID() {
     return _itemID;
   }
 
   public void setItemID(UUID itemID) {
     this._itemID = itemID;
   }
-   public UUID getActorID() {
+
+  public UUID getActorID() {
     return _actorID;
   }
 
