@@ -87,7 +87,7 @@ public class apiMock implements engineAPIInterface{
 
     public void deleteActor(UUID actorID) {
         List<Actor> actors = getActors();
-        actors.removeIf( actor -> actor.getId() == actorID);
+        actors.removeIf( actor -> actor.getId().equals(actorID));
         try {
             // create a writer
             Writer writer = Files.newBufferedWriter(Paths.get(mockData,actorsFile));
@@ -108,7 +108,7 @@ public class apiMock implements engineAPIInterface{
                    // close reader
             reader.close();
 
-            bids.removeIf(bid -> bid.getId() == bidID);
+            bids.removeIf(bid -> bid.getId().equals(bidID));
 
             // create a writer
             Writer writer = Files.newBufferedWriter(Paths.get(mockData,bidsFile));
@@ -122,7 +122,7 @@ public class apiMock implements engineAPIInterface{
 
     public void deleteItem(UUID itemId) {
         List<Item> items = getItems();
-        items.removeIf( item -> item.getId() == itemId);
+        items.removeIf( item -> item.getId().equals(itemId));
         try {
             // create a writer
             Writer writer = Files.newBufferedWriter(Paths.get(mockData,itemsFile));
@@ -137,7 +137,7 @@ public class apiMock implements engineAPIInterface{
     public void editActor(UUID actorID, Actor actor) {
         List<Actor> actors = getActors();
         for (int i = 0; i < actors.size(); i++) {
-            if (actors.get(i).getId() == actorID) {
+            if (actors.get(i).getId().equals(actorID)) {
                 actors.set(i, actor);
                 break;
             }
@@ -163,7 +163,7 @@ public class apiMock implements engineAPIInterface{
             reader.close();
 
             for (int i = 0; i < bids.size(); i++) {
-                if (bids.get(i).getId() == bidID) {
+                if (bids.get(i).getId().equals(bidID)) {
                     bids.set(i, bid);
                     break;
                 }
@@ -182,7 +182,7 @@ public class apiMock implements engineAPIInterface{
     public void editItem(UUID itemId, Item item) {
         List<Item> items = getItems();
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getId() == itemId) {
+            if (items.get(i).getId().equals(itemId)) {
                 items.set(i, item);
                 break;
             }
@@ -211,7 +211,7 @@ public class apiMock implements engineAPIInterface{
             List<Actor> actors = gson.fromJson(reader, new TypeToken<List<Actor>>() {}.getType());
 
             for (Actor actor : actors) {
-                if (actor.getId() == actorID){
+                if (actor.getId().equals(actorID)){
                     output = actor;
                     break;
                 }
@@ -246,7 +246,7 @@ public class apiMock implements engineAPIInterface{
             reader.close();
 
             return actors;
-               } catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return new ArrayList<Actor>();
         }
@@ -277,7 +277,7 @@ public class apiMock implements engineAPIInterface{
             List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {}.getType());
 
             for (Bid bid : bids) {
-                if (bid.getActorID() == actorID && bid.getItemID() == itemID){
+                if (bid.getActorID().equals(actorID) && bid.getItemID().equals(itemID)){
                     output = bid;
                     break;
                 }
@@ -299,7 +299,7 @@ public class apiMock implements engineAPIInterface{
             List<Item> items = gson.fromJson(reader, new TypeToken<List<Item>>() {}.getType());
 
             for (Item item : items) {
-                if (item.getId() == itemId){
+                if (item.getId().equals(itemId)){
                     output = item;
                     break;
                 }
@@ -338,7 +338,7 @@ public class apiMock implements engineAPIInterface{
             List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {}.getType());
 
             for (Bid bid : bids) {
-                if (bid.getId() == bidID){
+                if (bid.getId().equals(bidID)){
                     output = bid;
                     break;
                 }

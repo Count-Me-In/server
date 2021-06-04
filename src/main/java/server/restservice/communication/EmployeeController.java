@@ -1,6 +1,8 @@
 package server.restservice.communication;
 
 import lombok.AllArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import server.restservice.models.Assignings;
@@ -16,25 +18,23 @@ import server.restservice.service.MailService;
 @AllArgsConstructor
 public class EmployeeController {
 
+    @Autowired
     private EmployeeService employeeService;
 
     private MailService mailService;
 
     @GetMapping(path = "all")
     public Employee[] getEmployees(Authentication authentication) {
-        System.out.println("inside getEmployees");
         return employeeService.getEmployees(authentication.getName());
     }
 
     @GetMapping(path = "bids_collection")
     public Bid[] getBidsCollection(Authentication authentication) {
-        System.out.println("inside bids_collection");
         return employeeService.getBids(authentication.getName());
     }
 
     @PutMapping(path = "updateBids")
     public void updateBids(Authentication authentication, @RequestParam Bid[] bids) {
-        System.out.println("inside update bids");
         employeeService.updateBids(authentication.getName(), bids);
     }
 

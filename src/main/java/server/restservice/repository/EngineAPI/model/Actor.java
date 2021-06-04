@@ -12,6 +12,7 @@
 
 package server.restservice.repository.EngineAPI.model;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -23,13 +24,13 @@ public class Actor {
 
   private Integer _intervalBonus;
 
-  private Object _additionalInfo;
+  private ActorAdditionalData _additionalInfo;
 
-  public Actor(UUID id, Integer points, Integer intervalBonus, Object additionalInfo) {
+  public Actor(UUID id, Integer points, Integer intervalBonus, String username, String name, String manager, Integer managerPoints, List<Integer> allowed_days, List<String> employees) {
     this._id = id;
     this._points = points;
     this._intervalBonus = intervalBonus;
-    this._additionalInfo = additionalInfo;
+    this._additionalInfo = new ActorAdditionalData(username, name, manager, managerPoints, allowed_days, employees);
   }
 
   public UUID getId() {
@@ -57,13 +58,61 @@ public class Actor {
   }
 
 
-  public Object getAdditionalInfo() {
+  public ActorAdditionalData getAdditionalInfo() {
     return _additionalInfo;
   }
 
-  public void setAdditionalInfo(Object additionalInfo) {
+  public void setAdditionalInfo(ActorAdditionalData additionalInfo) {
     this._additionalInfo = additionalInfo;
   }
+
+  
+  public class ActorAdditionalData {
+    private String _username;
+    private String _password = "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6";
+    private String _name;
+    private String _directed_manager;
+    private Integer _totalManagerPoints;
+    private List<Integer> _allowed_days;
+    private List<String> _employees;
+
+    public ActorAdditionalData(String username, String name, String manager, Integer managerPoints, List<Integer> allowed_days, List<String> employees) {
+        _username = username;
+        _name = name;
+        _directed_manager = manager;
+        _totalManagerPoints = managerPoints;
+        _allowed_days = allowed_days;
+        _employees = employees;
+    }
+
+    public String getUsername() {
+        return _username;
+    }
+
+    public String getPassword() {
+        return _password;
+    }
+
+    public String getName() {
+        return _name;
+    }
+
+    public String getManager() {
+        return _directed_manager;
+    }
+
+    public int getManagerPoints() {
+        return _totalManagerPoints;
+    }
+
+    public List<Integer> getAllowedDays() {
+        return _allowed_days;
+    }
+
+    public List<String> getEmployees() {
+        return _employees;
+    }
+}
 
 
 }

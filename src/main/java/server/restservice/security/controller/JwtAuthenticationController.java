@@ -32,9 +32,7 @@ public class JwtAuthenticationController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
             throws Exception {
 
-        System.out.println("inside authenticate");
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-        System.out.println("after authenticate");
         final UserDetails userDetails = jwtInMemoryUserDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
 
@@ -46,7 +44,6 @@ public class JwtAuthenticationController {
     private void authenticate(String username, String password) throws Exception {
         Objects.requireNonNull(username);
         Objects.requireNonNull(password);
-        System.out.println("inside authenticate - after required not null");
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {

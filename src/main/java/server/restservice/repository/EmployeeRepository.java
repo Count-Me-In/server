@@ -16,6 +16,8 @@ import server.restservice.repository.EngineAPI.api.engineAPIInterface;
 import server.restservice.repository.EngineAPI.model.Actor;
 import server.restservice.repository.EngineAPI.model.Assignment;
 import server.restservice.repository.EngineAPI.model.Item;
+import server.restservice.repository.EngineAPI.model.Actor.ActorAdditionalData;
+import server.restservice.repository.EngineAPI.model.Item.ItemAdditionalData;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -69,8 +71,7 @@ public class EmployeeRepository {
 
     public void save(Employee emp) {
         synchronized (emp) {
-            ActorAdditionalData data = new ActorAdditionalData(emp.getUsername(), emp.getName(), emp.getManager(), emp.getManagerPoints(), emp.getRestriction().get_allowed_days(), emp.getEmployees());
-            Actor actor = new Actor(emp.getID(), emp.getTotalPoints(), emp.getWeeklyPoints(), data);
+            Actor actor = new Actor(emp.getID(), emp.getTotalPoints(), emp.getWeeklyPoints(), emp.getUsername(), emp.getName(), emp.getManager(), emp.getManagerPoints(), emp.getRestriction().get_allowed_days(), emp.getEmployees());
             engineAPI.editActor(actor.getId(), actor);
 
             Bid[] bids = emp.getBids();
@@ -85,7 +86,7 @@ public class EmployeeRepository {
     public Employee[] getAllEmployeeNames() {
         List<Employee> employees = new ArrayList<Employee>();
         for (Actor actor : engineAPI.getActors()) {
-            ActorAdditionalData additionalActorData = (ActorAdditionalData) actor.getAdditionalInfo();
+            ActorAdditionalData additionalActorData = actor.getAdditionalInfo();
             employees.add(new Employee(additionalActorData.getUsername(), additionalActorData.getName()));
         }
         Employee[] output = new Employee[employees.size()];
@@ -97,7 +98,7 @@ public class EmployeeRepository {
         if (actor == null) {
             return null;
         }
-        ActorAdditionalData additionalActorData = (ActorAdditionalData) actor.getAdditionalInfo();
+        ActorAdditionalData additionalActorData = actor.getAdditionalInfo();
         return additionalActorData.getPassword();
     }
 
@@ -113,7 +114,7 @@ public class EmployeeRepository {
             return null;
         }
 
-        ActorAdditionalData additionalActorData = (ActorAdditionalData) actor.getAdditionalInfo();
+        ActorAdditionalData additionalActorData = actor.getAdditionalInfo();
 
         Employee emp = new Employee(actor.getId(), username, additionalActorData.getName(), additionalActorData.getManager(), actor.getPoints(), actor.getIntervalBonus(), additionalActorData.getManagerPoints());
         emp.getRestriction().set_allowed_days(additionalActorData.getAllowedDays());
@@ -121,7 +122,7 @@ public class EmployeeRepository {
         List<Date> days = new ArrayList<Date>();
         for (Assignment ass : engineAPI.getActorAssignments(actor.getId())) {
             Item i = engineAPI.getItem(ass.getItemID());
-            ItemAdditionalData additionalItemData = (ItemAdditionalData) i.getAdditionalInfo();
+            ItemAdditionalData additionalItemData = i.getAdditionalInfo();
             LocalDate bidDate = ass.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate dayOfWeek = bidDate.with(next(dayToDayOfWeek(additionalItemData.getDay())));
             days.add(Date.from(dayOfWeek.atStartOfDay(ZoneId.systemDefault()).toInstant()));
@@ -134,7 +135,7 @@ public class EmployeeRepository {
 
     private Actor getActorByUsername(String username) {
         for (Actor a : engineAPI.getActors()) {
-            ActorAdditionalData additionalData = (ActorAdditionalData) a.getAdditionalInfo();
+            ActorAdditionalData additionalData = a.getAdditionalInfo();
             if (additionalData.getUsername().equals(username))
                 return a;
         }
@@ -155,7 +156,7 @@ public class EmployeeRepository {
     private Item[] getNextWeekItems() {
         Item[] items = new Item[5];
         for (Item i : engineAPI.getItems()) {
-            ItemAdditionalData additionalItemData = (ItemAdditionalData) i.getAdditionalInfo();
+            ItemAdditionalData additionalItemData = i.getAdditionalInfo();
             items[additionalItemData.getDay()-1] = i;
         }
         return items;
@@ -164,61 +165,6 @@ public class EmployeeRepository {
     private DayOfWeek dayToDayOfWeek(Integer day) {
         day = ((day + 5) % 7) + 1;
         return DayOfWeek.of(day);
-    }
-
-    private class ActorAdditionalData {
-        private String _username;
-        private String _password = "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6";
-        private String _name;
-        private String _directed_manager;
-        private Integer _totalManagerPoints;
-        private List<Integer> _allowed_days;
-        private List<String> _employees;
-
-        public ActorAdditionalData(String username, String name, String manager, Integer managerPoints, List<Integer> allowed_days, List<String> employees) {
-            _username = username;
-            _name = name;
-            _directed_manager = manager;
-            _totalManagerPoints = managerPoints;
-            _allowed_days = allowed_days;
-            _employees = employees;
-        }
-
-        public String getUsername() {
-            return _username;
-        }
-
-        public String getPassword() {
-            return _password;
-        }
-
-        public String getName() {
-            return _name;
-        }
-
-        public String getManager() {
-            return _directed_manager;
-        }
-
-        public int getManagerPoints() {
-            return _totalManagerPoints;
-        }
-
-        public List<Integer> getAllowedDays() {
-            return _allowed_days;
-        }
-
-        public List<String> getEmployees() {
-            return _employees;
-        }
-    }
-
-    private class ItemAdditionalData {
-        private Integer _day;
-
-        public Integer getDay() {
-            return _day;
-        }
     }
 
 }

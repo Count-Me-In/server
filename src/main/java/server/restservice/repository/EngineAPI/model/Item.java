@@ -7,9 +7,9 @@ public class Item {
 
    private Integer _capacity ;
 
-   private Object _additionalInfo ;
+   private ItemAdditionalData _additionalInfo ;
 
-  public Item(UUID id, Integer capacity, Object additionalInfo) {
+  public Item(UUID id, Integer capacity, ItemAdditionalData additionalInfo) {
     _id = id;
     _capacity = capacity;
     _additionalInfo = additionalInfo;
@@ -31,12 +31,21 @@ public class Item {
     this._capacity = capacity;
   }
 
-  public Object getAdditionalInfo() {
+  public ItemAdditionalData getAdditionalInfo() {
     return _additionalInfo;
   }
 
-  public void setAdditionalInfo(Object additionalInfo) {
+  public void setAdditionalInfo(ItemAdditionalData additionalInfo) {
     this._additionalInfo = additionalInfo;
   }
+
+  
+  public class ItemAdditionalData {
+    private Integer _day;
+
+    public Integer getDay() {
+        return _day;
+    }
+}
 
 }
