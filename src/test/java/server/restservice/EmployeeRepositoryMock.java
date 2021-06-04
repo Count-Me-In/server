@@ -36,8 +36,9 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
 
 
     private Employee generateEmployee(String username){
-        Employee user = new Employee("admin", "admin", null, 100, 100, 300);
-        user.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav", "noy", "a"));
+        Employee user = new Employee(username, username, null, 100, 100, 300);
+        if(username.equals("admin"))
+            user.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav", "noy", "a"));
         Bid[] bids = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
         user.setBids(bids);
 

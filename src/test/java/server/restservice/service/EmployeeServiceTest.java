@@ -1,6 +1,7 @@
 package server.restservice.service;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import server.restservice.EmployeeRepositoryMock;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
@@ -13,29 +14,24 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+
 
 class EmployeeServiceTest {
 
 
     EmployeeService employeeService = new EmployeeService(new EmployeeRepositoryMock());
 
-    @org.junit.Test
+    @Test
     void getBidsTestExistingUser(){
 
         String username = "admin";
         Bid[] ans = employeeService.getBids(username);
         Bid[] expected = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
-//        assertEquals(ans[0].getPercentage(), expected[0].getPercentage());
-//        assertEquals(ans[1].getPercentage(), expected[1].getPercentage());
-//        assertEquals(ans[2].getPercentage(), expected[2].getPercentage());
-//        assertEquals(ans[3].getPercentage(), expected[3].getPercentage());
-//        assertEquals(ans[4].getPercentage(), expected[4].getPercentage());
-//        assertArrayEquals(ans, expected);
         assertArrayEquals(ans, expected);
     }
 
-    @org.junit.Test
+    @Test
     void getBidsTestNonExistingUser(){
 
         try {
@@ -43,7 +39,7 @@ class EmployeeServiceTest {
             throw new AssertionError();
         }
         catch(Exception e){
-
+            assertEquals(e.getMessage(), "Employee username doesn't exists");
         }
     }
 
@@ -53,7 +49,9 @@ class EmployeeServiceTest {
         getBidsTestNonExistingUser();
     }
 
-    @org.junit.Test
+    //--------------------------------------------------------------------------------------------------
+
+    @Test
     void updateBidsExistingUser() {
         String username = "admin";
         Bid bid0 = new Bid(username, 0);
@@ -78,38 +76,69 @@ class EmployeeServiceTest {
         assertArrayEquals(newBids, result);
     }
 
-    @org.junit.Test
+    @Test
+    void updateBidsInvalidBids() {
+        String username = "admin";
+        Bid bid0 = new Bid(username, 0);
+        bid0.setPercentage(0);
+        bid0.setPoints(0);
+        Bid bid1 = new Bid(username, 1);
+        bid1.setPercentage(0);
+        bid1.setPoints(0);
+        Bid bid2 = new Bid(username, 2);
+        bid2.setPercentage(0);
+        bid2.setPoints(0);
+        Bid bid3 = new Bid(username, 3);
+        bid3.setPercentage(0);
+        bid3.setPoints(0);
+        Bid bid4 = new Bid(username, 4);
+        bid4.setPercentage(0);
+        bid4.setPoints(0);
+        Bid[] newBids = {bid0, bid1, bid2, bid3, bid4};
+        employeeService.updateBids(username, newBids);
+
+        try {
+            Bid[] result = employeeService.getBids(username);
+        }
+        catch (Exception e){
+            assertEquals(e.getMessage(), "Bids aren't valid");
+        }
+    }
+
+    @Test
     void updateBidsNonExistingUser() {
         try {
             employeeService.updateBids("toya", new Bid[5]);
             throw new AssertionError();
         }
         catch(Exception e){
-
+            assertEquals(e.getMessage(), "Employee username doesn't exists");
         }
     }
 
     @Test
     void updateBids() {
         updateBidsExistingUser();
+        updateBidsInvalidBids();
         updateBidsNonExistingUser();
     }
 
+    //--------------------------------------------------------------------------------------------------
 
-    @org.junit.Test
+    @Test
     void getEmployeesPointsExistingUser() {
         int points = employeeService.getEmployeesPoints("admin");
         assertEquals(points, 100);
     }
 
-    @org.junit.Test
+    @Test
     void getEmployeesPointsNonExistingUser() {
         try {
             int points = employeeService.getEmployeesPoints("toya");
             throw new AssertionError();
         }
         catch(Exception e){
-
+            assertEquals(e.getMessage(), "Employee username doesn't exists");
         }
     }
 
@@ -120,8 +149,9 @@ class EmployeeServiceTest {
 
     }
 
+    //--------------------------------------------------------------------------------------------------
 
-    @org.junit.Test
+    @Test
     void getEmployeeAssigningsExistingUser() {
         String username = "admin";
         Assignings ans = employeeService.getEmployeeAssignings(username);
@@ -131,7 +161,7 @@ class EmployeeServiceTest {
 
     }
 
-    @org.junit.Test
+    @Test
     void getEmployeeAssigningsNonExistingUser() {
         try {
             String username = "toya";
@@ -139,7 +169,7 @@ class EmployeeServiceTest {
             throw new AssertionError();
         }
         catch(Exception e){
-
+            assertEquals(e.getMessage(), "Employee username doesn't exists");
         }
     }
 
@@ -149,29 +179,23 @@ class EmployeeServiceTest {
         getEmployeeAssigningsNonExistingUser();
     }
 
+    //--------------------------------------------------------------------------------------------------
+
     @Test
     void getEmployees() {
-        Employee[] ans = employeeService.getEmployees("admin");
-        Employee[] expected = mockEmployees();
-        if (ans.length != expected.length)
-            throw new AssertionError();
 
-        List<String> ansNames = new ArrayList<>();
-        for(Employee emp: ans){
-            ansNames.add(emp.getUsername());
+        List<String> expected = Arrays.asList("shauli", "nufar", "shenhav", "noy", "a", "toya");
+        List<Employee> result = Arrays.asList(employeeService.getEmployees("admin"));
+
+        List<String> resultNames = new ArrayList<>();
+        for(Employee emp: result){
+            resultNames.add(emp.getUsername());
         }
 
-        List<String> expectedNames = new ArrayList<>();
-        for(Employee emp: expected){
-            expectedNames.add(emp.getUsername());
-        }
-
-        assertEquals(ansNames, expectedNames);
+        assertEquals(resultNames, expected);
     }
 
-
-
-
+    //--------------------------------------------------------------------------------------------------
 
     private Employee[] mockEmployees(){
         List<Employee> employees = new ArrayList<Employee>();

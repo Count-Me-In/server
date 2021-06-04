@@ -7,6 +7,7 @@ import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.Employee;
 import server.restservice.models.Restriction;
+import server.restservice.repository.EmployeeRepository;
 
 import java.security.InvalidParameterException;
 import java.util.HashMap;
@@ -41,7 +42,7 @@ public class ManagerService {
         }
     }
 
-    public Restriction getRestriction(String username, Restriction restriction, String employee_username) {
+    public Restriction getRestriction(String username, String employee_username) {
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
         if (emp != null) {
             emp.writelock();
@@ -106,7 +107,7 @@ public class ManagerService {
 
             if (!emp.getManager().equals(username)) {
                 emp.writeunlock();
-                throw new InvalidParameterException("Can't update employee");
+                throw new InvalidParameterException("Can't access employee");
             } else {
                 Assignings employee_assignings = emp.getAssignings();
                 emp.readunlock();
