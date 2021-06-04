@@ -54,6 +54,15 @@ public class Employee {
     public Employee(String username, String name) {
         this._username = username;
         this._name = name;
+        this._direct_manager = "";
+        this._restrictions = new Restriction();
+        this._bids_collection = new Bid[5];
+        this._total_points = 0;
+        this._weekly_added_points = 0;
+        this._employees_list = new ArrayList<>();
+        this._assignings = new Assignings(this._username);
+        this._totalManagerPoints = 0;
+        this._lock = new ReentrantReadWriteLock();
     }
 
     // Getters and Setters

@@ -42,7 +42,7 @@ public class ManagerController {
     }
 
     @PostMapping(path = "setEmployeePoints")
-    public Boolean setEmployeePoints(Authentication authentication, @RequestParam Map<String, Integer> employeesPoints) {
+    public Boolean setEmployeePoints(Authentication authentication, @RequestBody Map<String, Integer> employeesPoints) {
         for(Map.Entry<String,Integer> entry : (employeesPoints.entrySet())) {
             managerService.setEmployeePoints(authentication.getName(), entry.getKey(), entry.getValue());
         }

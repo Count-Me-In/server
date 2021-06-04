@@ -9,6 +9,7 @@ import server.restservice.models.Restriction;
 import server.restservice.repository.EmployeeRepository;
 
 import java.security.InvalidParameterException;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -28,8 +29,8 @@ public class EmployeeService {
         }
     }
 
-    private boolean checkValidBids(Bid[] bids, String username, Restriction restriction) {
-        if (bids.length != 7) {
+    private boolean checkValidBids(List<Bid> bids, String username, Restriction restriction) {
+        if (bids.size() != 5) {
             return false;
         }
         Integer sumPercent = 0;
@@ -45,7 +46,7 @@ public class EmployeeService {
         return true;
     }
 
-    public void updateBids(String username, Bid[] bids) {
+    public void updateBids(String username, List<Bid> bids) {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.writelock();
