@@ -2,10 +2,11 @@ package server.restservice.models;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.UUID;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Employee {
+    private UUID _id;
     private String _username;
     private String _name;
     private String _direct_manager;
@@ -35,7 +36,30 @@ public class Employee {
         this._lock = new ReentrantReadWriteLock();
     }
 
+    public Employee(UUID id, String username, String name, String directed_manager, Integer total_points, Integer weekly_added_points, Integer totalManagerPoints) {
+        _id = id;
+        this._username = username;
+        this._name = name;
+        this._direct_manager = directed_manager;
+        this._restrictions = new Restriction();
+        this._bids_collection = new Bid[5];
+        this._total_points = total_points;
+        this._weekly_added_points = weekly_added_points;
+        this._employees_list = new ArrayList<>();
+        this._assignings = new Assignings(this._username);
+        this._totalManagerPoints = totalManagerPoints;
+        this._lock = new ReentrantReadWriteLock();
+    }
+
+    public Employee(String username, String name) {
+        this._username = username;
+        this._name = name;
+    }
+
     // Getters and Setters
+    public UUID getID() {
+        return _id;
+    }
     public String getUsername() {
         return _username;
     }
