@@ -27,7 +27,7 @@
     {
         "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
         "_points": 200,
-        "_intervalBonus": 200,
+        "_intervalBonus": 100,
         "_additionalInfo": {
             "_username": "Shenhav",
             "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
@@ -63,7 +63,7 @@
     {
         "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
         "_points": 200,
-        "_intervalBonus": 50,
+        "_intervalBonus": 100,
         "_additionalInfo": {
             "_username": "Noy",
             "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
@@ -80,7 +80,7 @@
     {
         "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
         "_points": 200,
-        "_intervalBonus": 50,
+        "_intervalBonus": 100,
         "_additionalInfo": {
             "_username": "Nufar",
             "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",

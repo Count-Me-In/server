@@ -127,7 +127,7 @@ class ManagerServiceTest {
             managerService.setEmployeePoints("admin", "Phistuk", 200);
             throw new AssertionError();
         } catch (Exception e) {
-            assertEquals("Employee username doesn't exists", e.getMessage());
+            assertEquals("Can't update employee", e.getMessage());
         }
     }
 
@@ -146,7 +146,7 @@ class ManagerServiceTest {
             managerService.setEmployeePoints("admin", "Phistuk", 200);
             throw new AssertionError();
         } catch (Exception e) {
-            assertEquals("Employee username doesn't exists", e.getMessage());
+            assertEquals("Can't update employee", e.getMessage());
         }
     }
 
