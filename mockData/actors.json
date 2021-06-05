@@ -27,7 +27,7 @@
     {
         "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
         "_points": 200,
-        "_intervalBonus": 100,
+        "_intervalBonus": 200,
         "_additionalInfo": {
             "_username": "Shenhav",
             "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
@@ -35,12 +35,11 @@
             "_directed_manager": "admin",
             "_totalManagerPoints": 0,
             "_allowed_days": [
-                1.0,
-                2.0,
-                4.0
+                1,
+                2,
+                4
             ],
-            "_employees": [
-            ]
+            "_employees": []
         }
     },
     {
@@ -54,18 +53,17 @@
             "_directed_manager": "admin",
             "_totalManagerPoints": 0,
             "_allowed_days": [
-                1.0,
-                2.0,
-                4.0
+                1,
+                2,
+                4
             ],
-            "_employees": [
-            ]
+            "_employees": []
         }
     },
     {
         "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
         "_points": 200,
-        "_intervalBonus": 100,
+        "_intervalBonus": 50,
         "_additionalInfo": {
             "_username": "Noy",
             "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
@@ -73,17 +71,16 @@
             "_directed_manager": "admin",
             "_totalManagerPoints": 0,
             "_allowed_days": [
-                1.0,
-                2.0
+                1,
+                2
             ],
-            "_employees": [
-            ]
+            "_employees": []
         }
     },
     {
         "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
         "_points": 200,
-        "_intervalBonus": 100,
+        "_intervalBonus": 50,
         "_additionalInfo": {
             "_username": "Nufar",
             "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
@@ -91,11 +88,10 @@
             "_directed_manager": "admin",
             "_totalManagerPoints": 0,
             "_allowed_days": [
-                1.0,
-                2.0
+                1,
+                2
             ],
-            "_employees": [
-            ]
+            "_employees": []
         }
     }
 ]
