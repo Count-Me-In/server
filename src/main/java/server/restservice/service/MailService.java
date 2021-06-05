@@ -1,6 +1,8 @@
 package server.restservice.service;
 
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import server.restservice.models.Employee;
 import server.restservice.repository.EmployeeRepository;
 
@@ -15,8 +17,11 @@ import java.util.Properties;
 @NoArgsConstructor
 public class MailService {
 
-    private JavaMailSender javaMailSender;
+    @Autowired
+    @Qualifier("repositoryImplementation")
     private EmployeeRepository employeeRepository;
+
+    private JavaMailSender javaMailSender = getJavaMailSender();
 
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
