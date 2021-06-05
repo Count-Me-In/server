@@ -26,19 +26,32 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         this.employees.add(shauli);
         Employee noy = generateEmployee("noy");
         this.employees.add(noy);
-        Employee shenhave = generateEmployee("shenhave");
+        Employee shenhave = generateEmployee("shenhav");
         this.employees.add(shenhave);
         Employee nufar = generateEmployee("nufar");
         this.employees.add(nufar);
+        Employee a = generateEmployee("a");
+        this.employees.add(a);
+        Employee toya = generateEmployee("toya");
+        this.employees.add(toya);
 
     }
 
 
     private Employee generateEmployee(String username){
-        Employee user = new Employee(username, username, null, 100, 100, 300);
-        if(username.equals("admin"))
+        Employee user;
+
+        if(username.equals("admin")) {
+            user = new Employee(username, username, null, 100, 100, 300);
             user.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav", "noy", "a"));
-        Bid[] bids = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
+        }
+        else if (!username.equals("toya")) {
+            user = new Employee(username, username, "admin", 100, 100, null);
+        }
+        else{
+            user = new Employee(username, username, null, 100, 100, null);
+        }
+        Bid[] bids = {new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4), new Bid(username, 5)};
         user.setBids(bids);
 
         try {
@@ -58,7 +71,7 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         }
 
         Restriction rst = new Restriction();
-        List<Integer> allowed = Arrays.asList(0, 1, 2, 3, 4);
+        List<Integer> allowed = Arrays.asList(1, 2, 3, 4, 5);
         rst.set_allowed_days(allowed);
 
         user.setRestrictions(rst);
@@ -86,7 +99,7 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
     }
 
     public String getUsernamePass(String username) {
-        if (Arrays.asList("admin", "shauli", "nufar", "shenhav", "noy", "a").contains(username)) {
+        if (Arrays.asList("admin", "shauli", "nufar", "shenhav", "noy", "a", "toya").contains(username)) {
             return "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6";
         } else {
             return null;

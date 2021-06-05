@@ -29,7 +29,7 @@ public class ManagerService {
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
         if (emp != null) {
             emp.writelock();
-            if (!emp.getManager().equals(username)) {
+            if ((emp.getManager() == null )|| !emp.getManager().equals(username)) {
                 emp.writeunlock();
                 throw new InvalidParameterException("Can't update employee");
             } else {
@@ -53,9 +53,9 @@ public class ManagerService {
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
         if (emp != null) {
             emp.readlock();
-            if (!emp.getManager().equals(username)) {
+            if ((emp.getManager() == null ) || !emp.getManager().equals(username)) {
                 emp.readunlock();
-                throw new InvalidParameterException("Can't update employee");
+                throw new InvalidParameterException("Can't access employee");
             } else {
                 output = new Restriction(emp.getRestriction());
                 emp.readunlock();
@@ -83,7 +83,7 @@ public class ManagerService {
         if (emp != null) {
             emp.writelock();
 
-            if (!emp.getManager().equals(username)) {
+            if ((emp.getManager() == null ) || !emp.getManager().equals(username)) {
                 emp.writeunlock();
                 throw new InvalidParameterException("Can't update employee");
             } else {
@@ -115,9 +115,9 @@ public class ManagerService {
         if (emp != null) {
             emp.readlock();
 
-            if (!emp.getManager().equals(username)) {
+            if ((emp.getManager() == null ) || !emp.getManager().equals(username)) {
                 emp.readunlock();
-                throw new InvalidParameterException("Can't update employee");
+                throw new InvalidParameterException("Can't access employee");
             } else {
                 Assignings employee_assignings = emp.getAssignings();
                 emp.readunlock();

@@ -24,46 +24,42 @@ class EmployeeServiceTest {
     EmployeeService employeeService = new EmployeeService(new EmployeeRepositoryMock());
 
     @Test
-    void getBidsTestExistingUser(){
+    void getBidsExistingUser(){
 
         String username = "admin";
         Bid[] ans = employeeService.getBids(username);
-        Bid[] expected = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
-        assertArrayEquals(ans, expected);
+        Bid[] expected = {new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4), new Bid(username, 5)};
+        assertArrayEquals(expected, ans);
     }
 
     @Test
-    void getBidsTestNonExistingUser(){
+    void getBidsNonExistingUser(){
 
         try {
-            Bid[] ans = employeeService.getBids("toya");
+            Bid[] ans = employeeService.getBids("phistuk");
             throw new AssertionError();
         }
         catch(Exception e){
-            assertEquals(e.getMessage(), "Employee username doesn't exists");
+            assertEquals("Employee username doesn't exists", e.getMessage());
         }
     }
 
-    @Test
-    void getBids() {
-        getBidsTestExistingUser();
-        getBidsTestNonExistingUser();
-    }
+
 
     //--------------------------------------------------------------------------------------------------
 
     @Test
     void updateBidsExistingUser() {
         String username = "admin";
-        Bid bid0 = new Bid(username, 0);
+        Bid bid0 = new Bid(username, 1);
         bid0.setPercentage(20);
-        Bid bid1 = new Bid(username, 1);
+        Bid bid1 = new Bid(username, 2);
         bid1.setPercentage(20);
-        Bid bid2 = new Bid(username, 2);
+        Bid bid2 = new Bid(username, 3);
         bid2.setPercentage(20);
-        Bid bid3 = new Bid(username, 3);
+        Bid bid3 = new Bid(username, 4);
         bid3.setPercentage(20);
-        Bid bid4 = new Bid(username, 4);
+        Bid bid4 = new Bid(username, 5);
         bid4.setPercentage(20);
         Bid[] newBids = {bid0, bid1, bid2, bid3, bid4};
         employeeService.updateBids(username, newBids);
@@ -75,70 +71,58 @@ class EmployeeServiceTest {
     @Test
     void updateBidsInvalidBids() {
         String username = "admin";
-        Bid bid0 = new Bid(username, 0);
-        bid0.setPercentage(0);
-        Bid bid1 = new Bid(username, 1);
-        bid1.setPercentage(0);
-        Bid bid2 = new Bid(username, 2);
-        bid2.setPercentage(0);
-        Bid bid3 = new Bid(username, 3);
-        bid3.setPercentage(0);
-        Bid bid4 = new Bid(username, 4);
-        bid4.setPercentage(0);
+        Bid bid0 = new Bid(username, 1);
+        bid0.setPercentage(20);
+        Bid bid1 = new Bid(username, 2);
+        bid1.setPercentage(20);
+        Bid bid2 = new Bid(username, 3);
+        bid2.setPercentage(20);
+        Bid bid3 = new Bid(username, 4);
+        bid3.setPercentage(20);
+        Bid bid4 = new Bid(username, 5);
+        bid4.setPercentage(30);
         Bid[] newBids = {bid0, bid1, bid2, bid3, bid4};
-        employeeService.updateBids(username, newBids);
+
 
         try {
-            Bid[] result = employeeService.getBids(username);
+            employeeService.updateBids(username, newBids);
         }
         catch (Exception e){
-            assertEquals(e.getMessage(), "Bids aren't valid");
+            assertEquals("Bids aren't valid", e.getMessage());
         }
     }
 
     @Test
     void updateBidsNonExistingUser() {
         try {
-            employeeService.updateBids("toya", new Bid[5]);
+            employeeService.updateBids("phistuk", new Bid[5]);
             throw new AssertionError();
         }
         catch(Exception e){
-            assertEquals(e.getMessage(), "Employee username doesn't exists");
+            assertEquals("Employee username doesn't exists", e.getMessage());
         }
     }
 
-    @Test
-    void updateBids() {
-        updateBidsExistingUser();
-        updateBidsInvalidBids();
-        updateBidsNonExistingUser();
-    }
 
     //--------------------------------------------------------------------------------------------------
 
     @Test
     void getEmployeesPointsExistingUser() {
         int points = employeeService.getEmployeesPoints("admin");
-        assertEquals(points, 100);
+        assertEquals(100, points);
     }
 
     @Test
     void getEmployeesPointsNonExistingUser() {
         try {
-            int points = employeeService.getEmployeesPoints("toya");
+            int points = employeeService.getEmployeesPoints("phistuk");
             throw new AssertionError();
         }
         catch(Exception e){
-            assertEquals(e.getMessage(), "Employee username doesn't exists");
+            assertEquals("Employee username doesn't exists", e.getMessage());
         }
     }
 
-    @Test
-    void getEmployeesPoints() {
-        getEmployeesPointsExistingUser();
-        getEmployeesPointsNonExistingUser();
-
-    }
 
     //--------------------------------------------------------------------------------------------------
 
@@ -148,34 +132,29 @@ class EmployeeServiceTest {
         Assignings ans = employeeService.getEmployeeAssignings(username);
 
 
-        assertEquals(ans.getAssignedDays(), createAssignings().getAssignedDays());
+        assertEquals(createAssignings().getAssignedDays(), ans.getAssignedDays());
 
     }
 
     @Test
     void getEmployeeAssigningsNonExistingUser() {
         try {
-            String username = "toya";
+            String username = "phistuk";
             Assignings ans = employeeService.getEmployeeAssignings(username);
             throw new AssertionError();
         }
         catch(Exception e){
-            assertEquals(e.getMessage(), "Employee username doesn't exists");
+            assertEquals("Employee username doesn't exists", e.getMessage());
         }
     }
 
-    @Test
-    void getEmployeeAssignings() {
-        getEmployeeAssigningsExistingUser();
-        getEmployeeAssigningsNonExistingUser();
-    }
 
     //--------------------------------------------------------------------------------------------------
 
     @Test
     void getEmployees() {
 
-        List<String> expected = Arrays.asList("shauli", "nufar", "shenhav", "noy", "a", "toya");
+        List<String> expected = Arrays.asList("admin", "shauli", "noy", "shenhav", "nufar", "a", "toya");
         List<Employee> result = Arrays.asList(employeeService.getEmployees("admin"));
 
         List<String> resultNames = new ArrayList<>();
@@ -183,7 +162,7 @@ class EmployeeServiceTest {
             resultNames.add(emp.getUsername());
         }
 
-        assertEquals(resultNames, expected);
+        assertEquals(expected, resultNames);
     }
 
     //--------------------------------------------------------------------------------------------------
