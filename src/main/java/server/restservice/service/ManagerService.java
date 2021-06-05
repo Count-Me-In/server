@@ -78,33 +78,41 @@ public class ManagerService {
         }
     }
 
-    public void setEmployeePoints(String username, String employee_username, Integer points) {
-        Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
-        if (emp != null) {
-            emp.writelock();
-
-            if ((emp.getManager() == null ) || !emp.getManager().equals(username)) {
-                emp.writeunlock();
-                throw new InvalidParameterException("Can't update employee");
-            } else {
-                if (emp.isManager()) {
-                    double ratio = points / emp.getManagerPoints();
-                    emp.setManagerPoints(points);
-                    emp.setWeeklyPoints((int) (emp.getWeeklyPoints() * ratio));
-                    for (String empUsername : emp.getEmployees()) {
-                        // TODO: improve
-                        Employee dirEmp = employeeRepository.findEmployeeByUsername(empUsername);
-                        dirEmp.readlock();
-                        int newPoints = (int) (dirEmp.getWeeklyPoints() * ratio);
-                        dirEmp.readunlock();
-                        setEmployeePoints(employee_username, empUsername, newPoints);
-                    }
-                } else {
-                    emp.setWeeklyPoints(points);
-                }
-                employeeRepository.save(emp);
-                emp.writeunlock();
+    private void _setPoints(Employee emp, Integer points){
+        if (emp.isManager()) {
+            double ratio = points / emp.getManagerPoints();
+            emp.setManagerPoints(points);
+            for (String empUsername : emp.getEmployees()) {
+                Employee dirEmp = employeeRepository.findEmployeeByUsername(empUsername);
+                dirEmp.writelock();
+                int oldPoints = dirEmp.getWeeklyPoints();
+                int newPoints = (int) (oldPoints * ratio);
+                _setPoints(emp, newPoints);
+                dirEmp.writeunlock();
+                emp.setWeeklyPoints(oldPoints - points + emp.getWeeklyPoints());
             }
+        } else {
+            emp.setWeeklyPoints(points);
+        }
+        employeeRepository.save(emp);
+    }
+
+    public void setEmployeePoints(String username, String employee_username, Integer points) {
+        Employee manager = employeeRepository.findEmployeeByUsername(username);
+        if (manager != null) {
+            manager.writelock();
+            if (!manager.getEmployees().contains(employee_username)) {
+                manager.writeunlock();
+                throw new InvalidParameterException("Can't update employee");
+            }
+            Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
+            emp.writelock();
+            int old_points = emp.getWeeklyPoints();
+            _setPoints(emp, points);
+            emp.writeunlock();
+            manager.setWeeklyPoints(old_points - points + manager.getWeeklyPoints());
+            employeeRepository.save(manager);
+            manager.writeunlock();
         } else {
             throw new InvalidParameterException("Employee username doesn't exists");
         }
