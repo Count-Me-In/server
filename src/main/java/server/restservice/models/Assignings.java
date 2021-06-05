@@ -1,13 +1,12 @@
 package server.restservice.models;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Assignings {
 
     public String _employeeUsername;
-    public List<Date> _assignedDays;
+    public List<Long> _assignedDays;
 
     public Assignings(String employeeUsername) {
         this._employeeUsername = employeeUsername;
@@ -16,14 +15,14 @@ public class Assignings {
 
     public Assignings(Assignings other) {
         this._employeeUsername = other._employeeUsername;
-        this._assignedDays = new ArrayList<Date>(other._assignedDays);
+        this._assignedDays = new ArrayList<Long>(other._assignedDays);
     }
 
-    public void addAssinedDays(List<Date> dates) {
+    public void addAssinedDays(List<Long> dates) {
         this._assignedDays.addAll(dates);
     }
 
-    public List<Date> getAssignedDays() {
+    public List<Long> getAssignedDays() {
         return this._assignedDays;
     }
 }

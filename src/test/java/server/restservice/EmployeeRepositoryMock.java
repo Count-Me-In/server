@@ -44,11 +44,12 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         try {
             Assignings as = new Assignings(username);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
-            List<Date> lst = Arrays.asList(sdf.parse("2021-05-12T09:45"),
-                    sdf.parse("2021-05-19T09:45"),
-                    sdf.parse("2021-05-27T09:45"),
-                    sdf.parse("2021-05-28T09:45"),
-                    sdf.parse("2021-05-29T09:45"));
+            List<Long> lst = Arrays.asList(
+                    sdf.parse("2021-05-12T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-19T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-27T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-28T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-29T09:45").toInstant().getEpochSecond());
             as.addAssinedDays(lst);
             user.setAssignings(as);
         }

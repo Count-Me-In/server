@@ -27,7 +27,7 @@ public interface engineAPIInterface {
 
     public Actor getActor(UUID actorID);
 
-    public List<Assignment> getActorAssignments(UUID actorID);
+    public List<Assignment> getActorAssignments(UUID actorID, Long from, Long to);
 
     public List<Actor> getActors();
 

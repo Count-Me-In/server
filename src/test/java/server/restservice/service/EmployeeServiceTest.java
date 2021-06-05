@@ -199,11 +199,12 @@ class EmployeeServiceTest {
         try {
             Assignings as = new Assignings("admin");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
-            List<Date> lst = Arrays.asList(sdf.parse("2021-05-12T09:45"),
-                    sdf.parse("2021-05-19T09:45"),
-                    sdf.parse("2021-05-27T09:45"),
-                    sdf.parse("2021-05-28T09:45"),
-                    sdf.parse("2021-05-29T09:45"));
+            List<Long> lst = Arrays.asList(
+                    sdf.parse("2021-05-12T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-19T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-27T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-28T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-29T09:45").toInstant().getEpochSecond());
             as.addAssinedDays(lst);
             admin.setAssignings(as);
         }
@@ -218,13 +219,14 @@ class EmployeeServiceTest {
         admin.setBids(bids1);
         Assignings as = new Assignings("shauli");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
-        List<Date> lst = null;
+        List<Long> lst = null;
         try {
-            lst = Arrays.asList(sdf.parse("2021-05-12T09:45"),
-                    sdf.parse("2021-05-11T09:45"),
-                    sdf.parse("2021-05-22T09:45"),
-                    sdf.parse("2021-05-01T09:45"),
-                    sdf.parse("2021-05-09T09:45"));
+            lst = Arrays.asList(
+                    sdf.parse("2021-05-12T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-11T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-22T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-01T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-09T09:45").toInstant().getEpochSecond());
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -241,11 +243,12 @@ class EmployeeServiceTest {
         try {
             Assignings as = new Assignings("admin");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
-            List<Date> lst = Arrays.asList(sdf.parse("2021-05-12T09:45"),
-                    sdf.parse("2021-05-19T09:45"),
-                    sdf.parse("2021-05-27T09:45"),
-                    sdf.parse("2021-05-28T09:45"),
-                    sdf.parse("2021-05-29T09:45"));
+            List<Long> lst = Arrays.asList(
+                    sdf.parse("2021-05-12T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-19T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-27T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-28T09:45").toInstant().getEpochSecond(),
+                    sdf.parse("2021-05-29T09:45").toInstant().getEpochSecond());
             as.addAssinedDays(lst);
             return as;
         }

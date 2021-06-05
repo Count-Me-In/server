@@ -123,13 +123,13 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 additionalActorData.getManagerPoints());
         emp.getRestriction().set_allowed_days(additionalActorData.getAllowedDays());
         emp.getEmployees().addAll(additionalActorData.getEmployees());
-        List<Date> days = new ArrayList<Date>();
-        for (Assignment ass : engineAPI.getActorAssignments(actor.getId())) {
+        List<Long> days = new ArrayList<Long>();
+        for (Assignment ass : engineAPI.getActorAssignments(actor.getId(), Instant.now().getEpochSecond() - 2500000, null)) {
             Item i = engineAPI.getItem(ass.getItemID());
             ItemAdditionalData additionalItemData = i.getAdditionalInfo();
-            LocalDate bidDate = ass.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate bidDate = Instant.ofEpochSecond(ass.getDate()).atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate dayOfWeek = bidDate.with(next(dayToDayOfWeek(additionalItemData.getDay())));
-            days.add(Date.from(dayOfWeek.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            days.add(dayOfWeek.atStartOfDay(ZoneId.systemDefault()).toInstant().getEpochSecond());
         }
         emp.getAssignings().addAssinedDays(days);
         emp.setBids(getActorBids(actor, username));

@@ -1,18 +1,17 @@
 package server.restservice.repository.EngineAPI.model;
 
-import java.util.Date;
 import java.util.UUID;
 
 public class Assignment {
   private UUID _id;
 
-  private Date _date;
+  private Long _date;
 
   private UUID _itemID;
 
   private UUID _actorID;
 
-  public Assignment(UUID id, Date date, UUID itemID, UUID actorID) {
+  public Assignment(UUID id, Long date, UUID itemID, UUID actorID) {
     _id = id;
     _date = date;
     _itemID = itemID;
@@ -27,11 +26,11 @@ public class Assignment {
     this._id = id;
   }
 
-  public Date getDate() {
+  public Long getDate() {
     return _date;
   }
 
-  public void setDate(Date date) {
+  public void setDate(Long date) {
     this._date = date;
   }
 

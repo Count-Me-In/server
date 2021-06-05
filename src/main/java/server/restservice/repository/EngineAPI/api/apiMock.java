@@ -2,8 +2,8 @@ package server.restservice.repository.EngineAPI.api;
 
 import java.io.*;
 import java.nio.file.*;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -237,16 +237,17 @@ public class apiMock implements engineAPIInterface {
         return output;
     }
 
-    public List<Assignment> getActorAssignments(UUID actorID) {
-        HashMap<UUID, Assignment> latestItemAssignments = new HashMap<UUID, Assignment>();
-        List<Assignment> assignments = getAssignments();
-        for (Assignment assignment : assignments) {
-            if ((!latestItemAssignments.containsKey(assignment.getItemID()))
-                    || latestItemAssignments.get(assignment.getItemID()).getDate().before(assignment.getDate())) {
-                latestItemAssignments.put(assignment.getItemID(), assignment);
+    public List<Assignment> getActorAssignments(UUID actorID, Long from, Long to) {
+        if (to == null) {
+            to = Instant.now().toEpochMilli();
+        }
+        List<Assignment> assignments = new ArrayList<Assignment>();
+        for (Assignment assignment : getAssignments()) {
+            if (assignment.getDate() <= to && assignment.getDate() >= from) {
+                assignments.add(assignment);
             }
         }
-        return new ArrayList<Assignment>(latestItemAssignments.values());
+        return assignments;
     }
 
     public List<Actor> getActors() {
