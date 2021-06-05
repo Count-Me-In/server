@@ -61,7 +61,7 @@ public class EmployeeService {
             } else {
                 Bid[] newBids = emp.getBids();
                 for (Bid bid : bids) {
-                    newBids[bid.getDay() - 1].setPercentage(bid.getPercentage());
+                    newBids[bid.getDay()].setPercentage(bid.getPercentage());
                 }
                 emp.setBids(newBids);
                 employeeRepository.save(emp);

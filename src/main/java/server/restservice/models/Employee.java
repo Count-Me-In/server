@@ -84,6 +84,10 @@ public class Employee {
         return _direct_manager;
     }
 
+    public void setManager(String manager){
+        this._direct_manager = manager;
+    }
+
     public int getTotalPoints() {
         return _total_points;
     }
@@ -93,7 +97,7 @@ public class Employee {
     }
 
     public void setWeeklyPoints(int points) {
-        _total_points = points;
+        _weekly_added_points = points;
     }
 
     public List<String> getEmployees() {
