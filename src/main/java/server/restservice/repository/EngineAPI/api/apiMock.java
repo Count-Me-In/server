@@ -243,7 +243,7 @@ public class apiMock implements engineAPIInterface {
         }
         List<Assignment> assignments = new ArrayList<Assignment>();
         for (Assignment assignment : getAssignments()) {
-            if (assignment.getDate() <= to && assignment.getDate() >= from) {
+            if (assignment.getActorID().equals(actorID) && assignment.getDate() <= to && assignment.getDate() >= from) {
                 assignments.add(assignment);
             }
         }
