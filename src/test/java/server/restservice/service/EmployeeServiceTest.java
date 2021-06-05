@@ -24,7 +24,7 @@ class EmployeeServiceTest {
     EmployeeService employeeService = new EmployeeService(new EmployeeRepositoryMock());
 
     @Test
-    void getBidsTestExistingUser(){
+    void getBidsExistingUser(){
 
         String username = "admin";
         Bid[] ans = employeeService.getBids(username);
@@ -33,7 +33,7 @@ class EmployeeServiceTest {
     }
 
     @Test
-    void getBidsTestNonExistingUser(){
+    void getBidsNonExistingUser(){
 
         try {
             Bid[] ans = employeeService.getBids("phistuk");
