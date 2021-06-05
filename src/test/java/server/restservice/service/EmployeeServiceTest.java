@@ -28,7 +28,7 @@ class EmployeeServiceTest {
 
         String username = "admin";
         Bid[] ans = employeeService.getBids(username);
-        Bid[] expected = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
+        Bid[] expected = {new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4), new Bid(username, 5)};
         assertArrayEquals(expected, ans);
     }
 
@@ -51,15 +51,15 @@ class EmployeeServiceTest {
     @Test
     void updateBidsExistingUser() {
         String username = "admin";
-        Bid bid0 = new Bid(username, 0);
+        Bid bid0 = new Bid(username, 1);
         bid0.setPercentage(20);
-        Bid bid1 = new Bid(username, 1);
+        Bid bid1 = new Bid(username, 2);
         bid1.setPercentage(20);
-        Bid bid2 = new Bid(username, 2);
+        Bid bid2 = new Bid(username, 3);
         bid2.setPercentage(20);
-        Bid bid3 = new Bid(username, 3);
+        Bid bid3 = new Bid(username, 4);
         bid3.setPercentage(20);
-        Bid bid4 = new Bid(username, 4);
+        Bid bid4 = new Bid(username, 5);
         bid4.setPercentage(20);
         Bid[] newBids = {bid0, bid1, bid2, bid3, bid4};
         employeeService.updateBids(username, newBids);
@@ -71,15 +71,15 @@ class EmployeeServiceTest {
     @Test
     void updateBidsInvalidBids() {
         String username = "admin";
-        Bid bid0 = new Bid(username, 0);
+        Bid bid0 = new Bid(username, 1);
         bid0.setPercentage(20);
-        Bid bid1 = new Bid(username, 1);
+        Bid bid1 = new Bid(username, 2);
         bid1.setPercentage(20);
-        Bid bid2 = new Bid(username, 2);
+        Bid bid2 = new Bid(username, 3);
         bid2.setPercentage(20);
-        Bid bid3 = new Bid(username, 3);
+        Bid bid3 = new Bid(username, 4);
         bid3.setPercentage(20);
-        Bid bid4 = new Bid(username, 4);
+        Bid bid4 = new Bid(username, 5);
         bid4.setPercentage(30);
         Bid[] newBids = {bid0, bid1, bid2, bid3, bid4};
 

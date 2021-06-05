@@ -51,7 +51,7 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         else{
             user = new Employee(username, username, null, 100, 100, null);
         }
-        Bid[] bids = {new Bid(username, 0), new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
+        Bid[] bids = {new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4), new Bid(username, 5)};
         user.setBids(bids);
 
         try {
@@ -71,7 +71,7 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         }
 
         Restriction rst = new Restriction();
-        List<Integer> allowed = Arrays.asList(0, 1, 2, 3, 4);
+        List<Integer> allowed = Arrays.asList(1, 2, 3, 4, 5);
         rst.set_allowed_days(allowed);
 
         user.setRestrictions(rst);

@@ -54,7 +54,7 @@ class ManagerServiceTest {
 
     @Test
     void getRestrictionExistingUser(){
-        List<Integer> allowed = Arrays.asList(0, 1, 2, 3, 4);
+        List<Integer> allowed = Arrays.asList(1, 2, 3, 4, 5);
         Restriction result = managerService.getRestriction("admin", "noy");
 
         assertEquals(allowed, result.get_allowed_days());
@@ -217,7 +217,7 @@ class ManagerServiceTest {
 
     @Test
     void getEmployeeRestrictionsExistingUser(){
-        List<Integer> expected = Arrays.asList(0, 1, 2, 3, 4);
+        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5);
 
         Map<String, Restriction> result = managerService.getEmployeeRestrictions("admin");
 
