@@ -39,7 +39,7 @@ public class EmployeeService {
         }
         Integer sumPercent = 0;
         for (Bid bid : bids) {
-            if (bid.getPercentage() > 0 && !restriction.get_allowed_days().contains(bid.getDay())) {
+            if (bid.getPercentage() < 0 ||  (bid.getPercentage() != 0 && !restriction.get_allowed_days().contains(bid.getDay()))) {
                 return false;
             }
             sumPercent += bid.getPercentage();
