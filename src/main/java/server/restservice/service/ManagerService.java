@@ -13,6 +13,7 @@ import server.restservice.models.Restriction;
 import server.restservice.repository.EmployeeRepository;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,13 +67,20 @@ public class ManagerService {
         }
     }
 
-    public List<String> getEmployees(String username) {
+    public List<Employee> getEmployees(String username) {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
             List<String> employees = emp.getEmployees();
             emp.readunlock();
-            return employees;
+            Employee[] all_employees = employeeRepository.getAllEmployeeNames();
+            List<Employee> output = new ArrayList<Employee>();
+            for (Employee employee : all_employees) {
+                if (employees.contains(employee.getUsername())) {
+                    output.add(employee);
+                }
+            }
+            return output;
         } else {
             throw new InvalidParameterException("Employee username doesn't exists");
         }
