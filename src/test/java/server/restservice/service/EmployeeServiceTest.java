@@ -72,20 +72,20 @@ class EmployeeServiceTest {
     void updateBidsInvalidBids() {
         String username = "admin";
         Bid bid0 = new Bid(username, 0);
-        bid0.setPercentage(0);
+        bid0.setPercentage(20);
         Bid bid1 = new Bid(username, 1);
-        bid1.setPercentage(0);
+        bid1.setPercentage(20);
         Bid bid2 = new Bid(username, 2);
-        bid2.setPercentage(0);
+        bid2.setPercentage(20);
         Bid bid3 = new Bid(username, 3);
-        bid3.setPercentage(0);
+        bid3.setPercentage(20);
         Bid bid4 = new Bid(username, 4);
-        bid4.setPercentage(0);
+        bid4.setPercentage(30);
         Bid[] newBids = {bid0, bid1, bid2, bid3, bid4};
-        employeeService.updateBids(username, newBids);
+
 
         try {
-            Bid[] result = employeeService.getBids(username);
+            employeeService.updateBids(username, newBids);
         }
         catch (Exception e){
             assertEquals("Bids aren't valid", e.getMessage());

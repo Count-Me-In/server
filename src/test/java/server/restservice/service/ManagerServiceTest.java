@@ -66,7 +66,7 @@ class ManagerServiceTest {
             managerService.getRestriction("admin", "toya");
             throw new AssertionError();
         } catch (Exception e) {
-            assertEquals("Can't update employee", e.getMessage());
+            assertEquals("Can't access employee", e.getMessage());
         }
     }
 
@@ -155,7 +155,6 @@ class ManagerServiceTest {
 
     @Test
     void getEmployeeAssigningsExistingUser(){
-        List<String> expected = Arrays.asList("shauli", "nufar", "shenhav", "noy", "a");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
         List<Long> lst = new ArrayList<>();
         try {
@@ -217,7 +216,7 @@ class ManagerServiceTest {
     //--------------------------------------------------------------------------------------------------
 
     @Test
-    void getTotalRestrictionsExistingUser(){
+    void getEmployeeRestrictionsExistingUser(){
         List<Integer> expected = Arrays.asList(0, 1, 2, 3, 4);
 
         Map<String, Restriction> result = managerService.getEmployeeRestrictions("admin");
@@ -226,7 +225,7 @@ class ManagerServiceTest {
     }
 
     @Test
-    void getTotalRestrictionsNonExistingUser(){
+    void getEmployeeRestrictionsNonExistingUser(){
         try {
             managerService.getEmployeeRestrictions("phistuk");
             throw new AssertionError();

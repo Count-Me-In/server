@@ -55,7 +55,7 @@ public class ManagerService {
             emp.readlock();
             if ((emp.getManager() == null ) || !emp.getManager().equals(username)) {
                 emp.readunlock();
-                throw new InvalidParameterException("Can't update employee");
+                throw new InvalidParameterException("Can't access employee");
             } else {
                 output = new Restriction(emp.getRestriction());
                 emp.readunlock();
