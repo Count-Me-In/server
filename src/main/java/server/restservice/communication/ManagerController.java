@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import server.restservice.models.Assignings;
+import server.restservice.models.Employee;
 import server.restservice.models.Restriction;
 import server.restservice.service.ManagerService;
 
@@ -27,7 +28,7 @@ public class ManagerController {
     private ManagerService managerService;
 
     @GetMapping(path = "getEmployees")
-    public List<String> getEmployees(Authentication authentication) {
+    public List<Employee> getEmployees(Authentication authentication) {
         return managerService.getEmployees(authentication.getName());
     }
 

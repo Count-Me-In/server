@@ -3,6 +3,7 @@ package server.restservice.service;
 import org.junit.jupiter.api.Test;
 import server.restservice.EmployeeRepositoryMock;
 import server.restservice.models.Assignings;
+import server.restservice.models.Employee;
 import server.restservice.models.Restriction;
 
 import java.text.SimpleDateFormat;
@@ -86,9 +87,14 @@ class ManagerServiceTest {
     @Test
     void getEmployeesExistingUser(){
         List<String> expected = Arrays.asList("shauli", "nufar", "shenhav", "noy", "a");
-        List<String> result = managerService.getEmployees("admin");
-
-        assertEquals(expected, result);
+        List<Employee> result = managerService.getEmployees("admin");
+        List<String> actual = new ArrayList<String>();
+        for (Employee employee : result) {
+            actual.add(employee.getUsername());
+        }
+        Collections.sort(expected);
+        Collections.sort(actual);
+        assertEquals(expected,actual);
     }
 
     @Test
