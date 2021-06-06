@@ -90,8 +90,7 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
     }
 
     public void save(Employee emp) {
-        
-    }
+           }
 
     public Employee[] getAllEmployeeNames() {
         Employee[] employeeArr = this.employees.toArray(new Employee[this.employees.size()]);
@@ -105,6 +104,9 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
             return null;
         }
     }
+
+    public void execAuction() {
+           }
 
 
 }

@@ -104,6 +104,13 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         return additionalActorData.getPassword();
     }
 
+    public void execAuction() {
+        synchronized (this) {
+            engineAPI.execAutcion();
+            _employee_cacheMap.clear();
+        }
+    }
+
     public void cleanCache() {
         synchronized (this) {
             _employee_cacheMap.clear();
