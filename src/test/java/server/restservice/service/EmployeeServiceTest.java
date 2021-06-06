@@ -13,7 +13,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 
@@ -37,7 +36,7 @@ class EmployeeServiceTest {
     void getBidsNonExistingUser(){
 
         try {
-            Bid[] ans = employeeService.getBids("phistuk");
+            employeeService.getBids("phistuk");
             throw new AssertionError();
         }
         catch(Exception e){
@@ -116,7 +115,7 @@ class EmployeeServiceTest {
     @Test
     void getEmployeesPointsNonExistingUser() {
         try {
-            int points = employeeService.getEmployeesPoints("phistuk");
+            employeeService.getEmployeesPoints("phistuk");
             throw new AssertionError();
         }
         catch(Exception e){
@@ -141,7 +140,7 @@ class EmployeeServiceTest {
     void getEmployeeAssigningsNonExistingUser() {
         try {
             String username = "phistuk";
-            Assignings ans = employeeService.getEmployeeAssignings(username);
+            employeeService.getEmployeeAssignings(username);
             throw new AssertionError();
         }
         catch(Exception e){
