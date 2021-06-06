@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import server.restservice.models.Assignings;
-import server.restservice.models.Employee;
+import server.restservice.models.EmployeeDetails;
 import server.restservice.models.Restriction;
 import server.restservice.service.ManagerService;
 
@@ -28,12 +28,12 @@ public class ManagerController {
     private ManagerService managerService;
 
     @GetMapping(path = "getEmployees")
-    public List<Employee> getEmployees(Authentication authentication) {
+    public List<EmployeeDetails> getEmployees(Authentication authentication) {
         return managerService.getEmployees(authentication.getName());
     }
 
     @GetMapping(path = "getEmployeesPoints")
-    public Map<String, Integer> getEmployeesPoints(Authentication authentication) {
+    public List<EmployeeDetails> getEmployeesPoints(Authentication authentication) {
         return managerService.getEmployeePoints(authentication.getName());
     }
 
@@ -51,7 +51,7 @@ public class ManagerController {
     }
 
     @GetMapping(path = "getEmployeesRestrictions")
-    public Map<String, Restriction> getEmployeesRestrictions(Authentication authentication) {
+    public List<EmployeeDetails> getEmployeesRestrictions(Authentication authentication) {
         return managerService.getEmployeeRestrictions(authentication.getName());
     }
 

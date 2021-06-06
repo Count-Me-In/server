@@ -2,7 +2,7 @@
     {
         "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
         "_points": 300,
-        "_intervalBonus": 100,
+        "_intervalBonus": 90,
         "_additionalInfo": {
             "_username": "admin",
             "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
@@ -45,7 +45,7 @@
     {
         "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
         "_points": 200,
-        "_intervalBonus": 100,
+        "_intervalBonus": 110,
         "_additionalInfo": {
             "_username": "gshauli99@gmail.com",
             "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
@@ -89,7 +89,8 @@
             "_totalManagerPoints": 0,
             "_allowed_days": [
                 1,
-                2
+                2,
+                3
             ],
             "_employees": []
         }

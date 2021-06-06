@@ -8,10 +8,14 @@ import org.springframework.stereotype.Service;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.Employee;
+import server.restservice.models.EmployeeDetails;
 import server.restservice.models.Restriction;
 import server.restservice.repository.EmployeeRepository;
 
 import java.security.InvalidParameterException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -97,7 +101,10 @@ public class EmployeeService {
 
     }
 
-    public Employee[] getEmployees(String username) {
-        return employeeRepository.getAllEmployeeNames();
+    public EmployeeDetails[] getEmployees(String username) {
+        List<EmployeeDetails> details = Arrays.asList(employeeRepository.getAllEmployeeNames()).stream().parallel().map(emp -> new EmployeeDetails(emp)).collect(Collectors.toList());
+        EmployeeDetails[] output = new EmployeeDetails[details.size()];
+        details.toArray(output);
+        return output;
     }
 }

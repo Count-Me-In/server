@@ -7,6 +7,7 @@ import server.restservice.EmployeeRepositoryMock;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.Employee;
+import server.restservice.models.EmployeeDetails;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -155,10 +156,10 @@ class EmployeeServiceTest {
     void getEmployees() {
 
         List<String> expected = Arrays.asList("admin", "shauli", "noy", "shenhav", "nufar", "a", "toya");
-        List<Employee> result = Arrays.asList(employeeService.getEmployees("admin"));
+        List<EmployeeDetails> result = Arrays.asList(employeeService.getEmployees("admin"));
 
         List<String> resultNames = new ArrayList<>();
-        for(Employee emp: result){
+        for(EmployeeDetails emp: result){
             resultNames.add(emp.getUsername());
         }
 

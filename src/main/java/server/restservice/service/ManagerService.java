@@ -9,14 +9,13 @@ import org.springframework.stereotype.Service;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.Employee;
+import server.restservice.models.EmployeeDetails;
 import server.restservice.models.Restriction;
 import server.restservice.repository.EmployeeRepository;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -67,17 +66,17 @@ public class ManagerService {
         }
     }
 
-    public List<Employee> getEmployees(String username) {
+    public List<EmployeeDetails> getEmployees(String username) {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            List<String> employees = emp.getEmployees();
+            List<String> employees = new ArrayList<String>(emp.getEmployees());
             emp.readunlock();
             Employee[] all_employees = employeeRepository.getAllEmployeeNames();
-            List<Employee> output = new ArrayList<Employee>();
+            List<EmployeeDetails> output = new ArrayList<EmployeeDetails>();
             for (Employee employee : all_employees) {
                 if (employees.contains(employee.getUsername())) {
-                    output.add(employee);
+                    output.add(new EmployeeDetails(employee));
                 }
             }
             return output;
@@ -156,8 +155,8 @@ public class ManagerService {
         }
     }
 
-    public Map<String, Integer> getEmployeePoints(String username) {
-        HashMap<String, Integer> output = new HashMap<>();
+    public List<EmployeeDetails> getEmployeePoints(String username) {
+        List<EmployeeDetails> output = new ArrayList<>();
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
@@ -165,7 +164,9 @@ public class ManagerService {
                 Employee direct = employeeRepository.findEmployeeByUsername(emp_username);
                 if (direct != null) {
                     direct.readlock();
-                    output.put(direct.getUsername(), direct.getWeeklyPoints());
+                    EmployeeDetails details = new EmployeeDetails(direct);
+                    details.setPoints(direct.getWeeklyPoints());
+                    output.add(details);
                     direct.readunlock();
                 }
             }
@@ -176,8 +177,8 @@ public class ManagerService {
         }
     }
 
-    public Map<String, Restriction> getEmployeeRestrictions(String username) {
-        HashMap<String, Restriction> output = new HashMap<>();
+    public List<EmployeeDetails> getEmployeeRestrictions(String username) {
+        List<EmployeeDetails> output = new ArrayList<>();
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
@@ -185,7 +186,9 @@ public class ManagerService {
                 Employee direct = employeeRepository.findEmployeeByUsername(emp_username);
                 if (direct != null) {
                     direct.readlock();
-                    output.put(direct.getUsername(), direct.getRestriction());
+                    EmployeeDetails details = new EmployeeDetails(direct);
+                    details.setRestrictions(new Restriction(direct.getRestriction()));
+                    output.add(details);
                     direct.readunlock();
                 }
             }

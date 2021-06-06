@@ -7,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
-import server.restservice.models.Employee;
+import server.restservice.models.EmployeeDetails;
 import server.restservice.service.EmployeeService;
 import server.restservice.service.MailService;
 
@@ -23,7 +23,7 @@ public class EmployeeController {
     private MailService mailService;
 
     @GetMapping(path = "all")
-    public Employee[] getEmployees(Authentication authentication) {
+    public EmployeeDetails[] getEmployees(Authentication authentication) {
         return employeeService.getEmployees(authentication.getName());
     }
 

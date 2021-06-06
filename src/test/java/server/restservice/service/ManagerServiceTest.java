@@ -4,10 +4,12 @@ import org.junit.jupiter.api.Test;
 import server.restservice.EmployeeRepositoryMock;
 import server.restservice.models.Assignings;
 import server.restservice.models.Employee;
+import server.restservice.models.EmployeeDetails;
 import server.restservice.models.Restriction;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Map.Entry;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -87,9 +89,9 @@ class ManagerServiceTest {
     @Test
     void getEmployeesExistingUser(){
         List<String> expected = Arrays.asList("shauli", "nufar", "shenhav", "noy", "a");
-        List<Employee> result = managerService.getEmployees("admin");
+        List<EmployeeDetails> result = managerService.getEmployees("admin");
         List<String> actual = new ArrayList<String>();
-        for (Employee employee : result) {
+        for (EmployeeDetails employee : result) {
             actual.add(employee.getUsername());
         }
         Collections.sort(expected);
@@ -113,8 +115,10 @@ class ManagerServiceTest {
     @Test
     void setEmployeePointsExistingUser(){
         managerService.setEmployeePoints("admin", "shauli", 200);
-        double result = managerService.getEmployeePoints("admin").getOrDefault("shauli", -1);
-        assertEquals(200.0, result);
+        for(EmployeeDetails result : managerService.getEmployeePoints("admin")) {
+            if (result.getUsername().equals("shauli"))
+                assertEquals(200, result.getPoints());
+        }
     }
 
     @Test
@@ -142,8 +146,10 @@ class ManagerServiceTest {
 
     @Test
     void getEmployeePointsExistingUser(){
-        double result = managerService.getEmployeePoints("admin").getOrDefault("nufar", -1);
-        assertEquals(100.0, result);
+        for(EmployeeDetails result : managerService.getEmployeePoints("admin")) {
+            if (result.getUsername().equals("nufar"))
+                assertEquals(100, result.getPoints());
+        }
     }
 
     @Test
@@ -225,9 +231,11 @@ class ManagerServiceTest {
     void getEmployeeRestrictionsExistingUser(){
         List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5);
 
-        Map<String, Restriction> result = managerService.getEmployeeRestrictions("admin");
+        List<EmployeeDetails> result = managerService.getEmployeeRestrictions("admin");
 
-        assertEquals(expected, result.getOrDefault("shenhav", new Restriction()).get_allowed_days());
+        for (EmployeeDetails entry : result) {
+            assertEquals(expected, entry.getRestriction().get_allowed_days());
+        }
     }
 
     @Test
