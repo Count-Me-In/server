@@ -55,4 +55,9 @@ public class EmployeeController {
 
     }
 
+    @GetMapping(path = "auction")
+    public void auction(Authentication authentication) {
+        employeeService.auction();
+    }
+
 }

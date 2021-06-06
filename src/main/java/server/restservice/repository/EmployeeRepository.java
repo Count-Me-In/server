@@ -12,4 +12,6 @@ public interface EmployeeRepository {
 
     String getUsernamePass(String username);
 
+    void execAuction();
+
 }

@@ -107,4 +107,8 @@ public class EmployeeService {
         details.toArray(output);
         return output;
     }
+
+    public void auction() {
+        employeeRepository.execAuction();
+    }
 }

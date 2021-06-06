@@ -4,8 +4,11 @@ import java.io.*;
 import java.nio.file.*;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.AbstractMap.SimpleEntry;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -211,7 +214,82 @@ public class apiMock implements engineAPIInterface {
     }
 
     public void execAutcion() {
-        // TODO Auto-generated method stub
+        List<Bid> newBids = new ArrayList<>();
+        List<Assignment> newAssignments = new ArrayList<>();
+        List<Actor> actors = getActors();
+        for (Item item : getItems()) {
+            List<SimpleEntry<Actor,Long>> bids = new ArrayList<SimpleEntry<Actor,Long>>();
+            for (Actor actor : actors) {
+                Bid bid = getBid(actor.getId(), item.getId());
+                if (bid != null) {
+                    bids.add(new SimpleEntry<Actor,Long>(actor,(long)bid.getPercentage() * actor.getPoints() / 100));
+                    newBids.add(new Bid(UUID.randomUUID(), new Date(), item.getId(), actor.getId(), bid.getPercentage()));
+                }
+            }
+            bids.sort(new Comparator<SimpleEntry<Actor,Long>>(){
+                @Override
+                public int compare(SimpleEntry<Actor,Long> o1, SimpleEntry<Actor,Long> o2) {
+                    return (int) (o2.getValue() - o1.getValue());
+                }
+            });
+            int count = item.getCapacity();
+            for (SimpleEntry<Actor,Long> bid : bids) {
+                if (count-- == 0 || bid.getValue() == 0)
+                    break;
+                newAssignments.add(new Assignment(UUID.randomUUID(), Instant.now().getEpochSecond(), item.getId(), bid.getKey().getId()));
+                bid.getKey().setPoints((int)(bid.getKey().getPoints() - bid.getValue()));
+            }
+        }
+        try {
+            // create a reader
+            Reader reader = Files.newBufferedReader(Paths.get(mockData, bidsFile));
+            // convert JSON string to User object
+            List<Bid> bids = gson.fromJson(reader, new TypeToken<List<Bid>>() {
+            }.getType());
+            // close reader
+            reader.close();
+
+            bids.addAll(newBids);
+
+            // create a writer
+            Writer writer = Files.newBufferedWriter(Paths.get(mockData, bidsFile));
+            gson.toJson(bids, new TypeToken<List<Bid>>() {
+            }.getType(), writer);
+            // close reader
+            writer.close();
+
+            // create a reader
+            reader = Files.newBufferedReader(Paths.get(mockData, assignmensFile));
+            // convert JSON string to User object
+            List<Assignment> assignments = gson.fromJson(reader, new TypeToken<List<Assignment>>() {
+            }.getType());
+            // close reader
+            reader.close();
+
+            assignments.addAll(newAssignments);
+
+            // create a writer
+            writer = Files.newBufferedWriter(Paths.get(mockData, assignmensFile));
+            gson.toJson(assignments, new TypeToken<List<Assignment>>() {
+            }.getType(), writer);
+            // close reader
+            writer.close();
+
+            for (Actor actor : actors) {
+                actor.setPoints(actor.getPoints() + actor.getIntervalBonus());
+            }
+
+            // create a writer
+            writer = Files.newBufferedWriter(Paths.get(mockData, actorsFile));
+            gson.toJson(actors, new TypeToken<List<Actor>>() {
+            }.getType(), writer);
+            // close reader
+            writer.close();
+
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public Actor getActor(UUID actorID) {
