@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
 import server.restservice.models.EmployeeDetails;
+import server.restservice.models.Restriction;
 import server.restservice.service.EmployeeService;
 import server.restservice.service.MailService;
 
@@ -42,6 +43,11 @@ public class EmployeeController {
         return employeeService.getEmployeesPoints(authentication.getName());
     }
 
+    @GetMapping(path = "getEmployeesRestriction")
+    public Restriction getEmployeesRestriction(Authentication authentication) {
+        return employeeService.getEmployeesRestriction(authentication.getName());
+    }   
+
     @GetMapping(path = "getEmployeeAssigning")
     public Assignings getEmployeeAssigning(Authentication authentication) {
         return employeeService.getEmployeeAssignings(authentication.getName());
@@ -52,7 +58,6 @@ public class EmployeeController {
         for (int i = 0; i < mails.length; i++) {
             mailService.sendEmail(authentication.getName(), i, mails[i]);
         }
-
     }
 
     @GetMapping(path = "auction")

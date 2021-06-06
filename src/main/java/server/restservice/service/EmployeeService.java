@@ -111,4 +111,16 @@ public class EmployeeService {
     public void auction() {
         employeeRepository.execAuction();
     }
+
+    public Restriction getEmployeesRestriction(String username) {
+        Employee emp = employeeRepository.findEmployeeByUsername(username);
+        if (emp != null) {
+            emp.readlock();
+            Restriction output = new Restriction(emp.getRestriction());
+            emp.readunlock();
+            return output;
+        } else {
+            throw new InvalidParameterException("Employee username doesn't exists");
+        }
+    }
 }
