@@ -3,6 +3,8 @@ package server.restservice.security.service;
 import lombok.AllArgsConstructor;
 import server.restservice.repository.EmployeeRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,6 +17,8 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class JwtUserDetailsService implements UserDetailsService {
 
+    @Autowired
+    @Qualifier("repositoryImplementation")
     private EmployeeRepository employeeRepository;
 
     @Override
