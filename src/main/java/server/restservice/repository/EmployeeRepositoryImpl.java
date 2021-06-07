@@ -104,11 +104,26 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         return additionalActorData.getPassword();
     }
 
-    public void execAuction() {
+    public Map<String,List<Long>> execAuction() {
         synchronized (this) {
             engineAPI.execAutcion();
             _employee_cacheMap.clear();
         }
+        Map<String,List<Long>> winners = new HashMap<>();
+        long hourAgo = Instant.now().getEpochSecond() - 3600;
+        for(Actor actor : engineAPI.getActors()){
+            List<Long> days = new ArrayList<>();
+            for (Assignment ass : engineAPI.getActorAssignments(actor.getId(), hourAgo, null)) {
+                Item i = engineAPI.getItem(ass.getItemID());
+                ItemAdditionalData additionalItemData = i.getAdditionalInfo();
+                LocalDate bidDate = Instant.ofEpochSecond(ass.getDate()).atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate dayOfWeek = bidDate.with(next(dayToDayOfWeek(additionalItemData.getDay())));
+                days.add(dayOfWeek.atStartOfDay(ZoneId.systemDefault()).toInstant().getEpochSecond());
+            }
+            
+            winners.put(actor.getAdditionalInfo().getUsername(),days);
+        }
+        return winners;
     }
 
     public void cleanCache() {

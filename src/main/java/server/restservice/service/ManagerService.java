@@ -29,7 +29,7 @@ public class ManagerService {
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
         if (emp != null) {
             emp.writelock();
-            if ((emp.getManager() == null )|| !emp.getManager().equals(username)) {
+            if ((emp.getManager() == null) || !emp.getManager().equals(username)) {
                 emp.writeunlock();
                 throw new InvalidParameterException("Can't update employee");
             } else {
@@ -53,7 +53,7 @@ public class ManagerService {
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
         if (emp != null) {
             emp.readlock();
-            if ((emp.getManager() == null ) || !emp.getManager().equals(username)) {
+            if ((emp.getManager() == null) || !emp.getManager().equals(username)) {
                 emp.readunlock();
                 throw new InvalidParameterException("Can't access employee");
             } else {
@@ -85,7 +85,7 @@ public class ManagerService {
         }
     }
 
-    private void _setPoints(Employee emp, Integer points){
+    private void _setPoints(Employee emp, Integer points) {
         if (emp.isManager()) {
             double ratio = points / emp.getManagerPoints();
             emp.setManagerPoints(points);
@@ -130,7 +130,7 @@ public class ManagerService {
         if (emp != null) {
             emp.readlock();
 
-            if ((emp.getManager() == null ) || !emp.getManager().equals(username)) {
+            if ((emp.getManager() == null) || !emp.getManager().equals(username)) {
                 emp.readunlock();
                 throw new InvalidParameterException("Can't access employee");
             } else {

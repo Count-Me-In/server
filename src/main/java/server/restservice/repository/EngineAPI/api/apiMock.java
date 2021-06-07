@@ -218,26 +218,28 @@ public class apiMock implements engineAPIInterface {
         List<Assignment> newAssignments = new ArrayList<>();
         List<Actor> actors = getActors();
         for (Item item : getItems()) {
-            List<SimpleEntry<Actor,Long>> bids = new ArrayList<SimpleEntry<Actor,Long>>();
+            List<SimpleEntry<Actor, Long>> bids = new ArrayList<SimpleEntry<Actor, Long>>();
             for (Actor actor : actors) {
                 Bid bid = getBid(actor.getId(), item.getId());
                 if (bid != null) {
-                    bids.add(new SimpleEntry<Actor,Long>(actor,(long)bid.getPercentage() * actor.getPoints() / 100));
-                    newBids.add(new Bid(UUID.randomUUID(), new Date(), item.getId(), actor.getId(), bid.getPercentage()));
+                    bids.add(new SimpleEntry<Actor, Long>(actor, (long) bid.getPercentage() * actor.getPoints() / 100));
+                    newBids.add(
+                            new Bid(UUID.randomUUID(), new Date(), item.getId(), actor.getId(), bid.getPercentage()));
                 }
             }
-            bids.sort(new Comparator<SimpleEntry<Actor,Long>>(){
+            bids.sort(new Comparator<SimpleEntry<Actor, Long>>() {
                 @Override
-                public int compare(SimpleEntry<Actor,Long> o1, SimpleEntry<Actor,Long> o2) {
+                public int compare(SimpleEntry<Actor, Long> o1, SimpleEntry<Actor, Long> o2) {
                     return (int) (o2.getValue() - o1.getValue());
                 }
             });
             int count = item.getCapacity();
-            for (SimpleEntry<Actor,Long> bid : bids) {
+            for (SimpleEntry<Actor, Long> bid : bids) {
                 if (count-- == 0 || bid.getValue() == 0)
                     break;
-                newAssignments.add(new Assignment(UUID.randomUUID(), Instant.now().getEpochSecond(), item.getId(), bid.getKey().getId()));
-                bid.getKey().setPoints((int)(bid.getKey().getPoints() - bid.getValue()));
+                newAssignments.add(new Assignment(UUID.randomUUID(), Instant.now().getEpochSecond(), item.getId(),
+                        bid.getKey().getId()));
+                bid.getKey().setPoints((int) (bid.getKey().getPoints() - bid.getValue()));
             }
         }
         try {
@@ -285,7 +287,6 @@ public class apiMock implements engineAPIInterface {
             }.getType(), writer);
             // close reader
             writer.close();
-
 
         } catch (Exception ex) {
             ex.printStackTrace();

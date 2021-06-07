@@ -1,5 +1,8 @@
 package server.restservice.repository;
 
+import java.util.List;
+import java.util.Map;
+
 import server.restservice.models.Employee;
 
 public interface EmployeeRepository {
@@ -12,6 +15,6 @@ public interface EmployeeRepository {
 
     String getUsernamePass(String username);
 
-    void execAuction();
+    Map<String, List<Long>> execAuction();
 
 }

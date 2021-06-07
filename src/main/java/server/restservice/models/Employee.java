@@ -84,7 +84,7 @@ public class Employee {
         return _direct_manager;
     }
 
-    public void setManager(String manager){
+    public void setManager(String manager) {
         this._direct_manager = manager;
     }
 

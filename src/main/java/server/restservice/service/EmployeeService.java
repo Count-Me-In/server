@@ -43,7 +43,8 @@ public class EmployeeService {
         }
         Integer sumPercent = 0;
         for (Bid bid : bids) {
-            if (bid.getPercentage() < 0 ||  (bid.getPercentage() != 0 && !restriction.get_allowed_days().contains(bid.getDay()))) {
+            if (bid.getPercentage() < 0
+                    || (bid.getPercentage() != 0 && !restriction.get_allowed_days().contains(bid.getDay()))) {
                 return false;
             }
             sumPercent += bid.getPercentage();
@@ -102,7 +103,8 @@ public class EmployeeService {
     }
 
     public EmployeeDetails[] getEmployees(String username) {
-        List<EmployeeDetails> details = Arrays.asList(employeeRepository.getAllEmployeeNames()).stream().parallel().map(emp -> new EmployeeDetails(emp)).collect(Collectors.toList());
+        List<EmployeeDetails> details = Arrays.asList(employeeRepository.getAllEmployeeNames()).stream().parallel()
+                .map(emp -> new EmployeeDetails(emp)).collect(Collectors.toList());
         EmployeeDetails[] output = new EmployeeDetails[details.size()];
         details.toArray(output);
         return output;

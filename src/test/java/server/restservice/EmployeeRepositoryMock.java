@@ -14,10 +14,9 @@ import org.springframework.stereotype.Repository;
 @Repository("repositoryMock")
 public class EmployeeRepositoryMock implements EmployeeRepository {
 
-
     private List<Employee> employees;
 
-    public EmployeeRepositoryMock(){
+    public EmployeeRepositoryMock() {
         employees = new ArrayList<Employee>();
 
         Employee admin = generateEmployee("admin");
@@ -37,36 +36,32 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
 
     }
 
-
-    private Employee generateEmployee(String username){
+    private Employee generateEmployee(String username) {
         Employee user;
 
-        if(username.equals("admin")) {
+        if (username.equals("admin")) {
             user = new Employee(username, username, null, 100, 100, 300);
             user.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav", "noy", "a"));
-        }
-        else if (!username.equals("toya")) {
+        } else if (!username.equals("toya")) {
             user = new Employee(username, username, "admin", 100, 100, null);
-        }
-        else{
+        } else {
             user = new Employee(username, username, null, 100, 100, null);
         }
-        Bid[] bids = {new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4), new Bid(username, 5)};
+        Bid[] bids = { new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4),
+                new Bid(username, 5) };
         user.setBids(bids);
 
         try {
             Assignings as = new Assignings(username);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
-            List<Long> lst = Arrays.asList(
-                    sdf.parse("2021-05-12T09:45").toInstant().getEpochSecond(),
+            List<Long> lst = Arrays.asList(sdf.parse("2021-05-12T09:45").toInstant().getEpochSecond(),
                     sdf.parse("2021-05-19T09:45").toInstant().getEpochSecond(),
                     sdf.parse("2021-05-27T09:45").toInstant().getEpochSecond(),
                     sdf.parse("2021-05-28T09:45").toInstant().getEpochSecond(),
                     sdf.parse("2021-05-29T09:45").toInstant().getEpochSecond());
             as.addAssinedDays(lst);
             user.setAssignings(as);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -79,18 +74,17 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
     }
 
     public Employee findEmployeeByUsername(String username) {
-        for(Employee emp: this.employees){
-            if(emp.getUsername().equals(username)){
+        for (Employee emp : this.employees) {
+            if (emp.getUsername().equals(username)) {
                 return emp;
             }
         }
         return null;
 
-
     }
 
     public void save(Employee emp) {
-           }
+    }
 
     public Employee[] getAllEmployeeNames() {
         Employee[] employeeArr = this.employees.toArray(new Employee[this.employees.size()]);
@@ -105,8 +99,8 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         }
     }
 
-    public void execAuction() {
-           }
-
+    public Map<String, List<Long>> execAuction() {
+        return null;
+    }
 
 }

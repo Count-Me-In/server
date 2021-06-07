@@ -11,15 +11,12 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 class ManagerServiceTest {
-
 
     ManagerService managerService = new ManagerService(new EmployeeRepositoryMock());
 
-
     @Test
-    void addRestrictionExistingUser(){
+    void addRestrictionExistingUser() {
         Restriction rst = new Restriction();
         List<Integer> lst = new ArrayList<>();
         lst.add(1);
@@ -51,10 +48,10 @@ class ManagerServiceTest {
         }
     }
 
-    //--------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------
 
     @Test
-    void getRestrictionExistingUser(){
+    void getRestrictionExistingUser() {
         List<Integer> allowed = Arrays.asList(1, 2, 3, 4, 5);
         Restriction result = managerService.getRestriction("admin", "noy");
 
@@ -81,11 +78,10 @@ class ManagerServiceTest {
         }
     }
 
-
-    //--------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------
 
     @Test
-    void getEmployeesExistingUser(){
+    void getEmployeesExistingUser() {
         List<String> expected = Arrays.asList("shauli", "nufar", "shenhav", "noy", "a");
         List<EmployeeDetails> result = managerService.getEmployees("admin");
         List<String> actual = new ArrayList<String>();
@@ -94,11 +90,11 @@ class ManagerServiceTest {
         }
         Collections.sort(expected);
         Collections.sort(actual);
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @Test
-    void getEmployeesNonExistingUser(){
+    void getEmployeesNonExistingUser() {
         try {
             managerService.getEmployees("phistuk");
             throw new AssertionError();
@@ -107,13 +103,12 @@ class ManagerServiceTest {
         }
     }
 
-
-    //--------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------
 
     @Test
-    void setEmployeePointsExistingUser(){
+    void setEmployeePointsExistingUser() {
         managerService.setEmployeePoints("admin", "shauli", 200);
-        for(EmployeeDetails result : managerService.getEmployeePoints("admin")) {
+        for (EmployeeDetails result : managerService.getEmployeePoints("admin")) {
             if (result.getUsername().equals("shauli"))
                 assertEquals(200, result.getPoints());
         }
@@ -139,12 +134,11 @@ class ManagerServiceTest {
         }
     }
 
-
-    //--------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------
 
     @Test
-    void getEmployeePointsExistingUser(){
-        for(EmployeeDetails result : managerService.getEmployeePoints("admin")) {
+    void getEmployeePointsExistingUser() {
+        for (EmployeeDetails result : managerService.getEmployeePoints("admin")) {
             if (result.getUsername().equals("nufar"))
                 assertEquals(100, result.getPoints());
         }
@@ -160,11 +154,10 @@ class ManagerServiceTest {
         }
     }
 
-
-    //--------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------
 
     @Test
-    void getEmployeeAssigningsExistingUser(){
+    void getEmployeeAssigningsExistingUser() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
         List<Long> lst = new ArrayList<>();
         try {
@@ -173,8 +166,7 @@ class ManagerServiceTest {
                     sdf.parse("2021-05-27T09:45").toInstant().getEpochSecond(),
                     sdf.parse("2021-05-28T09:45").toInstant().getEpochSecond(),
                     sdf.parse("2021-05-29T09:45").toInstant().getEpochSecond());
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         Assignings result = managerService.getEmployeeAssignings("admin", "shenhav");
@@ -182,7 +174,7 @@ class ManagerServiceTest {
     }
 
     @Test
-    void getEmployeeAssigningsExistingNonEmployeeUser(){
+    void getEmployeeAssigningsExistingNonEmployeeUser() {
         try {
             managerService.getEmployeeAssignings("admin", "toya");
             throw new AssertionError();
@@ -192,7 +184,7 @@ class ManagerServiceTest {
     }
 
     @Test
-    void getEmployeeAssigningsNonExistingUser(){
+    void getEmployeeAssigningsNonExistingUser() {
         try {
             managerService.getEmployeeAssignings("admin", "phistuk");
             throw new AssertionError();
@@ -201,18 +193,16 @@ class ManagerServiceTest {
         }
     }
 
-
-
-    //--------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------
 
     @Test
-    void getTotalPointsExistingUser(){
+    void getTotalPointsExistingUser() {
         double result = managerService.getTotalPoints("admin");
         assertEquals(300.0, result);
     }
 
     @Test
-    void getTotalPointsNonExistingUser(){
+    void getTotalPointsNonExistingUser() {
         try {
             managerService.getTotalPoints("phistuk");
             throw new AssertionError();
@@ -221,12 +211,10 @@ class ManagerServiceTest {
         }
     }
 
-
-
-    //--------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------
 
     @Test
-    void getEmployeeRestrictionsExistingUser(){
+    void getEmployeeRestrictionsExistingUser() {
         List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5);
 
         List<EmployeeDetails> result = managerService.getEmployeeRestrictions("admin");
@@ -237,7 +225,7 @@ class ManagerServiceTest {
     }
 
     @Test
-    void getEmployeeRestrictionsNonExistingUser(){
+    void getEmployeeRestrictionsNonExistingUser() {
         try {
             managerService.getEmployeeRestrictions("phistuk");
             throw new AssertionError();
@@ -245,8 +233,5 @@ class ManagerServiceTest {
             assertEquals("Employee username doesn't exists", e.getMessage());
         }
     }
-
-
-
 
 }

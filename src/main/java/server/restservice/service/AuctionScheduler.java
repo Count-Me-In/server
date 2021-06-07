@@ -16,9 +16,12 @@ public class AuctionScheduler {
     @Qualifier("repositoryImplementation")
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private MailService mailService;
+
     @Scheduled(cron = "0 0 20 * * 6")
     public void scheduleFixedDelayTask() {
-        employeeRepository.execAuction();
+        mailService.notifyAboutAssignment(employeeRepository.execAuction());
     }
-    
+
 }

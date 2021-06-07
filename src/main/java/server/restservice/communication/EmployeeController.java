@@ -46,7 +46,7 @@ public class EmployeeController {
     @GetMapping(path = "getEmployeesRestriction")
     public Restriction getEmployeesRestriction(Authentication authentication) {
         return employeeService.getEmployeesRestriction(authentication.getName());
-    }   
+    }
 
     @GetMapping(path = "getEmployeeAssigning")
     public Assignings getEmployeeAssigning(Authentication authentication) {
@@ -56,7 +56,9 @@ public class EmployeeController {
     @PostMapping(path = "invites")
     public void sendMails(Authentication authentication, @RequestBody String[][] mails) {
         for (int i = 0; i < mails.length; i++) {
-            mailService.sendEmail(authentication.getName(), i, mails[i]);
+            if (mails[i] != null) {
+                mailService.sendEmail(authentication.getName(), i, mails[i]);
+            }
         }
     }
 

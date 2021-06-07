@@ -11,7 +11,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Map.Entry;
 
 @Service
 @NoArgsConstructor
@@ -73,5 +76,29 @@ public class MailService {
         emp.readunlock();
 
         javaMailSender.send(msg);
+    }
+
+    private String assignmentText(List<Long> days) {
+        String output = "Hello,\n";
+        if (days.size() == 0) {
+            output += "We are sorry to inform you weren't allocated in the office on any day for the coming week,\n";
+        } else {
+            output += "Your were allocated in the office in the coming week on the following days:\n";
+            for (Long day : days) {
+                output += ("\t* " + getDay(day.intValue()) + "\n");
+            }
+        }
+        output += "Have a good week";
+        return output;
+    }
+
+    public void notifyAboutAssignment(Map<String, List<Long>> assignment) {
+        for (Entry<String, List<Long>> entry : assignment.entrySet()) {
+            SimpleMailMessage msg = new SimpleMailMessage();
+            msg.setTo(entry.getKey());
+            msg.setSubject("Next week assignments");
+            msg.setText(assignmentText(entry.getValue()));
+            javaMailSender.send(msg);
+        }
     }
 }

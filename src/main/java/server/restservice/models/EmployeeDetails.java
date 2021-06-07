@@ -1,6 +1,5 @@
 package server.restservice.models;
 
-
 public class EmployeeDetails {
     private String _username;
     private String _name;
@@ -19,7 +18,6 @@ public class EmployeeDetails {
         this._username = employee.getUsername();
         this._name = employee.getName();
     }
-
 
     public String getUsername() {
         return _username;
