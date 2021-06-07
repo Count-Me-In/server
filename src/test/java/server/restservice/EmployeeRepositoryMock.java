@@ -11,7 +11,7 @@ import java.util.*;
 
 import org.springframework.stereotype.Repository;
 
-@Repository("repositoryMock")
+@Repository
 public class EmployeeRepositoryMock implements EmployeeRepository {
 
     private List<Employee> employees;

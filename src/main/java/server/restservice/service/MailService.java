@@ -2,7 +2,6 @@ package server.restservice.service;
 
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import server.restservice.models.Employee;
 import server.restservice.repository.EmployeeRepository;
 
@@ -21,7 +20,6 @@ import java.util.Map.Entry;
 public class MailService {
 
     @Autowired
-    @Qualifier("repositoryImplementation")
     private EmployeeRepository employeeRepository;
 
     private JavaMailSender javaMailSender = getJavaMailSender();

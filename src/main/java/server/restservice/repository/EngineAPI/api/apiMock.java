@@ -21,7 +21,7 @@ import server.restservice.repository.EngineAPI.model.Assignment;
 import server.restservice.repository.EngineAPI.model.Bid;
 import server.restservice.repository.EngineAPI.model.Item;
 
-@Component("mockAPI")
+@Component
 public class apiMock implements engineAPIInterface {
 
     private Gson gson = new Gson();
