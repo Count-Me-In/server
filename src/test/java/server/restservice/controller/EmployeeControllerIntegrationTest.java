@@ -119,8 +119,9 @@ public class EmployeeControllerIntegrationTest {
         expectedBids[0].set_percentage(40);
         expectedBids[0].set_percentage(0);
 
-        MvcResult mvcResult = mockMvc.perform(put("/employees/updateBids").
+        mockMvc.perform(put("/employees/updateBids").
                 header("Authorization", this.header).
+                contentType(MediaType.APPLICATION_JSON).
                 content(asJsonString(expectedBids))).
                 andExpect(status().isOk()).
                 andReturn();
@@ -136,14 +137,13 @@ public class EmployeeControllerIntegrationTest {
         String username = "admin";
         Bid[] newBids = { new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
 
-        MvcResult mvcResult = mockMvc.perform(put("/employees/updateBids").
+        mockMvc.perform(put("/employees/updateBids").
                 header("Authorization", this.header).
+                contentType(MediaType.APPLICATION_JSON).
                 content(asJsonString(newBids))).
-                andExpect(status().isOk()).
-                andReturn();
-
-
-        assertEquals("Bids aren't valid", mvcResult.getResponse().getErrorMessage());
+                andExpect(status().isPreconditionFailed()).
+                andExpect(result -> assertEquals("Bids aren't valid", result.getResolvedException().
+                        getMessage()));
     }
 
 
@@ -153,14 +153,13 @@ public class EmployeeControllerIntegrationTest {
         String username = "noy";
         Bid[] newBids = { new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4)};
 
-        MvcResult mvcResult = mockMvc.perform(put("/employees/updateBids").
+        mockMvc.perform(put("/employees/updateBids").
                 header("Authorization", this.header).
+                contentType(MediaType.APPLICATION_JSON).
                 content(asJsonString(newBids))).
-                andExpect(status().isOk()).
-                andReturn();
-
-
-        assertEquals("Bids aren't valid", mvcResult.getResponse().getErrorMessage());
+                andExpect(status().isPreconditionFailed()).
+                andExpect(result -> assertEquals("Bids aren't valid", result.getResolvedException().
+                        getMessage()));
     }
 
     @Test
@@ -174,14 +173,14 @@ public class EmployeeControllerIntegrationTest {
         newBids[3].set_percentage(10);
         newBids[4].set_percentage(10);
 
-        MvcResult mvcResult = mockMvc.perform(put("/employees/updateBids").
+        mockMvc.perform(put("/employees/updateBids").
                 header("Authorization", this.header).
+                contentType(MediaType.APPLICATION_JSON).
                 content(asJsonString(newBids))).
-                andExpect(status().isOk()).
-                andReturn();
+                andExpect(status().isPreconditionFailed()).
+                andExpect(result -> assertEquals("Bids aren't valid", result.getResolvedException().
+                        getMessage()));
 
-
-        assertEquals("Bids aren't valid", mvcResult.getResponse().getErrorMessage());
     }
 
 

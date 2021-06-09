@@ -219,8 +219,10 @@ public class ManagerControllerIntegrationTest {
 
         mockMvc.perform(get("/managers/setRestrictions").
                 header("Authorization", this.header).
-                param("employee_username", "toya").
-                content(asJsonString(expectedRst))).
+                contentType(MediaType.APPLICATION_JSON).
+                content(asJsonString(expectedRst)).
+                param("employee_username", "toya")).
+
                 andExpect(status().isPreconditionFailed()).
                 andExpect(result -> assertEquals("Can't update employee", result.getResolvedException().
                         getMessage()));
@@ -235,6 +237,7 @@ public class ManagerControllerIntegrationTest {
 
         mockMvc.perform(get("/managers/setRestrictions").
                 header("Authorization", this.header).
+                contentType(MediaType.APPLICATION_JSON).
                 param("employee_username", "phistuk").
                 content(asJsonString(expectedRst))).
                 andExpect(status().isPreconditionFailed()).
