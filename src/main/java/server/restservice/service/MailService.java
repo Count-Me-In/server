@@ -32,7 +32,7 @@ public class MailService {
         mailSender.setPort(587);
 
         mailSender.setUsername("countmeintheoffice@gmail.com");
-        mailSender.setPassword("SNSN9397");
+        mailSender.setPassword("SNSN9596");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
