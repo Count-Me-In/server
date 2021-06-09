@@ -64,6 +64,7 @@ public class EmployeeControllerIntegrationTest {
     }
 
 
+
     @Test
     public void test_all() throws Exception {
         MvcResult mvcResult = mockMvc.perform(get("/employees/all").
@@ -234,10 +235,20 @@ public class EmployeeControllerIntegrationTest {
         Gson g = new Gson();
 
         Assignings resultAss = g.fromJson(AssStr, Assignings.class);
-//        Assignings resultAss = this.objectMapper.readValue(AssStr, Assignings.class);
         Assignings expectedAss = this.employeeRepository.findEmployeeByUsername("admin").get_assignings();
 
         assertEquals(resultAss.getAssignedDays(), expectedAss.getAssignedDays());
 
     }
+
+
+//    @Test
+//    public void fake_token() throws Exception {
+//
+//        String fakeHeader = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyMzI0NTEwMSwiaWF0IjoxNjIzMjInfTAxfQ.ngosPSNZSLIX6lfd8SB00_jgqzSAnls0X58eu9uAqEcq-DnnwTV1u5HhuIldewdqCCiNfCT2pZKwFp4M-_2jSg" ;
+//
+//         mockMvc.perform(get("/employees/all").
+//                    header("Authorization", fakeHeader)).
+//                    andExpect(status().isPreconditionFailed());
+//    }
 }
