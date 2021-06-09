@@ -34,6 +34,13 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         Employee toya = generateEmployee("toya");
         this.employees.add(toya);
 
+
+        Restriction rst = new Restriction();
+        List<Integer> allowed = Arrays.asList(1, 2, 3);
+        rst.set_allowed_days(allowed);
+
+        noy.set_restrictions(rst);
+
     }
 
     private Employee generateEmployee(String username) {
@@ -41,7 +48,7 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
 
         if (username.equals("admin")) {
             user = new Employee(username, username, null, 100, 100, 300);
-            user.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav", "noy", "a"));
+            user.get_employees().addAll(Arrays.asList("shauli", "noy", "shenhav", "nufar"));
         } else if (!username.equals("toya")) {
             user = new Employee(username, username, "admin", 100, 100, null);
         } else {
@@ -49,7 +56,7 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         }
         Bid[] bids = { new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4),
                 new Bid(username, 5) };
-        user.setBids(bids);
+        user.set_bids(bids);
 
         try {
             Assignings as = new Assignings(username);
@@ -60,7 +67,7 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
                     sdf.parse("2021-05-28T09:45").toInstant().getEpochSecond(),
                     sdf.parse("2021-05-29T09:45").toInstant().getEpochSecond());
             as.addAssinedDays(lst);
-            user.setAssignings(as);
+            user.set_assignings(as);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,13 +76,13 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         List<Integer> allowed = Arrays.asList(1, 2, 3, 4, 5);
         rst.set_allowed_days(allowed);
 
-        user.setRestrictions(rst);
+        user.set_restrictions(rst);
         return user;
     }
 
     public Employee findEmployeeByUsername(String username) {
         for (Employee emp : this.employees) {
-            if (emp.getUsername().equals(username)) {
+            if (emp.get_username().equals(username)) {
                 return emp;
             }
         }

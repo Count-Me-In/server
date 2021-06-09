@@ -18,6 +18,15 @@ public class Assignings {
         this._assignedDays = new ArrayList<Long>(other._assignedDays);
     }
 
+
+    public String getEmployeeUsername() {
+        return _employeeUsername;
+    }
+
+    public void setEmployeeUsername(String _employeeUsername) {
+        this._employeeUsername = _employeeUsername;
+    }
+
     public void addAssinedDays(List<Long> dates) {
         this._assignedDays.addAll(dates);
     }

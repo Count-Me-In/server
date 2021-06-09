@@ -46,15 +46,15 @@ class EmployeeServiceTest {
     void updateBidsExistingUser() {
         String username = "admin";
         Bid bid0 = new Bid(username, 1);
-        bid0.setPercentage(20);
+        bid0.set_percentage(20);
         Bid bid1 = new Bid(username, 2);
-        bid1.setPercentage(20);
+        bid1.set_percentage(20);
         Bid bid2 = new Bid(username, 3);
-        bid2.setPercentage(20);
+        bid2.set_percentage(20);
         Bid bid3 = new Bid(username, 4);
-        bid3.setPercentage(20);
+        bid3.set_percentage(20);
         Bid bid4 = new Bid(username, 5);
-        bid4.setPercentage(20);
+        bid4.set_percentage(20);
         Bid[] newBids = { bid0, bid1, bid2, bid3, bid4 };
         employeeService.updateBids(username, newBids);
 
@@ -66,15 +66,15 @@ class EmployeeServiceTest {
     void updateBidsInvalidBids() {
         String username = "admin";
         Bid bid0 = new Bid(username, 1);
-        bid0.setPercentage(20);
+        bid0.set_percentage(20);
         Bid bid1 = new Bid(username, 2);
-        bid1.setPercentage(20);
+        bid1.set_percentage(20);
         Bid bid2 = new Bid(username, 3);
-        bid2.setPercentage(20);
+        bid2.set_percentage(20);
         Bid bid3 = new Bid(username, 4);
-        bid3.setPercentage(20);
+        bid3.set_percentage(20);
         Bid bid4 = new Bid(username, 5);
-        bid4.setPercentage(30);
+        bid4.set_percentage(30);
         Bid[] newBids = { bid0, bid1, bid2, bid3, bid4 };
 
         try {
@@ -144,7 +144,7 @@ class EmployeeServiceTest {
 
         List<String> resultNames = new ArrayList<>();
         for (EmployeeDetails emp : result) {
-            resultNames.add(emp.getUsername());
+            resultNames.add(emp.get_username());
         }
 
         assertEquals(expected, resultNames);
@@ -155,12 +155,12 @@ class EmployeeServiceTest {
     // private Employee[] mockEmployees(){
     // List<Employee> employees = new ArrayList<Employee>();
     // Employee admin = new Employee("admin", "admin", null, 100, 100, 300);
-    // admin.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav",
+    // admin.get_employees().addAll(Arrays.asList("shauli", "nufar", "shenhav",
     // "noy", "a"));
     // String username = "admin";
     // Bid[] bids = {new Bid(username, 0), new Bid(username, 1), new Bid(username,
     // 2), new Bid(username, 3), new Bid(username, 4)};
-    // admin.setBids(bids);
+    // admin.set_bids(bids);
 
     // try {
     // Assignings as = new Assignings("admin");
@@ -172,7 +172,7 @@ class EmployeeServiceTest {
     // sdf.parse("2021-05-28T09:45").toInstant().getEpochSecond(),
     // sdf.parse("2021-05-29T09:45").toInstant().getEpochSecond());
     // as.addAssinedDays(lst);
-    // admin.setAssignings(as);
+    // admin.set_assignings(as);
     // }
     // catch(Exception e){
     // e.printStackTrace();
@@ -182,7 +182,7 @@ class EmployeeServiceTest {
     // username = "shauli";
     // Bid[] bids1 = {new Bid(username, 0), new Bid(username, 1), new Bid(username,
     // 2), new Bid(username, 3), new Bid(username, 4)};
-    // admin.setBids(bids1);
+    // admin.set_bids(bids1);
     // Assignings as = new Assignings("shauli");
     // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH");
     // List<Long> lst = null;
@@ -197,7 +197,7 @@ class EmployeeServiceTest {
     // e.printStackTrace();
     // }
     // as.addAssinedDays(lst);
-    // shauli.setAssignings(as);
+    // shauli.set_assignings(as);
     // employees.add(admin);
     // employees.add(shauli);
 

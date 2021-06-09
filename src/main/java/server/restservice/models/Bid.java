@@ -24,35 +24,35 @@ public class Bid {
         this._percentage = 0;
     }
 
-    public UUID getID() {
+    public UUID get_id() {
         return _id;
     }
 
-    public void setID(UUID id) {
+    public void set_id(UUID id) {
         this._id = id;
     }
 
-    public String getUsername() {
+    public String get_employee_username() {
         return _employee_username;
     }
 
-    public void setUsername(String username) {
+    public void set_employee_username(String username) {
         this._employee_username = username;
     }
 
-    public Integer getDay() {
+    public Integer get_day() {
         return _day;
     }
 
-    public void setDay(Integer day) {
+    public void set_day(Integer day) {
         this._day = day;
     }
 
-    public Integer getPercentage() {
+    public Integer get_percentage() {
         return _percentage;
     }
 
-    public void setPercentage(Integer percentage) {
+    public void set_percentage(Integer percentage) {
         _percentage = percentage;
     }
 

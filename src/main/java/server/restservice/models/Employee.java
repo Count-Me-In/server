@@ -67,78 +67,109 @@ public class Employee {
         this._lock = new ReentrantReadWriteLock();
     }
 
+    public Employee(){
+        this._username = null;
+        this._name = null;
+        this._direct_manager = "";
+        this._restrictions = new Restriction();
+        this._bids_collection = new Bid[5];
+        this._total_points = 0;
+        this._weekly_added_points = 0;
+        this._employees_list = new ArrayList<>();
+        this._assignings = new Assignings(this._username);
+        this._totalManagerPoints = 0;
+        this._lock = new ReentrantReadWriteLock();
+    }
+
     // Getters and Setters
     public UUID getID() {
         return _id;
     }
 
-    public String getUsername() {
+    public String get_username() {
         return _username;
     }
 
-    public String getName() {
+    public void set_username(String username) {
+        this._username = username;
+    }
+
+    public String get_name() {
         return _name;
     }
 
-    public String getManager() {
+    public void set_name(String name) {
+        this._name = name;
+    }
+
+    public String get_manager() {
         return _direct_manager;
     }
 
-    public void setManager(String manager) {
+    public void set_manager(String manager) {
         this._direct_manager = manager;
     }
 
-    public int getTotalPoints() {
+    public int get_total_points() {
         return _total_points;
     }
 
-    public int getWeeklyPoints() {
+    public void set_total_points(int points) {
+        this._total_points = points;
+    }
+
+    public int get_weekly_added_points() {
         return _weekly_added_points;
     }
 
-    public void setWeeklyPoints(int points) {
+    public void set_weekly_added_points(int points) {
         _weekly_added_points = points;
     }
 
-    public List<String> getEmployees() {
+    public List<String> get_employees() {
         return _employees_list;
     }
 
-    public Restriction getRestriction() {
+    public void set_employees(List<String> emp) {
+        this._employees_list = emp;
+    }
+
+    public Restriction get_restrictions() {
         return _restrictions;
     }
 
-    public void setRestrictions(Restriction restriction) {
+    public void set_restrictions(Restriction restriction) {
         _restrictions = restriction;
     }
 
-    public Bid[] getBids() {
+    public Bid[] get_bids() {
         return _bids_collection;
     }
 
-    public void setBids(Bid[] bids) {
+    public void set_bids(Bid[] bids) {
         _bids_collection = bids;
     }
 
-    public Assignings getAssignings() {
+    public Assignings get_assignings() {
         return _assignings;
     }
 
-    public void setAssignings(Assignings as) {
+    public void set_assignings(Assignings as) {
         _assignings = as;
     }
 
-    public Integer getManagerPoints() {
+    public Integer get_manager_points() {
         return _totalManagerPoints;
     }
 
-    public void setManagerPoints(Integer points) {
+    public void set_manager_points(Integer points) {
         _totalManagerPoints = points;
     }
 
     public Boolean isManager() {
         return _employees_list.size() > 0;
     }
+
 
     // Synchronization functions
 
@@ -157,5 +188,23 @@ public class Employee {
     public void readunlock() {
         this._lock.readLock().unlock();
     }
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Employee e = (Employee)o;
+
+        return (this._name.equals(e._name) && this._username.equals(e._username)
+                && (this._total_points == e._total_points)
+                && (this._weekly_added_points == e._weekly_added_points)
+                && this._restrictions.get_allowed_days().equals(e._restrictions.get_allowed_days())
+                && ((this._direct_manager == null && e._direct_manager == null) || (this._direct_manager != null) && (e._direct_manager != null) && this._direct_manager.equals(e._direct_manager)));
+    }
+
 
 }

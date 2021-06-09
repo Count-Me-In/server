@@ -27,7 +27,7 @@ public class EmployeeService {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            Bid[] bids = emp.getBids();
+            Bid[] bids = emp.get_bids();
             emp.readunlock();
             return bids;
         } else {
@@ -41,11 +41,11 @@ public class EmployeeService {
         }
         Integer sumPercent = 0;
         for (Bid bid : bids) {
-            if (bid.getPercentage() < 0
-                    || (bid.getPercentage() != 0 && !restriction.get_allowed_days().contains(bid.getDay()))) {
+            if (bid.get_percentage() < 0
+                    || (bid.get_percentage() != 0 && !restriction.get_allowed_days().contains(bid.get_day()))) {
                 return false;
             }
-            sumPercent += bid.getPercentage();
+            sumPercent += bid.get_percentage();
         }
         if (sumPercent > 100) {
             return false;
@@ -58,15 +58,15 @@ public class EmployeeService {
         if (emp != null) {
             emp.writelock();
 
-            if (!checkValidBids(bids, username, emp.getRestriction())) {
+            if (!checkValidBids(bids, username, emp.get_restrictions())) {
                 emp.writeunlock();
                 throw new InvalidParameterException("Bids aren't valid");
             } else {
-                Bid[] newBids = emp.getBids();
+                Bid[] newBids = emp.get_bids();
                 for (Bid bid : bids) {
-                    newBids[bid.getDay() - 1].setPercentage(bid.getPercentage());
+                    newBids[bid.get_day() - 1].set_percentage(bid.get_percentage());
                 }
-                emp.setBids(newBids);
+                emp.set_bids(newBids);
                 employeeRepository.save(emp);
                 emp.writeunlock();
             }
@@ -79,7 +79,7 @@ public class EmployeeService {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            int output = emp.getTotalPoints();
+            int output = emp.get_total_points();
             emp.readunlock();
             return output;
         } else {
@@ -91,7 +91,7 @@ public class EmployeeService {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            Assignings output = new Assignings(emp.getAssignings());
+            Assignings output = new Assignings(emp.get_assignings());
             emp.readunlock();
             return output;
         } else {
@@ -116,7 +116,7 @@ public class EmployeeService {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            Restriction output = new Restriction(emp.getRestriction());
+            Restriction output = new Restriction(emp.get_restrictions());
             emp.readunlock();
             return output;
         } else {

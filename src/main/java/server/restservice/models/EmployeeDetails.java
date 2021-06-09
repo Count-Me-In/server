@@ -15,32 +15,55 @@ public class EmployeeDetails {
     }
 
     public EmployeeDetails(Employee employee) {
-        this._username = employee.getUsername();
-        this._name = employee.getName();
+        this._username = employee.get_username();
+        this._name = employee.get_name();
+        this._points = employee.get_total_points();
+        this._restriction = employee.get_restrictions();
     }
 
-    public String getUsername() {
+    public String get_username() {
         return _username;
     }
 
-    public String getName() {
+    public void set_username(String _username) {
+        this._username = _username;
+    }
+
+    public String get_name() {
         return _name;
     }
 
-    public Restriction getRestriction() {
+    public void set_name(String _name) {
+        this._name = _name;
+    }
+
+    public Restriction get_restriction() {
         return _restriction;
     }
 
-    public void setRestrictions(Restriction restriction) {
+    public void set_restrictions(Restriction restriction) {
         _restriction = restriction;
     }
 
-    public Integer getPoints() {
+    public Integer get_points() {
         return _points;
     }
 
-    public void setPoints(Integer points) {
+    public void set_points(Integer points) {
         _points = points;
     }
 
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        EmployeeDetails ed = (EmployeeDetails) o;
+
+        return (this._name.equals(ed._name) && (this._points == ed._points)
+                && (this._username.equals(ed._username)));
+    }
 }

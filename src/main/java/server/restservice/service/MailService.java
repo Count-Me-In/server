@@ -70,7 +70,7 @@ public class MailService {
         msg.setSubject("Schedule Arrival Day");
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         emp.readlock();
-        msg.setText(mailText(emp.getName(), day));
+        msg.setText(mailText(emp.get_name(), day));
         emp.readunlock();
 
         javaMailSender.send(msg);

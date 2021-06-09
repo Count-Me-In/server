@@ -86,7 +86,7 @@ class ManagerServiceTest {
         List<EmployeeDetails> result = managerService.getEmployees("admin");
         List<String> actual = new ArrayList<String>();
         for (EmployeeDetails employee : result) {
-            actual.add(employee.getUsername());
+            actual.add(employee.get_username());
         }
         Collections.sort(expected);
         Collections.sort(actual);
@@ -109,8 +109,8 @@ class ManagerServiceTest {
     void setEmployeePointsExistingUser() {
         managerService.setEmployeePoints("admin", "shauli", 200);
         for (EmployeeDetails result : managerService.getEmployeePoints("admin")) {
-            if (result.getUsername().equals("shauli"))
-                assertEquals(200, result.getPoints());
+            if (result.get_username().equals("shauli"))
+                assertEquals(200, result.get_points());
         }
     }
 
@@ -139,8 +139,8 @@ class ManagerServiceTest {
     @Test
     void getEmployeePointsExistingUser() {
         for (EmployeeDetails result : managerService.getEmployeePoints("admin")) {
-            if (result.getUsername().equals("nufar"))
-                assertEquals(100, result.getPoints());
+            if (result.get_username().equals("nufar"))
+                assertEquals(100, result.get_points());
         }
     }
 
@@ -220,7 +220,7 @@ class ManagerServiceTest {
         List<EmployeeDetails> result = managerService.getEmployeeRestrictions("admin");
 
         for (EmployeeDetails entry : result) {
-            assertEquals(expected, entry.getRestriction().get_allowed_days());
+            assertEquals(expected, entry.get_restriction().get_allowed_days());
         }
     }
 
