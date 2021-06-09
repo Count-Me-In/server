@@ -69,7 +69,7 @@ public class ManagerControllerIntegrationTest {
 
     @Test
     public void test_getEmployees() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(get("/managers/get_employees").
+        MvcResult mvcResult = mockMvc.perform(get("/managers/getEmployees").
                 header("Authorization", this.header)).
                 andExpect(status().isOk()).
                 andReturn();
@@ -124,7 +124,7 @@ public class ManagerControllerIntegrationTest {
 
     @Test
     public void test_getTotalPoints() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(get("/managers/get_total_points").
+        MvcResult mvcResult = mockMvc.perform(get("/managers/getTotalPoints").
                 header("Authorization", this.header)).
                 andExpect(status().isOk()).
                 andReturn();
@@ -196,7 +196,7 @@ public class ManagerControllerIntegrationTest {
         Restriction expectedRst = new Restriction();
         expectedRst.set_allowed_days(Arrays.asList(2, 3, 4));
 
-        MvcResult mvcResult = mockMvc.perform(put("/managers/set_restrictions").
+        MvcResult mvcResult = mockMvc.perform(put("/managers/setRestrictions").
                 header("Authorization", this.header).
                 content(asJsonString(expectedRst)).
                 param("employee_username", "shenhav")).
@@ -217,7 +217,7 @@ public class ManagerControllerIntegrationTest {
         Restriction expectedRst = new Restriction();
         expectedRst.set_allowed_days(Arrays.asList(2, 3, 4));
 
-        mockMvc.perform(get("/managers/set_restrictions").
+        mockMvc.perform(get("/managers/setRestrictions").
                 header("Authorization", this.header).
                 param("employee_username", "toya").
                 content(asJsonString(expectedRst))).
@@ -233,7 +233,7 @@ public class ManagerControllerIntegrationTest {
         Restriction expectedRst = new Restriction();
         expectedRst.set_allowed_days(Arrays.asList(2, 3, 4));
 
-        mockMvc.perform(get("/managers/set_restrictions").
+        mockMvc.perform(get("/managers/setRestrictions").
                 header("Authorization", this.header).
                 param("employee_username", "phistuk").
                 content(asJsonString(expectedRst))).
