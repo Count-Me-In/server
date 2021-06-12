@@ -56,7 +56,7 @@ public class EmployeeController {
     @PostMapping(path = "invites")
     public void sendMails(Authentication authentication, @RequestBody String[][] mails) {
         for (int i = 0; i < mails.length; i++) {
-            if (mails[i] != null) {
+            if (mails[i].length > 0) {
                 mailService.sendEmail(authentication.getName(), i, mails[i]);
             }
         }
