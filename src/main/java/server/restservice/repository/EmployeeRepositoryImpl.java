@@ -36,6 +36,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Autowired
     @Qualifier("mockAPI")
+    // @Qualifier("engineAPI")
     private engineAPIInterface engineAPI;
 
     private ConcurrentHashMap<String, SimpleEntry<Employee, Long>> _employee_cacheMap = new ConcurrentHashMap<String, SimpleEntry<Employee, Long>>();
@@ -104,14 +105,14 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         return additionalActorData.getPassword();
     }
 
-    public Map<String,List<Long>> execAuction() {
+    public Map<String, List<Long>> execAuction() {
         synchronized (this) {
             engineAPI.execAutcion();
             _employee_cacheMap.clear();
         }
-        Map<String,List<Long>> winners = new HashMap<>();
+        Map<String, List<Long>> winners = new HashMap<>();
         long hourAgo = Instant.now().getEpochSecond() - 3600;
-        for(Actor actor : engineAPI.getActors()){
+        for (Actor actor : engineAPI.getActors()) {
             List<Long> days = new ArrayList<>();
             for (Assignment ass : engineAPI.getActorAssignments(actor.getId(), hourAgo, null)) {
                 Item i = engineAPI.getItem(ass.getItemID());
@@ -120,8 +121,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 LocalDate dayOfWeek = bidDate.with(next(dayToDayOfWeek(additionalItemData.getDay())));
                 days.add(dayOfWeek.atStartOfDay(ZoneId.systemDefault()).toInstant().getEpochSecond());
             }
-            
-            winners.put(actor.getAdditionalInfo().getUsername(),days);
+            winners.put(actor.getAdditionalInfo().getUsername(), days);
         }
         return winners;
     }
@@ -146,7 +146,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         emp.getRestriction().set_allowed_days(additionalActorData.getAllowedDays());
         emp.getEmployees().addAll(additionalActorData.getEmployees());
         List<Long> days = new ArrayList<Long>();
-        for (Assignment ass : engineAPI.getActorAssignments(actor.getId(), Instant.now().getEpochSecond() - 2500000, null)) {
+        for (Assignment ass : engineAPI.getActorAssignments(actor.getId(), Instant.now().getEpochSecond() - 2500000,
+                null)) {
             Item i = engineAPI.getItem(ass.getItemID());
             ItemAdditionalData additionalItemData = i.getAdditionalInfo();
             LocalDate bidDate = Instant.ofEpochSecond(ass.getDate()).atZone(ZoneId.systemDefault()).toLocalDate();
