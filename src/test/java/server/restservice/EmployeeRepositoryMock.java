@@ -116,4 +116,14 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
     public void deleteEmployee(String username) {
     }
 
+    @Override
+    public Integer[] getDays() {
+        return null;
+    }
+
+    @Override
+    public void editDays(Integer[] days) {
+        
+    }
+
 }

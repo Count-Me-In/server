@@ -23,4 +23,8 @@ public interface EmployeeRepository {
 
     void deleteEmployee(String username);
 
+    Integer[] getDays();
+
+    void editDays(Integer[] days);
+
 }

@@ -149,13 +149,35 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         Actor actor = new Actor(UUID.randomUUID(), emp.getTotalPoints(), emp.getWeeklyPoints(), emp.getUsername(),
                 emp.getName(), manager, emp.getManagerPoints(), emp.getRestriction().get_allowed_days(),
                 emp.getEmployees());
-
         engineAPI.addActor(actor);
+        actor = getActorByUsername(manager);
+        actor.getAdditionalInfo().getEmployees().add(emp.getUsername());
+        engineAPI.editActor(actor.getId(), actor);
+        _employee_cacheMap.remove(manager);
     }
 
     @Override
     public void deleteEmployee(String username) {
         engineAPI.deleteActor(getActorByUsername(username).getId());
+        _employee_cacheMap.remove(username);
+    }
+
+    
+    @Override
+    public Integer[] getDays() {
+        Integer[] days = new Integer[5];
+        for (Item item : engineAPI.getItems()) {
+            days[item.getAdditionalInfo().getDay()-1] = item.getCapacity();
+        }
+        return days;
+    }
+
+    @Override
+    public void editDays(Integer[] days) {
+        for (Item item : engineAPI.getItems()) {
+            item.setCapacity(days[item.getAdditionalInfo().getDay() - 1]);
+            engineAPI.editItem(item.getId(), item);
+        }
     }
 
     private Employee _getEmployeeFromSource(String username) {
