@@ -19,4 +19,8 @@ public interface EmployeeRepository {
 
     List<Employee> getAllEmployees();
 
+    void addEmployee(Employee emp, String string);
+
+    void deleteEmployee(String username);
+
 }

@@ -108,4 +108,12 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         return null;
     }
 
+    @Override
+    public void addEmployee(Employee emp, String string) {
+    }
+
+    @Override
+    public void deleteEmployee(String username) {
+    }
+
 }

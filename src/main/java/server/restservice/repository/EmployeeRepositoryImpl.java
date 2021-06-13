@@ -144,6 +144,20 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         }
     }
 
+    @Override
+    public void addEmployee(Employee emp, String manager) {
+        Actor actor = new Actor(UUID.randomUUID(), emp.getTotalPoints(), emp.getWeeklyPoints(), emp.getUsername(),
+                emp.getName(), manager, emp.getManagerPoints(), emp.getRestriction().get_allowed_days(),
+                emp.getEmployees());
+
+        engineAPI.addActor(actor);
+    }
+
+    @Override
+    public void deleteEmployee(String username) {
+        engineAPI.deleteActor(getActorByUsername(username).getId());
+    }
+
     private Employee _getEmployeeFromSource(String username) {
         Actor actor = getActorByUsername(username);
         if (actor == null) {

@@ -24,11 +24,13 @@ public class AdminService {
     }
 
     public void addEmployee(Map<String, String> employee) {
-        // employeeRepository.addEmployee();
+        Employee emp = new Employee(employee.get("username"), employee.get("name"));
+        emp.setManager(employee.get("manager"));
+        employeeRepository.addEmployee(emp, employee.get("password"));
     }
 
     public void deleteEmployee(String username) {
-        // employeeRepository.deleteEmployee(username);
+        employeeRepository.deleteEmployee(username);
     }
 
     public Integer[] getDays() {
