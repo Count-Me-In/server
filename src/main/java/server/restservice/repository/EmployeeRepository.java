@@ -17,4 +17,6 @@ public interface EmployeeRepository {
 
     Map<String, List<Long>> execAuction();
 
+    List<Employee> getAllEmployees();
+
 }

@@ -103,4 +103,9 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         return null;
     }
 
+    @Override
+    public List<Employee> getAllEmployees() {
+        return null;
+    }
+
 }

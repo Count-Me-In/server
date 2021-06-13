@@ -96,6 +96,18 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         return employees.toArray(output);
     }
 
+    @Override
+    public List<Employee> getAllEmployees() {
+        List<Employee> employees = new ArrayList<Employee>();
+        for (Actor actor : engineAPI.getActors()) {
+            ActorAdditionalData additionalActorData = actor.getAdditionalInfo();
+            Employee emp = new Employee(additionalActorData.getUsername(), additionalActorData.getName());
+            emp.setManager(additionalActorData.getManager());
+            employees.add(emp);
+        }
+        return employees;
+    }
+
     public String getUsernamePass(String username) {
         Actor actor = getActorByUsername(username);
         if (actor == null) {
