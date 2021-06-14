@@ -27,9 +27,11 @@ public class ManagerService {
 
     public void addRestriction(String username, Restriction restriction, String employee_username) {
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
+        Employee manager = employeeRepository.findEmployeeByUsername(username);
+
         if (emp != null) {
             emp.writelock();
-            if ((emp.getManager() == null) || !emp.getManager().equals(username)) {
+            if ((emp.getManager() == null) || !emp.getManager().equals(manager.getName())) {
                 emp.writeunlock();
                 throw new InvalidParameterException("Can't update employee");
             } else {
@@ -127,10 +129,12 @@ public class ManagerService {
 
     public Assignings getEmployeeAssignings(String username, String employeename) {
         Employee emp = employeeRepository.findEmployeeByUsername(employeename);
+        Employee manager = employeeRepository.findEmployeeByUsername(username);
+
         if (emp != null) {
             emp.readlock();
 
-            if ((emp.getManager() == null) || !emp.getManager().equals(username)) {
+            if ((emp.getManager() == null) || !emp.getManager().equals(manager.getName())) {
                 emp.readunlock();
                 throw new InvalidParameterException("Can't access employee");
             } else {

@@ -103,4 +103,27 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         return null;
     }
 
+    @Override
+    public List<Employee> getAllEmployees() {
+        return null;
+    }
+
+    @Override
+    public void addEmployee(Employee emp, String string) {
+    }
+
+    @Override
+    public void deleteEmployee(String username) {
+    }
+
+    @Override
+    public Integer[] getDays() {
+        return null;
+    }
+
+    @Override
+    public void editDays(Integer[] days) {
+        
+    }
+
 }
