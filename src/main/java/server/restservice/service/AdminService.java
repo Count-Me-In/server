@@ -2,6 +2,7 @@ package server.restservice.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,8 +25,7 @@ public class AdminService {
     }
 
     public void addEmployee(Map<String, String> employee) {
-        Employee emp = new Employee(employee.get("username"), employee.get("name"));
-        emp.setManager(employee.get("manager"));
+        Employee emp = new Employee(UUID.randomUUID(), employee.get("username"), employee.get("name"), employee.get("manager"), 0, 0, 0);
         employeeRepository.addEmployee(emp, employee.get("password"));
     }
 
@@ -34,10 +34,11 @@ public class AdminService {
     }
 
     public Integer[] getDays() {
-        return null;
+        return employeeRepository.getDays();
     }
 
     public void editDays(Integer[] days) {
+        employeeRepository.editDays(days);
     }
 
 }
