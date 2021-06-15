@@ -49,8 +49,8 @@ public class AdminController {
     }
 
     @PutMapping(path = "editDays")
-    public void editDays(Authentication authentication, @RequestBody Integer[] days) {
-        adminService.editDays(days);
+    public void editDays(Authentication authentication, @RequestBody Map<String, Integer[]> days) {
+        adminService.editDays(days.get("days"));
     }
 
 }
