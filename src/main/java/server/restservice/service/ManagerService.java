@@ -3,6 +3,7 @@ package server.restservice.service;
 import lombok.AllArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import server.restservice.models.Assignings;
@@ -25,9 +26,11 @@ public class ManagerService {
 
     public void addRestriction(String username, Restriction restriction, String employee_username) {
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
+        Employee manager = employeeRepository.findEmployeeByUsername(username);
+
         if (emp != null) {
             emp.writelock();
-            if ((emp.get_manager() == null) || !emp.get_manager().equals(username)) {
+            if ((emp.get_manager() == null) || !emp.get_manager().equals(manager.get_name())) {
                 emp.writeunlock();
                 throw new InvalidParameterException("Can't update employee");
             } else {
@@ -125,10 +128,12 @@ public class ManagerService {
 
     public Assignings getEmployeeAssignings(String username, String employeename) {
         Employee emp = employeeRepository.findEmployeeByUsername(employeename);
+        Employee manager = employeeRepository.findEmployeeByUsername(username);
+
         if (emp != null) {
             emp.readlock();
 
-            if ((emp.get_manager() == null) || !emp.get_manager().equals(username)) {
+            if ((emp.get_manager() == null) || !emp.get_manager().equals(manager.get_name())) {
                 emp.readunlock();
                 throw new InvalidParameterException("Can't access employee");
             } else {

@@ -27,13 +27,15 @@ import static java.time.temporal.TemporalAdjusters.next;
 /**
  * EmployeeRepository
  */
-@Repository
+@Repository("repositoryImplementation")
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Value("${cacheSize}")
     private int MAX_SIZE;
 
     @Autowired
+    @Qualifier("mockAPI")
+    // @Qualifier("engineAPI")
     private engineAPIInterface engineAPI;
 
     private ConcurrentHashMap<String, SimpleEntry<Employee, Long>> _employee_cacheMap = new ConcurrentHashMap<String, SimpleEntry<Employee, Long>>();
@@ -93,6 +95,18 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         return employees.toArray(output);
     }
 
+    @Override
+    public List<Employee> getAllEmployees() {
+        List<Employee> employees = new ArrayList<Employee>();
+        for (Actor actor : engineAPI.getActors()) {
+            ActorAdditionalData additionalActorData = actor.getAdditionalInfo();
+            Employee emp = new Employee(additionalActorData.getUsername(), additionalActorData.getName());
+            emp.set_manager(additionalActorData.getManager());
+            employees.add(emp);
+        }
+        return employees;
+    }
+
     public String getUsernamePass(String username) {
         Actor actor = getActorByUsername(username);
         if (actor == null) {
@@ -102,14 +116,14 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         return additionalActorData.getPassword();
     }
 
-    public Map<String,List<Long>> execAuction() {
+    public Map<String, List<Long>> execAuction() {
         synchronized (this) {
             engineAPI.execAutcion();
             _employee_cacheMap.clear();
         }
-        Map<String,List<Long>> winners = new HashMap<>();
+        Map<String, List<Long>> winners = new HashMap<>();
         long hourAgo = Instant.now().getEpochSecond() - 3600;
-        for(Actor actor : engineAPI.getActors()){
+        for (Actor actor : engineAPI.getActors()) {
             List<Long> days = new ArrayList<>();
             for (Assignment ass : engineAPI.getActorAssignments(actor.getId(), hourAgo, null)) {
                 Item i = engineAPI.getItem(ass.getItemID());
@@ -118,8 +132,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 LocalDate dayOfWeek = bidDate.with(next(dayToDayOfWeek(additionalItemData.getDay())));
                 days.add(dayOfWeek.atStartOfDay(ZoneId.systemDefault()).toInstant().getEpochSecond());
             }
-            
-            winners.put(actor.getAdditionalInfo().getUsername(),days);
+            winners.put(actor.getAdditionalInfo().getUsername(), days);
         }
         return winners;
     }
@@ -127,6 +140,42 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     public void cleanCache() {
         synchronized (this) {
             _employee_cacheMap.clear();
+        }
+    }
+
+    @Override
+    public void addEmployee(Employee emp, String manager) {
+        Actor actor = new Actor(UUID.randomUUID(), emp.get_total_points(), emp.get_weekly_added_points(), emp.get_username(),
+                emp.get_name(), manager, emp.get_manager_points(), emp.get_restrictions().get_allowed_days(),
+                emp.get_employees());
+        engineAPI.addActor(actor);
+        actor = getActorByUsername(manager);
+        actor.getAdditionalInfo().getEmployees().add(emp.get_username());
+        engineAPI.editActor(actor.getId(), actor);
+        _employee_cacheMap.remove(manager);
+    }
+
+    @Override
+    public void deleteEmployee(String username) {
+        engineAPI.deleteActor(getActorByUsername(username).getId());
+        _employee_cacheMap.remove(username);
+    }
+
+
+    @Override
+    public Integer[] getDays() {
+        Integer[] days = new Integer[5];
+        for (Item item : engineAPI.getItems()) {
+            days[item.getAdditionalInfo().getDay()-1] = item.getCapacity();
+        }
+        return days;
+    }
+
+    @Override
+    public void editDays(Integer[] days) {
+        for (Item item : engineAPI.getItems()) {
+            item.setCapacity(days[item.getAdditionalInfo().getDay() - 1]);
+            engineAPI.editItem(item.getId(), item);
         }
     }
 
@@ -144,7 +193,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         emp.get_restrictions().set_allowed_days(additionalActorData.getAllowedDays());
         emp.get_employees().addAll(additionalActorData.getEmployees());
         List<Long> days = new ArrayList<Long>();
-        for (Assignment ass : engineAPI.getActorAssignments(actor.getId(), Instant.now().getEpochSecond() - 2500000, null)) {
+        for (Assignment ass : engineAPI.getActorAssignments(actor.getId(), Instant.now().getEpochSecond() - 2500000,
+                null)) {
             Item i = engineAPI.getItem(ass.getItemID());
             ItemAdditionalData additionalItemData = i.getAdditionalInfo();
             LocalDate bidDate = Instant.ofEpochSecond(ass.getDate()).atZone(ZoneId.systemDefault()).toLocalDate();

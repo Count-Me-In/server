@@ -11,10 +11,12 @@ import java.util.*;
 
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("repositoryMock")
 public class EmployeeRepositoryMock implements EmployeeRepository {
 
     private List<Employee> employees;
+
+    private Integer[] daysCapacity;
 
     public EmployeeRepositoryMock() {
         employees = new ArrayList<Employee>();
@@ -33,6 +35,14 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         this.employees.add(a);
         Employee toya = generateEmployee("toya");
         this.employees.add(toya);
+
+        this.daysCapacity = new Integer[5];
+        this.daysCapacity[0] = 10;
+        this.daysCapacity[1] = 20;
+        this.daysCapacity[2] = 30;
+        this.daysCapacity[3] = 20;
+        this.daysCapacity[4] = 10;
+
 
 
         Restriction rst = new Restriction();
@@ -108,6 +118,40 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
 
     public Map<String, List<Long>> execAuction() {
         return null;
+    }
+
+    @Override
+    public List<Employee> getAllEmployees() {
+        return this.employees;
+    }
+
+    @Override
+    public void addEmployee(Employee emp, String string) {
+        this.employees.add(emp);
+    }
+
+    @Override
+    public void deleteEmployee(String username) {
+        Employee toDelete = null;
+        for(Employee emp: this.employees){
+            if(emp.getUsername() == username){
+                toDelete = emp;
+                break;
+            }
+        }
+
+        if(toDelete != null)
+            this.employees.remove(toDelete);
+    }
+
+    @Override
+    public Integer[] getDays() {
+        return this.daysCapacity;
+    }
+
+    @Override
+    public void editDays(Integer[] days) {
+        this.daysCapacity = days;
     }
 
 }

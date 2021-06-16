@@ -17,4 +17,14 @@ public interface EmployeeRepository {
 
     Map<String, List<Long>> execAuction();
 
+    List<Employee> getAllEmployees();
+
+    void addEmployee(Employee emp, String string);
+
+    void deleteEmployee(String username);
+
+    Integer[] getDays();
+
+    void editDays(Integer[] days);
+
 }
