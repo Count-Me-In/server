@@ -26,7 +26,7 @@ class AdminServiceTest {
 
         List<String> resultNames = new ArrayList<>();
         for (Employee emp : result) {
-            resultNames.add(emp.getUsername());
+            resultNames.add(emp.get_username());
         }
 
         assertEquals(expected, resultNames);
@@ -46,13 +46,14 @@ class AdminServiceTest {
         List<Employee> empLst = adminService.getEmployees();
         List<String> resultNames = new ArrayList<>();
         for (Employee emp : empLst) {
-            resultNames.add(emp.getUsername());
+            resultNames.add(emp.get_username());
         }
 
         assertTrue(resultNames.contains("John@gmail.com"));
 
         adminService.deleteEmployee("John@gmail.com");
     }
+
 
     @Test
     void deleteEmployee() {
@@ -70,7 +71,7 @@ class AdminServiceTest {
         List<Employee> empLst = adminService.getEmployees();
         List<String> resultNames = new ArrayList<>();
         for (Employee emp : empLst) {
-            resultNames.add(emp.getUsername());
+            resultNames.add(emp.get_username());
         }
 
         assertTrue(!resultNames.contains("John@gmail.com"));

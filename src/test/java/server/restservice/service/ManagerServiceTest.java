@@ -52,7 +52,7 @@ class ManagerServiceTest {
 
     @Test
     void getRestrictionExistingUser() {
-        List<Integer> allowed = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> allowed = Arrays.asList(1, 2, 3);
         Restriction result = managerService.getRestriction("admin", "noy");
 
         assertEquals(allowed, result.get_allowed_days());
@@ -82,7 +82,7 @@ class ManagerServiceTest {
 
     @Test
     void getEmployeesExistingUser() {
-        List<String> expected = Arrays.asList("shauli", "nufar", "shenhav", "noy", "a");
+        List<String> expected = Arrays.asList("shauli", "nufar", "shenhav", "noy");
         List<EmployeeDetails> result = managerService.getEmployees("admin");
         List<String> actual = new ArrayList<String>();
         for (EmployeeDetails employee : result) {
@@ -217,7 +217,7 @@ class ManagerServiceTest {
     void getEmployeeRestrictionsExistingUser() {
         List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5);
 
-        List<EmployeeDetails> result = managerService.getEmployeeRestrictions("admin");
+        List<EmployeeDetails> result = managerService.getEmployeeRestrictions("shauli");
 
         for (EmployeeDetails entry : result) {
             assertEquals(expected, entry.get_restriction().get_allowed_days());

@@ -134,7 +134,7 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
     public void deleteEmployee(String username) {
         Employee toDelete = null;
         for(Employee emp: this.employees){
-            if(emp.getUsername() == username){
+            if(emp.get_username() == username){
                 toDelete = emp;
                 break;
             }
