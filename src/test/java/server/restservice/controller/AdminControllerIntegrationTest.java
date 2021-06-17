@@ -123,7 +123,7 @@ public class AdminControllerIntegrationTest {
         Employee emp = new Employee(UUID.randomUUID(), "Phistuk@gmail.com", "Phistuk", "nufar", 0, 0, 0);
         employeeRepository.addEmployee(emp, "password");
 
-        MvcResult mvcResult = mockMvc.perform(get("/admin/deleteEmployee").
+        MvcResult mvcResult = mockMvc.perform(delete("/admin/deleteEmployee").
                 header("Authorization", this.header).
                 param("username", "Phistuk@gmail.com")).
                 andExpect(status().isOk()).

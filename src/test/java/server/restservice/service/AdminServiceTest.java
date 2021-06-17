@@ -74,7 +74,7 @@ class AdminServiceTest {
 
     @Test
     void getDays() {
-        Integer[] expectedDays = { 10, 20, 30, 20, 10 };
+        Integer[] expectedDays = { 4, 3, 4, 4, 3 };
         Integer[] resultDays = adminService.getDays();
 
         assertArrayEquals(expectedDays, resultDays);

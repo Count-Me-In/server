@@ -41,6 +41,9 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
 
         noy.set_restrictions(rst);
 
+        this.daysCapacity = new Integer[]{4, 3, 4, 4, 3};
+
+
     }
 
     private Employee generateEmployee(String username) {
@@ -78,6 +81,7 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
 
         user.set_restrictions(rst);
         return user;
+
     }
 
     public Employee findEmployeeByUsername(String username) {

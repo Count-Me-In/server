@@ -134,30 +134,6 @@ public class ManagerControllerIntegrationTest {
     }
 
 
-    @Test
-    public void test_setEmployeePoints() throws Exception {
-
-        Map<String, Integer> expectedPoints = new HashMap<>();
-        expectedPoints.put("shauli", 100);
-        expectedPoints.put("nufar", 200);
-        expectedPoints.put("shenhav", 300);
-        expectedPoints.put("noy", 400);
-
-        mockMvc.perform(post("/managers/setEmployeePoints").
-                contentType(MediaType.APPLICATION_JSON).
-                header("Authorization", this.header).
-                content(asJsonString(expectedPoints))).
-                andExpect(status().isOk()).
-                andReturn();
-
-        Map<String, Integer> resultPoints = new HashMap<>();
-        for (String emp: this.employeeRepository.findEmployeeByUsername("admin").get_employees()){
-            resultPoints.put(emp, this.employeeRepository.findEmployeeByUsername(emp).get_weekly_added_points());
-        }
-
-
-        assertEquals(expectedPoints, resultPoints);
-    }
 
 
     @Test
