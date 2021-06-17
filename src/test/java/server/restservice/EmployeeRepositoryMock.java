@@ -9,9 +9,7 @@ import server.restservice.repository.EmployeeRepository;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import org.springframework.stereotype.Repository;
 
-@Repository("repositoryMock")
 public class EmployeeRepositoryMock implements EmployeeRepository {
 
     private List<Employee> employees;
@@ -36,12 +34,12 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         Employee toya = generateEmployee("toya");
         this.employees.add(toya);
 
-        this.daysCapacity = new Integer[5];
-        this.daysCapacity[0] = 10;
-        this.daysCapacity[1] = 20;
-        this.daysCapacity[2] = 30;
-        this.daysCapacity[3] = 20;
-        this.daysCapacity[4] = 10;
+
+        Restriction rst = new Restriction();
+        List<Integer> allowed = Arrays.asList(1, 2, 3);
+        rst.set_allowed_days(allowed);
+
+        noy.setRestrictions(rst);
 
     }
 
@@ -50,7 +48,7 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
 
         if (username.equals("admin")) {
             user = new Employee(username, username, null, 100, 100, 300);
-            user.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav", "noy", "a"));
+            user.getEmployees().addAll(Arrays.asList("shauli", "noy", "shenhav", "nufar"));
         } else if (!username.equals("toya")) {
             user = new Employee(username, username, "admin", 100, 100, 0);
         } else {

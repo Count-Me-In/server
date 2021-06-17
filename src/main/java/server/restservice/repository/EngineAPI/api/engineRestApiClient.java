@@ -21,7 +21,6 @@ import server.restservice.repository.EngineAPI.model.Assignment;
 import server.restservice.repository.EngineAPI.model.Bid;
 import server.restservice.repository.EngineAPI.model.Item;
 
-@Component("engineAPI")
 public class engineRestApiClient implements engineAPIInterface {
 
     private Gson g = new Gson();

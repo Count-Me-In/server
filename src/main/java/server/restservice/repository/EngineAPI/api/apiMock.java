@@ -14,20 +14,18 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import server.restservice.repository.EngineAPI.model.Actor;
 import server.restservice.repository.EngineAPI.model.Assignment;
 import server.restservice.repository.EngineAPI.model.Bid;
 import server.restservice.repository.EngineAPI.model.Item;
 
-@Component("mockAPI")
 public class apiMock implements engineAPIInterface {
 
     private Gson gson = new Gson();
 
     @Value("${mockData}")
-    private String mockData;
+    public String mockData;
 
     @Value("${actorsFile}")
     private String actorsFile;

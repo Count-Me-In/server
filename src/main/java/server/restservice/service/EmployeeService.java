@@ -3,7 +3,6 @@ package server.restservice.service;
 import lombok.AllArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import server.restservice.models.Assignings;
 import server.restservice.models.Bid;
@@ -22,7 +21,6 @@ import java.util.stream.Collectors;
 public class EmployeeService {
 
     @Autowired
-    @Qualifier("repositoryImplementation")
     private EmployeeRepository employeeRepository;
 
     public Bid[] getBids(String username) {

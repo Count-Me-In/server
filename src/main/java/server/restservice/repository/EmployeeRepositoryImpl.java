@@ -1,7 +1,6 @@
 package server.restservice.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -28,15 +27,13 @@ import static java.time.temporal.TemporalAdjusters.next;
 /**
  * EmployeeRepository
  */
-@Repository("repositoryImplementation")
+@Repository
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Value("${cacheSize}")
     private int MAX_SIZE;
 
     @Autowired
-    @Qualifier("mockAPI")
-    // @Qualifier("engineAPI")
     private engineAPIInterface engineAPI;
 
     private ConcurrentHashMap<String, SimpleEntry<Employee, Long>> _employee_cacheMap = new ConcurrentHashMap<String, SimpleEntry<Employee, Long>>();

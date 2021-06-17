@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,6 @@ import server.restservice.repository.EmployeeRepository;
 public class AdminService {
 
     @Autowired
-    @Qualifier("repositoryImplementation")
     private EmployeeRepository employeeRepository;
 
     @Autowired

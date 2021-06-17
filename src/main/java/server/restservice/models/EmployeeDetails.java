@@ -23,8 +23,16 @@ public class EmployeeDetails {
         return _username;
     }
 
+    public void setUsername(String _username) {
+        this._username = _username;
+    }
+
     public String getName() {
         return _name;
+    }
+
+    public void setName(String _name) {
+        this._name = _name;
     }
 
     public Restriction getRestriction() {
@@ -43,4 +51,17 @@ public class EmployeeDetails {
         _points = points;
     }
 
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        EmployeeDetails ed = (EmployeeDetails) o;
+
+        return (this._name.equals(ed._name) && (this._points == ed._points)
+                && (this._username.equals(ed._username)));
+    }
 }

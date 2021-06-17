@@ -3,7 +3,6 @@ package server.restservice.service;
 import lombok.AllArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import server.restservice.models.Assignings;
@@ -22,7 +21,6 @@ import java.util.List;
 public class ManagerService {
 
     @Autowired
-    @Qualifier("repositoryImplementation")
     private EmployeeRepository employeeRepository;
 
     public void addRestriction(String username, Restriction restriction, String employee_username) {
