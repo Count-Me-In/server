@@ -1,10 +1,10 @@
 package server.restservice.service;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import server.restservice.EmployeeRepositoryMock;
 import server.restservice.models.Employee;
-import server.restservice.models.EmployeeDetails;
-import server.restservice.repository.EmployeeRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,9 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AdminServiceTest {
 
-    AdminService adminService = new AdminService(new EmployeeRepositoryMock());
-
-
+    AdminService adminService = new AdminService(new EmployeeRepositoryMock(), new BCryptPasswordEncoder());
 
     @Test
     void getEmployees() {
@@ -32,11 +30,9 @@ class AdminServiceTest {
         assertEquals(expected, resultNames);
     }
 
-
-
     @Test
     void addEmployee() {
-        HashMap<String, String> empMap = new HashMap();
+        HashMap<String, String> empMap = new HashMap<String, String>();
         empMap.put("name", "John");
         empMap.put("username", "John@gmail.com");
         empMap.put("manager", "nufar");
@@ -57,12 +53,11 @@ class AdminServiceTest {
 
     @Test
     void deleteEmployee() {
-        HashMap<String, String> empMap = new HashMap();
+        HashMap<String, String> empMap = new HashMap<String, String>();
         empMap.put("name", "John");
         empMap.put("username", "John@gmail.com");
         empMap.put("manager", "nufar");
         empMap.put("password", "password");
-
 
         adminService.addEmployee(empMap);
 
@@ -79,7 +74,7 @@ class AdminServiceTest {
 
     @Test
     void getDays() {
-        Integer[] expectedDays = {10, 20, 30, 20, 10};
+        Integer[] expectedDays = { 10, 20, 30, 20, 10 };
         Integer[] resultDays = adminService.getDays();
 
         assertArrayEquals(expectedDays, resultDays);
@@ -87,14 +82,14 @@ class AdminServiceTest {
 
     @Test
     void editDays() {
-        Integer[] expectedDays = {10, 10, 10, 10, 10};
+        Integer[] expectedDays = { 10, 10, 10, 10, 10 };
 
         adminService.editDays(expectedDays);
         Integer[] resultDays = adminService.getDays();
 
         assertArrayEquals(expectedDays, resultDays);
 
-        Integer[] prevDays = {10, 20, 30, 20, 10};
+        Integer[] prevDays = { 10, 20, 30, 20, 10 };
         adminService.editDays(prevDays);
 
     }

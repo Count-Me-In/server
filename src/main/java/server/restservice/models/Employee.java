@@ -86,83 +86,83 @@ public class Employee {
         return _id;
     }
 
-    public String get_username() {
+    public String getUsername() {
         return _username;
     }
 
-    public void set_username(String username) {
+    public void setUsername(String username) {
         this._username = username;
     }
 
-    public String get_name() {
+    public String getName() {
         return _name;
     }
 
-    public void set_name(String name) {
+    public void setName(String name) {
         this._name = name;
     }
 
-    public String get_manager() {
+    public String getManager() {
         return _direct_manager;
     }
 
-    public void set_manager(String manager) {
+    public void setManager(String manager) {
         this._direct_manager = manager;
     }
 
-    public int get_total_points() {
+    public int getTotalPoints() {
         return _total_points;
     }
 
-    public void set_total_points(int points) {
+    public void setTotalPoints(int points) {
         this._total_points = points;
     }
 
-    public int get_weekly_added_points() {
+    public int getWeeklyPoints() {
         return _weekly_added_points;
     }
 
-    public void set_weekly_added_points(int points) {
+    public void setWeeklyPoints(int points) {
         _weekly_added_points = points;
     }
 
-    public List<String> get_employees() {
+    public List<String> getEmployees() {
         return _employees_list;
     }
 
-    public void set_employees(List<String> emp) {
+    public void setEmployees(List<String> emp) {
         this._employees_list = emp;
     }
 
-    public Restriction get_restrictions() {
+    public Restriction getRestriction() {
         return _restrictions;
     }
 
-    public void set_restrictions(Restriction restriction) {
+    public void setRestrictions(Restriction restriction) {
         _restrictions = restriction;
     }
 
-    public Bid[] get_bids() {
+    public Bid[] getBids() {
         return _bids_collection;
     }
 
-    public void set_bids(Bid[] bids) {
+    public void setBids(Bid[] bids) {
         _bids_collection = bids;
     }
 
-    public Assignings get_assignings() {
+    public Assignings getAssignings() {
         return _assignings;
     }
 
-    public void set_assignings(Assignings as) {
+    public void setAssignings(Assignings as) {
         _assignings = as;
     }
 
-    public Integer get_manager_points() {
+    public Integer getManagerPoints() {
         return _totalManagerPoints;
     }
 
-    public void set_manager_points(Integer points) {
+    public void setManagerPoints(Integer points) {
         _totalManagerPoints = points;
     }
 

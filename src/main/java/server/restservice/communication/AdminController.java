@@ -53,4 +53,14 @@ public class AdminController {
         adminService.editDays(days.get("days"));
     }
 
+    @PutMapping(path = "updateManager")
+    public void updateManager(Authentication authentication, @RequestParam String employee_username, @RequestParam String manager_username) {
+        adminService.updateManager(employee_username, manager_username);
+    }
+
+    @PutMapping(path = "updatePassword")
+    public void updatePassword(Authentication authentication, @RequestParam String employee_username, @RequestParam String new_password) {
+        adminService.updatePassword(employee_username, new_password);
+    }
+
 }

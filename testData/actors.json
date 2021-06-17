@@ -1,0 +1,140 @@
+[
+    {
+        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
+        "_points": 100,
+        "_intervalBonus": 100,
+        "_additionalInfo": {
+            "_username": "admin",
+            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+            "_name": "admin",
+            "_directed_manager": "",
+            "_totalManagerPoints": 300,
+            "_allowed_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "_employees": ["shauli", "noy", "shenhav", "nufar"]
+        }
+    },
+	{
+        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
+        "_points": 100,
+        "_intervalBonus": 100,
+        "_additionalInfo": {
+            "_username": "toya",
+            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+            "_name": "toya",
+            "_directed_manager": "admin",
+            "_totalManagerPoints": 0,
+            "_allowed_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "_employees": []
+        }
+    },
+	{
+        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
+        "_points": 100,
+        "_intervalBonus": 100,
+        "_additionalInfo": {
+            "_username": "shauli",
+            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+            "_name": "shauli",
+            "_directed_manager": "admin",
+            "_totalManagerPoints": 0,
+            "_allowed_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "_employees": []
+        }
+    },
+	{
+        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
+        "_points": 100,
+        "_intervalBonus": 100,
+        "_additionalInfo": {
+            "_username": "noy",
+            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+            "_name": "noy",
+            "_directed_manager": "admin",
+            "_totalManagerPoints": 0,
+            "_allowed_days": [
+                1,
+                2,
+                3
+            ],
+            "_employees": []
+        }
+    },
+	{
+        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
+        "_points": 100,
+        "_intervalBonus": 100,
+        "_additionalInfo": {
+            "_username": "shenhav",
+            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+            "_name": "shenhav",
+            "_directed_manager": "admin",
+            "_totalManagerPoints": 0,
+            "_allowed_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "_employees": []
+        }
+    },
+	{
+        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e1c",
+        "_points": 100,
+        "_intervalBonus": 100,
+        "_additionalInfo": {
+            "_username": "nufar",
+            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+            "_name": "nufar",
+            "_directed_manager": "admin",
+            "_totalManagerPoints": 0,
+            "_allowed_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "_employees": []
+        }
+    },
+	{
+        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e1d",
+        "_points": 100,
+        "_intervalBonus": 100,
+        "_additionalInfo": {
+            "_username": "a",
+            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+            "_name": "a",
+            "_directed_manager": "admin",
+            "_totalManagerPoints": 0,
+            "_allowed_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "_employees": []
+        }
+    }
+]

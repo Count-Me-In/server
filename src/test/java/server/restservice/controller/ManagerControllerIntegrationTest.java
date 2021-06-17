@@ -1,16 +1,16 @@
 package server.restservice.controller;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import server.restservice.TestConfig;
@@ -25,8 +25,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@SpringBootTest(classes = { TestConfig.class }, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-//@RunWith(SpringRunner.class)
+@SpringBootTest(classes = { TestConfig.class })
+@RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 public class ManagerControllerIntegrationTest {
 
@@ -38,8 +38,6 @@ public class ManagerControllerIntegrationTest {
     private EmployeeRepository employeeRepository;
 
     private String header;
-
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     private Gson gson = new Gson();
 
@@ -59,7 +57,7 @@ public class ManagerControllerIntegrationTest {
                 contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(requestBody))).andReturn();
         String resultStr = result.getResponse().getContentAsString();
-        JSONParser parser = new JSONParser();
+        JSONParser parser = new JSONParser(JSONParser.MODE_JSON_SIMPLE);
         JSONObject json = (JSONObject) parser.parse(resultStr);
         String auth = (String) json.getOrDefault("token", "");
         this.header = "Bearer " + auth;
@@ -81,7 +79,7 @@ public class ManagerControllerIntegrationTest {
 
         EmployeeDetails[] resultEmployees = this.gson.fromJson(employees, EmployeeDetails[].class);
 
-        List<String> empLst  = this.employeeRepository.findEmployeeByUsername("admin").get_employees();
+        List<String> empLst  = this.employeeRepository.findEmployeeByUsername("admin").getEmployees();
         EmployeeDetails[] expectedEmployees = new EmployeeDetails[empLst.size()];
         for (int i = 0; i < empLst.size(); i++) {
             Employee emp = this.employeeRepository.findEmployeeByUsername(empLst.get(i));
@@ -108,7 +106,7 @@ public class ManagerControllerIntegrationTest {
 
         EmployeeDetails[] resultEmployees = this.gson.fromJson(employees, EmployeeDetails[].class);
 
-        List<String> empLst  = this.employeeRepository.findEmployeeByUsername("admin").get_employees();
+        List<String> empLst  = this.employeeRepository.findEmployeeByUsername("admin").getEmployees();
         EmployeeDetails[] expectedEmployees = new EmployeeDetails[empLst.size()];
         for (int i = 0; i < empLst.size(); i++) {
             Employee emp = this.employeeRepository.findEmployeeByUsername(empLst.get(i));
@@ -146,7 +144,7 @@ public class ManagerControllerIntegrationTest {
         expectedPoints.put("shenhav", 300);
         expectedPoints.put("noy", 400);
 
-        MvcResult mvcResult = mockMvc.perform(post("/managers/setEmployeePoints").
+        mockMvc.perform(post("/managers/setEmployeePoints").
                 contentType(MediaType.APPLICATION_JSON).
                 header("Authorization", this.header).
                 content(asJsonString(expectedPoints))).
@@ -154,8 +152,8 @@ public class ManagerControllerIntegrationTest {
                 andReturn();
 
         Map<String, Integer> resultPoints = new HashMap<>();
-        for (String emp: this.employeeRepository.findEmployeeByUsername("admin").get_employees()){
-            resultPoints.put(emp, this.employeeRepository.findEmployeeByUsername(emp).get_weekly_added_points());
+        for (String emp: this.employeeRepository.findEmployeeByUsername("admin").getEmployees()){
+            resultPoints.put(emp, this.employeeRepository.findEmployeeByUsername(emp).getWeeklyPoints());
         }
 
 
@@ -177,7 +175,7 @@ public class ManagerControllerIntegrationTest {
 
         EmployeeDetails[] resultEmployees = this.gson.fromJson(employees, EmployeeDetails[].class);
 
-        List<String> empLst  = this.employeeRepository.findEmployeeByUsername("admin").get_employees();
+        List<String> empLst  = this.employeeRepository.findEmployeeByUsername("admin").getEmployees();
         EmployeeDetails[] expectedEmployees = new EmployeeDetails[empLst.size()];
         for (int i = 0; i < empLst.size(); i++) {
             Employee emp = this.employeeRepository.findEmployeeByUsername(empLst.get(i));
@@ -196,14 +194,14 @@ public class ManagerControllerIntegrationTest {
         Restriction expectedRst = new Restriction();
         expectedRst.set_allowed_days(Arrays.asList(2, 3, 4));
 
-        MvcResult mvcResult = mockMvc.perform(put("/managers/setRestrictions").
+        mockMvc.perform(put("/managers/setRestrictions").
                 header("Authorization", this.header).
                 content(asJsonString(expectedRst)).
                 param("employee_username", "shenhav")).
                 andExpect(status().isOk()).
                 andReturn();
 
-        Restriction resultRst = this.employeeRepository.findEmployeeByUsername("shenhav").get_restrictions();
+        Restriction resultRst = this.employeeRepository.findEmployeeByUsername("shenhav").getRestriction();
 
 
         assertEquals(expectedRst.get_allowed_days(), resultRst.get_allowed_days());
@@ -259,7 +257,7 @@ public class ManagerControllerIntegrationTest {
 
 
         Assignings resultAss = this.gson.fromJson(assigning, Assignings.class);
-        Assignings expectedAss = this.employeeRepository.findEmployeeByUsername("shauli").get_assignings();
+        Assignings expectedAss = this.employeeRepository.findEmployeeByUsername("shauli").getAssignings();
 
         assertEquals(expectedAss.getAssignedDays(), resultAss.getAssignedDays());
     }

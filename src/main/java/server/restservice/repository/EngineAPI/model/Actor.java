@@ -27,11 +27,11 @@ public class Actor {
   private ActorAdditionalData _additionalInfo;
 
   public Actor(UUID id, Integer points, Integer intervalBonus, String username, String name, String manager,
-      Integer managerPoints, List<Integer> allowed_days, List<String> employees) {
+      Integer managerPoints, List<Integer> allowed_days, List<String> employees, String password) {
     this._id = id;
     this._points = points;
     this._intervalBonus = intervalBonus;
-    this._additionalInfo = new ActorAdditionalData(username, name, manager, managerPoints, allowed_days, employees);
+    this._additionalInfo = new ActorAdditionalData(username, name, manager, managerPoints, allowed_days, employees, password);
   }
 
   public UUID getId() {
@@ -68,7 +68,7 @@ public class Actor {
 
   public class ActorAdditionalData {
     private String _username;
-    private String _password = "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6";
+    private String _password;
     private String _name;
     private String _directed_manager;
     private Integer _totalManagerPoints;
@@ -76,13 +76,14 @@ public class Actor {
     private List<String> _employees;
 
     public ActorAdditionalData(String username, String name, String manager, Integer managerPoints,
-        List<Integer> allowed_days, List<String> employees) {
+        List<Integer> allowed_days, List<String> employees, String password) {
       _username = username;
       _name = name;
       _directed_manager = manager;
       _totalManagerPoints = managerPoints;
       _allowed_days = allowed_days;
       _employees = employees;
+      _password = password;
     }
 
     public String getUsername() {
@@ -91,6 +92,10 @@ public class Actor {
 
     public String getPassword() {
       return _password;
+    }
+
+    public void setPassword(String password) {
+      _password = password;
     }
 
     public String getName() {

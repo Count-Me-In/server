@@ -3,7 +3,6 @@ package server.restservice.service;
 import lombok.AllArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import server.restservice.models.Assignings;
@@ -30,17 +29,17 @@ public class ManagerService {
 
         if (emp != null) {
             emp.writelock();
-            if ((emp.get_manager() == null) || !emp.get_manager().equals(manager.get_name())) {
+            if ((emp.getManager() == null) || !emp.getManager().equals(manager.getUsername())) {
                 emp.writeunlock();
                 throw new InvalidParameterException("Can't update employee");
             } else {
-                Bid[] empBids = emp.get_bids();
+                Bid[] empBids = emp.getBids();
                 for (Bid bid : empBids) {
-                    if (!restriction.get_allowed_days().contains(bid.get_day())) {
+                    if (!restriction.get_allowed_days().contains(bid.getDay())) {
                         bid.clearPoints();
                     }
                 }
-                emp.set_restrictions(restriction);
+                emp.setRestrictions(restriction);
                 employeeRepository.save(emp);
                 emp.writeunlock();
             }
@@ -54,11 +53,11 @@ public class ManagerService {
         Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
         if (emp != null) {
             emp.readlock();
-            if ((emp.get_manager() == null) || !emp.get_manager().equals(username)) {
+            if ((emp.getManager() == null) || !emp.getManager().equals(username)) {
                 emp.readunlock();
                 throw new InvalidParameterException("Can't access employee");
             } else {
-                output = new Restriction(emp.get_restrictions());
+                output = new Restriction(emp.getRestriction());
                 emp.readunlock();
                 return output;
             }
@@ -71,12 +70,12 @@ public class ManagerService {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            List<String> employees = new ArrayList<String>(emp.get_employees());
+            List<String> employees = new ArrayList<String>(emp.getEmployees());
             emp.readunlock();
             Employee[] all_employees = employeeRepository.getAllEmployeeNames();
             List<EmployeeDetails> output = new ArrayList<EmployeeDetails>();
             for (Employee employee : all_employees) {
-                if (employees.contains(employee.get_username())) {
+                if (employees.contains(employee.getUsername())) {
                     output.add(new EmployeeDetails(employee));
                 }
             }
@@ -88,19 +87,19 @@ public class ManagerService {
 
     private void _setPoints(Employee emp, Integer points) {
         if (emp.isManager()) {
-            double ratio = points / emp.get_manager_points();
-            emp.set_manager_points(points);
-            for (String empUsername : emp.get_employees()) {
+            double ratio = points / emp.getManagerPoints();
+            emp.setManagerPoints(points);
+            for (String empUsername : emp.getEmployees()) {
                 Employee dirEmp = employeeRepository.findEmployeeByUsername(empUsername);
                 dirEmp.writelock();
-                int oldPoints = dirEmp.get_weekly_added_points();
+                int oldPoints = dirEmp.getWeeklyPoints();
                 int newPoints = (int) (oldPoints * ratio);
                 _setPoints(emp, newPoints);
                 dirEmp.writeunlock();
-                emp.set_weekly_added_points(oldPoints - points + emp.get_weekly_added_points());
+                emp.setWeeklyPoints(oldPoints - points + emp.getWeeklyPoints());
             }
         } else {
-            emp.set_weekly_added_points(points);
+            emp.setWeeklyPoints(points);
         }
         employeeRepository.save(emp);
     }
@@ -109,16 +108,16 @@ public class ManagerService {
         Employee manager = employeeRepository.findEmployeeByUsername(username);
         if (manager != null) {
             manager.writelock();
-            if (!manager.get_employees().contains(employee_username)) {
+            if (!manager.getEmployees().contains(employee_username)) {
                 manager.writeunlock();
                 throw new InvalidParameterException("Can't update employee");
             }
             Employee emp = employeeRepository.findEmployeeByUsername(employee_username);
             emp.writelock();
-            int old_points = emp.get_weekly_added_points();
+            int old_points = emp.getWeeklyPoints();
             _setPoints(emp, points);
             emp.writeunlock();
-            manager.set_weekly_added_points(old_points - points + manager.get_weekly_added_points());
+            manager.setWeeklyPoints(old_points - points + manager.getWeeklyPoints());
             employeeRepository.save(manager);
             manager.writeunlock();
         } else {
@@ -133,11 +132,11 @@ public class ManagerService {
         if (emp != null) {
             emp.readlock();
 
-            if ((emp.get_manager() == null) || !emp.get_manager().equals(manager.get_name())) {
+            if ((emp.getManager() == null) || !emp.getManager().equals(manager.getUsername())) {
                 emp.readunlock();
                 throw new InvalidParameterException("Can't access employee");
             } else {
-                Assignings employee_assignings = emp.get_assignings();
+                Assignings employee_assignings = emp.getAssignings();
                 emp.readunlock();
                 return employee_assignings;
             }
@@ -150,7 +149,7 @@ public class ManagerService {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            int points = emp.get_manager_points();
+            int points = emp.getManagerPoints();
             emp.readunlock();
             return points;
         } else {
@@ -163,12 +162,12 @@ public class ManagerService {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            for (String emp_username : emp.get_employees()) {
+            for (String emp_username : emp.getEmployees()) {
                 Employee direct = employeeRepository.findEmployeeByUsername(emp_username);
                 if (direct != null) {
                     direct.readlock();
                     EmployeeDetails details = new EmployeeDetails(direct);
-                    details.set_points(direct.get_weekly_added_points());
+                    details.setPoints(direct.getWeeklyPoints());
                     output.add(details);
                     direct.readunlock();
                 }
@@ -185,12 +184,12 @@ public class ManagerService {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            for (String emp_username : emp.get_employees()) {
+            for (String emp_username : emp.getEmployees()) {
                 Employee direct = employeeRepository.findEmployeeByUsername(emp_username);
                 if (direct != null) {
                     direct.readlock();
                     EmployeeDetails details = new EmployeeDetails(direct);
-                    details.set_restrictions(new Restriction(direct.get_restrictions()));
+                    details.setRestrictions(new Restriction(direct.getRestriction()));
                     output.add(details);
                     direct.readunlock();
                 }

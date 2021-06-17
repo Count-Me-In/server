@@ -15,41 +15,39 @@ public class EmployeeDetails {
     }
 
     public EmployeeDetails(Employee employee) {
-        this._username = employee.get_username();
-        this._name = employee.get_name();
-        this._points = employee.get_total_points();
-        this._restriction = employee.get_restrictions();
+        this._username = employee.getUsername();
+        this._name = employee.getName();
     }
 
-    public String get_username() {
+    public String getUsername() {
         return _username;
     }
 
-    public void set_username(String _username) {
+    public void setUsername(String _username) {
         this._username = _username;
     }
 
-    public String get_name() {
+    public String getName() {
         return _name;
     }
 
-    public void set_name(String _name) {
+    public void setName(String _name) {
         this._name = _name;
     }
 
-    public Restriction get_restriction() {
+    public Restriction getRestriction() {
         return _restriction;
     }
 
-    public void set_restrictions(Restriction restriction) {
+    public void setRestrictions(Restriction restriction) {
         _restriction = restriction;
     }
 
-    public Integer get_points() {
+    public Integer getPoints() {
         return _points;
     }
 
-    public void set_points(Integer points) {
+    public void setPoints(Integer points) {
         _points = points;
     }
 
