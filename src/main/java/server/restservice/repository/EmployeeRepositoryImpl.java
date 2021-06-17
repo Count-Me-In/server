@@ -149,7 +149,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         engineAPI.addActor(actor);
         for(Item item : engineAPI.getItems()) {
             server.restservice.repository.EngineAPI.model.Bid bid = new server.restservice.repository.EngineAPI.model.Bid(
-                UUID.randomUUID(), new Date(), actor.getId(), item.getId(), 0);
+                UUID.randomUUID(), new Date(), item.getId(), actor.getId(), 0);
             engineAPI.addBid(bid);
         }
     }

@@ -10,9 +10,9 @@ import server.restservice.repository.EngineAPI.api.engineRestApiClient;
 @Configuration
 public class RestserviceConfig {
 
-    // @Bean
-    // public engineAPIInterface getengineAPIInterface() {
-    //     return new apiMock();
-    //     // return new engineRestApiClient();
-    // }
+    @Bean
+    public engineAPIInterface getengineAPIInterface() {
+        return new apiMock();
+        // return new engineRestApiClient();
+    }
 }
