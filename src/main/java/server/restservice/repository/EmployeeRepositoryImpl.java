@@ -52,7 +52,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                                     return (int) (e1.getValue() - e2.getValue());
                                 }
                             });
-                    _employee_cacheMap.remove(userToRemove.getKey().getUsername());
+                    _employee_cacheMap.remove(userToRemove.getKey().get_username());
                 }
 
                 Employee empToAdd = _getEmployeeFromSource(username);
@@ -60,7 +60,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 if (empToAdd != null) {
                     SimpleEntry<Employee, Long> userToAdd = new SimpleEntry<Employee, Long>(empToAdd,
                             Instant.now().getEpochSecond());
-                    _employee_cacheMap.put(empToAdd.getUsername(), userToAdd);
+                    _employee_cacheMap.put(empToAdd.get_username(), userToAdd);
                 }
                 return empToAdd;
             }
@@ -69,15 +69,15 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     public void save(Employee emp) {
         synchronized (emp) {
-            Actor actor = new Actor(emp.getID(), emp.getTotalPoints(), emp.getWeeklyPoints(), emp.getUsername(),
-                    emp.getName(), emp.getManager(), emp.getManagerPoints(), emp.getRestriction().get_allowed_days(),
-                    emp.getEmployees(), getUsernamePass(emp.getUsername()));
+            Actor actor = new Actor(emp.get_id(), emp.get_total_points(), emp.get_weekly_added_points(), emp.get_username(),
+                    emp.get_name(), emp.get_manager(), emp.get_managerPoints(), emp.get_restriction().get_allowed_days(),
+                    emp.get_employees(), getUsernamePass(emp.get_username()));
             engineAPI.editActor(actor.getId(), actor);
 
-            Bid[] bids = emp.getBids();
+            Bid[] bids = emp.get_bids();
             for (int i = 0; i < bids.length; i++) {
-                server.restservice.repository.EngineAPI.model.Bid bid = engineAPI.getBidByID(bids[i].getID());
-                bid.setPercentage(bids[i].getPercentage());
+                server.restservice.repository.EngineAPI.model.Bid bid = engineAPI.getBidByID(bids[i].get_id());
+                bid.setPercentage(bids[i].get_percentage());
                 engineAPI.editBid(bid.getId(), bid);
             }
         }
@@ -99,7 +99,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         for (Actor actor : engineAPI.getActors()) {
             ActorAdditionalData additionalActorData = actor.getAdditionalInfo();
             Employee emp = new Employee(additionalActorData.getUsername(), additionalActorData.getName());
-            emp.setManager(additionalActorData.getManager());
+            emp.set_manager(additionalActorData.getManager());
             employees.add(emp);
         }
         return employees;
@@ -143,9 +143,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public void addEmployee(Employee emp, String password) {
-        Actor actor = new Actor(UUID.randomUUID(), emp.getTotalPoints(), emp.getWeeklyPoints(), emp.getUsername(),
-                emp.getName(), emp.getManager(), emp.getManagerPoints(), emp.getRestriction().get_allowed_days(),
-                emp.getEmployees(), password);
+        Actor actor = new Actor(UUID.randomUUID(), emp.get_total_points(), emp.get_weekly_added_points(), emp.get_username(),
+                emp.get_name(), emp.get_manager(), emp.get_managerPoints(), emp.get_restriction().get_allowed_days(),
+                emp.get_employees(), password);
         engineAPI.addActor(actor);
         for(Item item : engineAPI.getItems()) {
             server.restservice.repository.EngineAPI.model.Bid bid = new server.restservice.repository.EngineAPI.model.Bid(
@@ -199,8 +199,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         Employee emp = new Employee(actor.getId(), username, additionalActorData.getName(),
                 additionalActorData.getManager(), actor.getPoints(), actor.getIntervalBonus(),
                 additionalActorData.getManagerPoints());
-        emp.getRestriction().set_allowed_days(additionalActorData.getAllowedDays());
-        emp.getEmployees().addAll(additionalActorData.getEmployees());
+        emp.get_restriction().set_allowed_days(additionalActorData.getAllowedDays());
+        emp.get_employees().addAll(additionalActorData.getEmployees());
         List<Long> days = new ArrayList<Long>();
         for (Assignment ass : engineAPI.getActorAssignments(actor.getId(), Instant.now().getEpochSecond() - 2500000,
                 null)) {
@@ -210,8 +210,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
             LocalDate dayOfWeek = bidDate.with(next(dayToDayOfWeek(additionalItemData.getDay())));
             days.add(dayOfWeek.atStartOfDay(ZoneId.systemDefault()).toInstant().getEpochSecond());
         }
-        emp.getAssignings().addAssinedDays(days);
-        emp.setBids(getActorBids(actor, username));
+        emp.get_assignings().addAssinedDays(days);
+        emp.set_bids(getActorBids(actor, username));
 
         return emp;
     }
@@ -231,7 +231,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         for (int i = 0; i < items.length; i++) {
             server.restservice.repository.EngineAPI.model.Bid bid = engineAPI.getBid(actor.getId(), items[i].getId());
             bids[i] = new Bid(bid.getId(), username, i + 1);
-            bids[i].setPercentage(bid.getPercentage());
+            bids[i].set_percentage(bid.getPercentage());
         }
         return bids;
     }

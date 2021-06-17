@@ -58,7 +58,7 @@ public class EmployeeService {
         if (emp != null) {
             emp.writelock();
 
-            if (!checkValidBids(bids, username, emp.get_restrictions())) {
+            if (!checkValidBids(bids, username, emp.get_restriction())) {
                 emp.writeunlock();
                 throw new InvalidParameterException("Bids aren't valid");
             } else {
@@ -116,7 +116,7 @@ public class EmployeeService {
         Employee emp = employeeRepository.findEmployeeByUsername(username);
         if (emp != null) {
             emp.readlock();
-            Restriction output = new Restriction(emp.get_restrictions());
+            Restriction output = new Restriction(emp.get_restriction());
             emp.readunlock();
             return output;
         } else {

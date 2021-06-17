@@ -6,12 +6,10 @@ import net.minidev.json.parser.JSONParser;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,7 +24,7 @@ import server.restservice.security.model.JwtRequest;
 
 
 @SpringBootTest(classes = { TestConfig.class })
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 public class EmployeeControllerIntegrationTest {
 
@@ -105,7 +103,7 @@ public class EmployeeControllerIntegrationTest {
                 getContentAsString();
 
         Bid[] resultBids = this.gson.fromJson(bids, Bid[].class);
-        Bid[] expectedBids = this.employeeRepository.findEmployeeByUsername("admin").getBids();
+        Bid[] expectedBids = this.employeeRepository.findEmployeeByUsername("admin").get_bids();
 
         assertArrayEquals(expectedBids, resultBids);
     }
@@ -115,12 +113,12 @@ public class EmployeeControllerIntegrationTest {
     @Test
     public void test_updateBids_success() throws Exception {
 
-        Bid[] expectedBids = this.employeeRepository.findEmployeeByUsername("admin").getBids();
-        expectedBids[0].setPercentage(10);
-        expectedBids[0].setPercentage(20);
-        expectedBids[0].setPercentage(30);
-        expectedBids[0].setPercentage(40);
-        expectedBids[0].setPercentage(0);
+        Bid[] expectedBids = this.employeeRepository.findEmployeeByUsername("admin").get_bids();
+        expectedBids[0].set_percentage(10);
+        expectedBids[0].set_percentage(20);
+        expectedBids[0].set_percentage(30);
+        expectedBids[0].set_percentage(40);
+        expectedBids[0].set_percentage(0);
 
         mockMvc.perform(put("/employees/updateBids").
                 header("Authorization", this.header).
@@ -129,7 +127,7 @@ public class EmployeeControllerIntegrationTest {
                 andExpect(status().isOk()).
                 andReturn();
 
-        Bid[] resultBids = this.employeeRepository.findEmployeeByUsername("admin").getBids();
+        Bid[] resultBids = this.employeeRepository.findEmployeeByUsername("admin").get_bids();
 
         assertArrayEquals(expectedBids, resultBids);
     }
@@ -170,11 +168,11 @@ public class EmployeeControllerIntegrationTest {
 
         String username = "noy";
         Bid[] newBids = { new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4), new Bid(username, 5)};
-        newBids[0].setPercentage(70);
-        newBids[1].setPercentage(10);
-        newBids[2].setPercentage(10);
-        newBids[3].setPercentage(10);
-        newBids[4].setPercentage(10);
+        newBids[0].set_percentage(70);
+        newBids[1].set_percentage(10);
+        newBids[2].set_percentage(10);
+        newBids[3].set_percentage(10);
+        newBids[4].set_percentage(10);
 
         mockMvc.perform(put("/employees/updateBids").
                 header("Authorization", this.header).
@@ -216,7 +214,7 @@ public class EmployeeControllerIntegrationTest {
                 getContentAsString();
 
         Restriction resultRest = this.gson.fromJson(restStr, Restriction.class);
-        Restriction expectedRest = this.employeeRepository.findEmployeeByUsername("admin").getRestriction();
+        Restriction expectedRest = this.employeeRepository.findEmployeeByUsername("admin").get_restriction();
 
         assertEquals(expectedRest.get_allowed_days(), resultRest.get_allowed_days());
 
@@ -237,7 +235,7 @@ public class EmployeeControllerIntegrationTest {
         Gson g = new Gson();
 
         Assignings resultAss = g.fromJson(AssStr, Assignings.class);
-        Assignings expectedAss = this.employeeRepository.findEmployeeByUsername("admin").getAssignings();
+        Assignings expectedAss = this.employeeRepository.findEmployeeByUsername("admin").get_assignings();
 
         assertEquals(resultAss.getAssignedDays(), expectedAss.getAssignedDays());
 

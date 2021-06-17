@@ -72,7 +72,7 @@ public class AdminControllerIntegrationTest {
 
     @Test
     public void test_getEmployees() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(get("/admin/getEmployees").
+        MvcResult mvcResult = mockMvc.perform(get("/admin/get_employees").
                 header("Authorization", this.header)).
                 andReturn();
 
@@ -86,7 +86,8 @@ public class AdminControllerIntegrationTest {
         EmployeeDetails[] expectedEmployees = new EmployeeDetails[empLst.length];
 
         for (int i = 0; i < empLst.length; i++) {
-            expectedEmployees[i] = new EmployeeDetails(empLst[i]);
+            expectedEmployees[i] = new EmployeeDetails(this.employeeRepository.findEmployeeByUsername(empLst[i].get_username()));
+            expectedEmployees[i].set_points(null);
         }
 
         assertArrayEquals(expectedEmployees, resultEmployees);
@@ -96,21 +97,22 @@ public class AdminControllerIntegrationTest {
     public void test_addEmployee() throws Exception {
 
         HashMap<String, String> empMap = new HashMap();
-        empMap.put("name", "John");
-        empMap.put("username", "John@gmail.com");
+        empMap.put("name", "Phistuk");
+        empMap.put("username", "Phistuk@gmail.com");
         empMap.put("manager", "nufar");
         empMap.put("password", "password");
 
-        MvcResult mvcResult = mockMvc.perform(get("/admin/addEmployee").
+        mockMvc.perform(post("/admin/addEmployee").
                 contentType(MediaType.APPLICATION_JSON).
                 header("Authorization", this.header).
                 content(asJsonString(empMap))).
                 andExpect(status().isOk()).
                 andReturn();
 
-        assertNotNull(employeeRepository.findEmployeeByUsername("John@gmail.com"));
 
-        employeeRepository.deleteEmployee("John@gmail.com");
+        assertNotNull(employeeRepository.findEmployeeByUsername("Phistuk@gmail.com"));
+
+        employeeRepository.deleteEmployee("Phistuk@gmail.com");
     }
 
 
@@ -118,16 +120,16 @@ public class AdminControllerIntegrationTest {
     public void test_deleteEmployee() throws Exception {
 
 
-        Employee emp = new Employee(UUID.randomUUID(), "John@gmail.com", "John", "nufar", 0, 0, 0);
+        Employee emp = new Employee(UUID.randomUUID(), "Phistuk@gmail.com", "Phistuk", "nufar", 0, 0, 0);
         employeeRepository.addEmployee(emp, "password");
 
         MvcResult mvcResult = mockMvc.perform(get("/admin/deleteEmployee").
                 header("Authorization", this.header).
-                param("username", "John@gmail.com")).
+                param("username", "Phistuk@gmail.com")).
                 andExpect(status().isOk()).
                 andReturn();
 
-        assertNull(employeeRepository.findEmployeeByUsername("John@gmail.com"));
+        assertNull(employeeRepository.findEmployeeByUsername("Phistuk@gmail.com"));
 
     }
 
@@ -142,7 +144,7 @@ public class AdminControllerIntegrationTest {
                 getContentAsString();
 
         Integer[] resultDays = this.gson.fromJson(days, Integer[].class);
-        Integer[] expectedDays = {10, 20, 30, 20, 10};
+        Integer[] expectedDays = {4, 3, 4, 4, 3};
 
 
         assertArrayEquals(expectedDays, resultDays);
@@ -156,18 +158,19 @@ public class AdminControllerIntegrationTest {
         HashMap<String, Integer[]> map = new HashMap<>();
         map.put("days", expectedDays);
 
-        MvcResult mvcResult = mockMvc.perform(get("/admin/editDays").
+        MvcResult mvcResult = mockMvc.perform(put("/admin/editDays").
                 contentType(MediaType.APPLICATION_JSON).
                 header("Authorization", this.header).
-                content(asJsonString(expectedDays))).
+                content(asJsonString(map))).
                 andReturn();
+
 
 
         Integer[] resultDays = employeeRepository.getDays();
 
         assertArrayEquals(expectedDays, resultDays);
 
-        Integer[] prevDays = {10, 20, 30, 20, 10};
+        Integer[] prevDays = {4, 3, 4, 4, 3};
         employeeRepository.editDays(prevDays);
 
     }

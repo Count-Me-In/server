@@ -28,7 +28,7 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping(path = "getEmployees")
+    @GetMapping(path = "get_employees")
     public List<Employee> getEmployees(Authentication authentication) {
         return adminService.getEmployees();
     }

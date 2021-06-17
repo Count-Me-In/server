@@ -32,13 +32,13 @@ public class AdminService {
             throw new IllegalArgumentException("Username allready exists");
         }
         Employee emp = new Employee(UUID.randomUUID(), employee.get("username"), employee.get("name"), employee.get("manager"), 0, 0, 0);
-        Bid[] bids = emp.getBids();
+        Bid[] bids = emp.get_bids();
         for ( int i = 0; i < 5; i++) {
-            bids[i] = new Bid(emp.getUsername(), i+1);
+            bids[i] = new Bid(emp.get_username(), i+1);
         }
         Employee manager = employeeRepository.findEmployeeByUsername(employee.get("manager"));
         manager.writelock();
-        manager.getEmployees().add(emp.getUsername());
+        manager.get_employees().add(emp.get_username());
         employeeRepository.addEmployee(emp, encoder.encode(employee.get("password")));
         employeeRepository.save(manager);
         manager.writeunlock();
@@ -50,18 +50,18 @@ public class AdminService {
         }
         Employee employee = employeeRepository.findEmployeeByUsername(username);
         employeeRepository.deleteEmployee(username);
-        Employee manager = employeeRepository.findEmployeeByUsername(employee.getManager());
+        Employee manager = employeeRepository.findEmployeeByUsername(employee.get_manager());
         manager.writelock();
-        manager.setWeeklyPoints(manager.getWeeklyPoints() + employee.getWeeklyPoints());
-        manager.setManagerPoints(manager.getManagerPoints() + employee.getManagerPoints());
-        manager.getEmployees().removeIf(emp->emp.equals(username));
-        manager.getEmployees().addAll(employee.getEmployees());
+        manager.set_weekly_added_points(manager.get_weekly_added_points() + employee.get_weekly_added_points());
+        manager.set_manager_points(manager.get_managerPoints() + employee.get_managerPoints());
+        manager.get_employees().removeIf(emp->emp.equals(username));
+        manager.get_employees().addAll(employee.get_employees());
         employeeRepository.save(manager);
         manager.writeunlock();
-        for (String emp_name : employee.getEmployees()) {
+        for (String emp_name : employee.get_employees()) {
             Employee emp = employeeRepository.findEmployeeByUsername(emp_name);
             emp.writelock();
-            emp.setManager(manager.getUsername());
+            emp.set_manager(manager.get_username());
             employeeRepository.save(emp);
             emp.writeunlock();
         }
@@ -81,28 +81,28 @@ public class AdminService {
         }
         Employee employee = employeeRepository.findEmployeeByUsername(employee_username);
         employee.writelock();
-        String last_manager_username = employee.getManager();
-        employee.setManager(new_manager_username);
-        employee.setManagerPoints(0);
-        employee.setWeeklyPoints(0);
-        for(Bid bid : employee.getBids()) {
+        String last_manager_username = employee.get_manager();
+        employee.set_manager(new_manager_username);
+        employee.set_manager_points(0);
+        employee.set_weekly_added_points(0);
+        for(Bid bid : employee.get_bids()) {
             bid.clearPoints();
         }
         employeeRepository.save(employee);
         employee.writeunlock();
         Employee lastManager = employeeRepository.findEmployeeByUsername(last_manager_username);
         lastManager.writelock();
-        lastManager.getEmployees().removeIf(emp->emp.equals(employee_username));
-        lastManager.setManagerPoints(lastManager.getManagerPoints() + employee.getManagerPoints());
-        lastManager.setWeeklyPoints(lastManager.getWeeklyPoints() + employee.getManagerPoints());
+        lastManager.get_employees().removeIf(emp->emp.equals(employee_username));
+        lastManager.set_manager_points(lastManager.get_managerPoints() + employee.get_managerPoints());
+        lastManager.set_weekly_added_points(lastManager.get_weekly_added_points() + employee.get_managerPoints());
         employeeRepository.save(lastManager);
         lastManager.writeunlock();
         Employee new_manager = employeeRepository.findEmployeeByUsername(new_manager_username);
         new_manager.writelock();
-        new_manager.getEmployees().add(employee_username);
+        new_manager.get_employees().add(employee_username);
         employeeRepository.save(new_manager);
         new_manager.writeunlock();
-        for(String emp : employee.getEmployees()) {
+        for(String emp : employee.get_employees()) {
             clearEmpPoints(emp);
         }
 
@@ -115,13 +115,13 @@ public class AdminService {
     private void clearEmpPoints(String emp) {
         Employee employee = employeeRepository.findEmployeeByUsername(emp);
         employee.writelock();
-        employee.setManagerPoints(0);
-        employee.setWeeklyPoints(0);
-        for (Bid bid : employee.getBids()) {
+        employee.set_manager_points(0);
+        employee.set_weekly_added_points(0);
+        for (Bid bid : employee.get_bids()) {
             bid.clearPoints();
         }
         employeeRepository.save(employee);
-        for ( String direct_emp : employee.getEmployees()) {
+        for ( String direct_emp : employee.get_employees()) {
             clearEmpPoints(direct_emp);
         }
         employee.writeunlock();

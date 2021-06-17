@@ -82,91 +82,91 @@ public class Employee {
     }
 
     // Getters and Setters
-    public UUID getID() {
+    public UUID get_id() {
         return _id;
     }
 
-    public String getUsername() {
+    public String get_username() {
         return _username;
     }
 
-    public void setUsername(String username) {
+    public void set_username(String username) {
         this._username = username;
     }
 
-    public String getName() {
+    public String get_name() {
         return _name;
     }
 
-    public void setName(String name) {
+    public void set_name(String name) {
         this._name = name;
     }
 
-    public String getManager() {
+    public String get_manager() {
         return _direct_manager;
     }
 
-    public void setManager(String manager) {
+    public void set_manager(String manager) {
         this._direct_manager = manager;
     }
 
-    public int getTotalPoints() {
+    public int get_total_points() {
         return _total_points;
     }
 
-    public void setTotalPoints(int points) {
+    public void set_total_points(int points) {
         this._total_points = points;
     }
 
-    public int getWeeklyPoints() {
+    public int get_weekly_added_points() {
         return _weekly_added_points;
     }
 
-    public void setWeeklyPoints(int points) {
+    public void set_weekly_added_points(int points) {
         _weekly_added_points = points;
     }
 
-    public List<String> getEmployees() {
+    public List<String> get_employees() {
         return _employees_list;
     }
 
-    public void setEmployees(List<String> emp) {
+    public void set_employees(List<String> emp) {
         this._employees_list = emp;
     }
 
-    public Restriction getRestriction() {
+    public Restriction get_restriction() {
         return _restrictions;
     }
 
-    public void setRestrictions(Restriction restriction) {
+    public void set_restrictions(Restriction restriction) {
         _restrictions = restriction;
     }
 
-    public Bid[] getBids() {
+    public Bid[] get_bids() {
         return _bids_collection;
     }
 
-    public void setBids(Bid[] bids) {
+    public void set_bids(Bid[] bids) {
         _bids_collection = bids;
     }
 
-    public Assignings getAssignings() {
+    public Assignings get_assignings() {
         return _assignings;
     }
 
-    public void setAssignings(Assignings as) {
+    public void set_assignings(Assignings as) {
         _assignings = as;
     }
 
-    public Integer getManagerPoints() {
+    public Integer get_managerPoints() {
         return _totalManagerPoints;
     }
 
-    public void setManagerPoints(Integer points) {
+    public void set_manager_points(Integer points) {
         _totalManagerPoints = points;
     }
 
-    public Boolean isManager() {
+    public Boolean is_manager() {
         return _employees_list.size() > 0;
     }
 

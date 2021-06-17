@@ -4,13 +4,11 @@ import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import server.restservice.TestConfig;
@@ -26,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @SpringBootTest(classes = { TestConfig.class })
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 public class ManagerControllerIntegrationTest {
 
@@ -67,7 +65,7 @@ public class ManagerControllerIntegrationTest {
 
     @Test
     public void test_getEmployees() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(get("/managers/getEmployees").
+        MvcResult mvcResult = mockMvc.perform(get("/managers/get_employees").
                 header("Authorization", this.header)).
                 andExpect(status().isOk()).
                 andReturn();
@@ -79,12 +77,13 @@ public class ManagerControllerIntegrationTest {
 
         EmployeeDetails[] resultEmployees = this.gson.fromJson(employees, EmployeeDetails[].class);
 
-        List<String> empLst  = this.employeeRepository.findEmployeeByUsername("admin").getEmployees();
+        List<String> empLst  = this.employeeRepository.findEmployeeByUsername("admin").get_employees();
         EmployeeDetails[] expectedEmployees = new EmployeeDetails[empLst.size()];
         for (int i = 0; i < empLst.size(); i++) {
             Employee emp = this.employeeRepository.findEmployeeByUsername(empLst.get(i));
             if(emp != null)
-                expectedEmployees[i] = new EmployeeDetails(emp);
+                expectedEmployees[i] = new EmployeeDetails(emp.get_username(), emp.get_name());
+                expectedEmployees[i].set_points(0);
         }
 
 
@@ -106,7 +105,7 @@ public class ManagerControllerIntegrationTest {
 
         EmployeeDetails[] resultEmployees = this.gson.fromJson(employees, EmployeeDetails[].class);
 
-        List<String> empLst  = this.employeeRepository.findEmployeeByUsername("admin").getEmployees();
+        List<String> empLst  = this.employeeRepository.findEmployeeByUsername("admin").get_employees();
         EmployeeDetails[] expectedEmployees = new EmployeeDetails[empLst.size()];
         for (int i = 0; i < empLst.size(); i++) {
             Employee emp = this.employeeRepository.findEmployeeByUsername(empLst.get(i));
@@ -122,7 +121,7 @@ public class ManagerControllerIntegrationTest {
 
     @Test
     public void test_getTotalPoints() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(get("/managers/getTotalPoints").
+        MvcResult mvcResult = mockMvc.perform(get("/managers/get_total_points").
                 header("Authorization", this.header)).
                 andExpect(status().isOk()).
                 andReturn();
@@ -152,8 +151,8 @@ public class ManagerControllerIntegrationTest {
                 andReturn();
 
         Map<String, Integer> resultPoints = new HashMap<>();
-        for (String emp: this.employeeRepository.findEmployeeByUsername("admin").getEmployees()){
-            resultPoints.put(emp, this.employeeRepository.findEmployeeByUsername(emp).getWeeklyPoints());
+        for (String emp: this.employeeRepository.findEmployeeByUsername("admin").get_employees()){
+            resultPoints.put(emp, this.employeeRepository.findEmployeeByUsername(emp).get_weekly_added_points());
         }
 
 
@@ -175,7 +174,7 @@ public class ManagerControllerIntegrationTest {
 
         EmployeeDetails[] resultEmployees = this.gson.fromJson(employees, EmployeeDetails[].class);
 
-        List<String> empLst  = this.employeeRepository.findEmployeeByUsername("admin").getEmployees();
+        List<String> empLst  = this.employeeRepository.findEmployeeByUsername("admin").get_employees();
         EmployeeDetails[] expectedEmployees = new EmployeeDetails[empLst.size()];
         for (int i = 0; i < empLst.size(); i++) {
             Employee emp = this.employeeRepository.findEmployeeByUsername(empLst.get(i));
@@ -194,14 +193,17 @@ public class ManagerControllerIntegrationTest {
         Restriction expectedRst = new Restriction();
         expectedRst.set_allowed_days(Arrays.asList(2, 3, 4));
 
-        mockMvc.perform(put("/managers/setRestrictions").
+        mockMvc.perform(post("/managers/set_restrictions").
                 header("Authorization", this.header).
+                contentType(MediaType.APPLICATION_JSON).
                 content(asJsonString(expectedRst)).
                 param("employee_username", "shenhav")).
                 andExpect(status().isOk()).
                 andReturn();
 
-        Restriction resultRst = this.employeeRepository.findEmployeeByUsername("shenhav").getRestriction();
+
+
+        Restriction resultRst = this.employeeRepository.findEmployeeByUsername("shenhav").get_restriction();
 
 
         assertEquals(expectedRst.get_allowed_days(), resultRst.get_allowed_days());
@@ -215,7 +217,7 @@ public class ManagerControllerIntegrationTest {
         Restriction expectedRst = new Restriction();
         expectedRst.set_allowed_days(Arrays.asList(2, 3, 4));
 
-        mockMvc.perform(get("/managers/setRestrictions").
+        mockMvc.perform(post("/managers/set_restrictions").
                 header("Authorization", this.header).
                 contentType(MediaType.APPLICATION_JSON).
                 content(asJsonString(expectedRst)).
@@ -233,7 +235,7 @@ public class ManagerControllerIntegrationTest {
         Restriction expectedRst = new Restriction();
         expectedRst.set_allowed_days(Arrays.asList(2, 3, 4));
 
-        mockMvc.perform(get("/managers/setRestrictions").
+        mockMvc.perform(post("/managers/set_restrictions").
                 header("Authorization", this.header).
                 contentType(MediaType.APPLICATION_JSON).
                 param("employee_username", "phistuk").
@@ -257,7 +259,7 @@ public class ManagerControllerIntegrationTest {
 
 
         Assignings resultAss = this.gson.fromJson(assigning, Assignings.class);
-        Assignings expectedAss = this.employeeRepository.findEmployeeByUsername("shauli").getAssignings();
+        Assignings expectedAss = this.employeeRepository.findEmployeeByUsername("shauli").get_assignings();
 
         assertEquals(expectedAss.getAssignedDays(), resultAss.getAssignedDays());
     }

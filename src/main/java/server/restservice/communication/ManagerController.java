@@ -27,7 +27,7 @@ public class ManagerController {
 
     private ManagerService managerService;
 
-    @GetMapping(path = "getEmployees")
+    @GetMapping(path = "get_employees")
     public List<EmployeeDetails> getEmployees(Authentication authentication) {
         return managerService.getEmployees(authentication.getName());
     }
@@ -37,7 +37,7 @@ public class ManagerController {
         return managerService.getEmployeePoints(authentication.getName());
     }
 
-    @GetMapping(path = "getTotalPoints")
+    @GetMapping(path = "get_total_points")
     public int getTotalPoints(Authentication authentication) {
         return managerService.getTotalPoints(authentication.getName());
     }
@@ -55,7 +55,7 @@ public class ManagerController {
         return managerService.getEmployeeRestrictions(authentication.getName());
     }
 
-    @PostMapping(path = "setRestrictions")
+    @PostMapping(path = "set_restrictions")
     public void addRestriction(Authentication authentication, @RequestBody Restriction restriction,
             @RequestParam String employee_username) {
         managerService.addRestriction(authentication.getName(), restriction, employee_username);
