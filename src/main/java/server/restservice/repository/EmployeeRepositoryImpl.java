@@ -150,6 +150,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 emp.getName(), emp.getManager(), emp.getManagerPoints(), emp.getRestriction().get_allowed_days(),
                 emp.getEmployees(), password);
         engineAPI.addActor(actor);
+        for(Item item : engineAPI.getItems()) {
+            server.restservice.repository.EngineAPI.model.Bid bid = new server.restservice.repository.EngineAPI.model.Bid(
+                UUID.randomUUID(), new Date(), actor.getId(), item.getId(), 0);
+            engineAPI.addBid(bid);
+        }
     }
 
     @Override

@@ -52,9 +52,9 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
             user = new Employee(username, username, null, 100, 100, 300);
             user.getEmployees().addAll(Arrays.asList("shauli", "nufar", "shenhav", "noy", "a"));
         } else if (!username.equals("toya")) {
-            user = new Employee(username, username, "admin", 100, 100, null);
+            user = new Employee(username, username, "admin", 100, 100, 0);
         } else {
-            user = new Employee(username, username, null, 100, 100, null);
+            user = new Employee(username, username, null, 100, 100, 0);
         }
         Bid[] bids = { new Bid(username, 1), new Bid(username, 2), new Bid(username, 3), new Bid(username, 4),
                 new Bid(username, 5) };
