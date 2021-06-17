@@ -1,176 +1,176 @@
 [
-    {
-        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
-        "_points": 550,
-        "_intervalBonus": 350,
-        "_additionalInfo": {
-            "_username": "admin",
-            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
-            "_name": "admin",
-            "_directed_manager": "admin",
-            "_totalManagerPoints": 3000,
-            "_allowed_days": [
-                1,
-                2,
-                3,
-                4,
-                5
-            ],
-            "_employees": [
-                "noyezra27@gmail.com",
-                "nofnof.c@gmail.com"
-            ]
-        }
-    },
-    {
-        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
-        "_points": 400,
-        "_intervalBonus": 100,
-        "_additionalInfo": {
-            "_username": "shenhav.carmel1@gmail.com",
-            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
-            "_name": "Shenhav",
-            "_directed_manager": "nofnof.c@gmail.com",
-            "_totalManagerPoints": 0,
-            "_allowed_days": [
-                1,
-                2,
-                4
-            ],
-            "_employees": []
-        }
-    },
-    {
-        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
-        "_points": 400,
-        "_intervalBonus": 110,
-        "_additionalInfo": {
-            "_username": "gshauli99@gmail.com",
-            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
-            "_name": "Shauli",
-            "_directed_manager": "noyezra27@gmail.com",
-            "_totalManagerPoints": 0,
-            "_allowed_days": [
-                1,
-                3,
-                4
-            ],
-            "_employees": []
-        }
-    },
-    {
-        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
-        "_points": 500,
-        "_intervalBonus": 930,
-        "_additionalInfo": {
-            "_username": "noyezra27@gmail.com",
-            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
-            "_name": "Noy",
-            "_directed_manager": "admin",
-            "_totalManagerPoints": 1250,
-            "_allowed_days": [
-                1,
-                3,
-                4
-            ],
-            "_employees": [
-                "dan@gmail.com",
-                "gshauli99@gmail.com",
-                "britney@gmail.com"
-            ]
-        }
-    },
-    {
-        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
-        "_points": 500,
-        "_intervalBonus": 1090,
-        "_additionalInfo": {
-            "_username": "nofnof.c@gmail.com",
-            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
-            "_name": "Nufar",
-            "_directed_manager": "admin",
-            "_totalManagerPoints": 1400,
-            "_allowed_days": [
-                1,
-                2,
-                4
-            ],
-            "_employees": [
-                "shenhav.carmel1@gmail.com",
-                "johny@gmail.com",
-                "linda@gmail.com"
-            ]
-        }
-    },
-    {
-        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
-        "_points": 200,
-        "_intervalBonus": 110,
-        "_additionalInfo": {
-            "_username": "johny@gmail.com",
-            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
-            "_name": "Johny",
-            "_directed_manager": "nofnof.c@gmail.com",
-            "_totalManagerPoints": 0,
-            "_allowed_days": [
-                2,
-                4
-            ],
-            "_employees": []
-        }
-    },
-    {
-        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e10",
-        "_points": 300,
-        "_intervalBonus": 100,
-        "_additionalInfo": {
-            "_username": "linda@gmail.com",
-            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
-            "_name": "Linda",
-            "_directed_manager": "nofnof.c@gmail.com",
-            "_totalManagerPoints": 0,
-            "_allowed_days": [
-                1,
-                2,
-                4
-            ],
-            "_employees": []
-        }
-    },
-    {
-        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
-        "_points": 150,
-        "_intervalBonus": 110,
-        "_additionalInfo": {
-            "_username": "dan@gmail.com",
-            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
-            "_name": "Dan",
-            "_directed_manager": "noyezra27@gmail.com",
-            "_totalManagerPoints": 0,
-            "_allowed_days": [
-                1,
-                3,
-                4
-            ],
-            "_employees": []
-        }
-    },
-    {
-        "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e08",
-        "_points": 300,
-        "_intervalBonus": 100,
-        "_additionalInfo": {
-            "_username": "britney@gmail.com",
-            "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
-            "_name": "Britney",
-            "_directed_manager": "noyezra27@gmail.com",
-            "_totalManagerPoints": 0,
-            "_allowed_days": [
-                1,
-                3,
-                4
-            ],
-            "_employees": []
-        }
+  {
+    "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
+    "_points": 550,
+    "_intervalBonus": 350,
+    "_additionalInfo": {
+      "_username": "admin",
+      "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+      "_name": "admin",
+      "_directed_manager": "admin",
+      "_totalManagerPoints": 3000,
+      "_allowed_days": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_employees": [
+        "noyezra27@gmail.com",
+        "nofnof.c@gmail.com"
+      ]
     }
+  },
+  {
+    "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
+    "_points": 400,
+    "_intervalBonus": 100,
+    "_additionalInfo": {
+      "_username": "shenhav.carmel1@gmail.com",
+      "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+      "_name": "Shenhav",
+      "_directed_manager": "nofnof.c@gmail.com",
+      "_totalManagerPoints": 0,
+      "_allowed_days": [
+        1,
+        2,
+        4
+      ],
+      "_employees": []
+    }
+  },
+  {
+    "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
+    "_points": 400,
+    "_intervalBonus": 110,
+    "_additionalInfo": {
+      "_username": "gshauli99@gmail.com",
+      "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+      "_name": "Shauli",
+      "_directed_manager": "noyezra27@gmail.com",
+      "_totalManagerPoints": 0,
+      "_allowed_days": [
+        1,
+        3,
+        4
+      ],
+      "_employees": []
+    }
+  },
+  {
+    "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
+    "_points": 500,
+    "_intervalBonus": 930,
+    "_additionalInfo": {
+      "_username": "noyezra27@gmail.com",
+      "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+      "_name": "Noy",
+      "_directed_manager": "admin",
+      "_totalManagerPoints": 1250,
+      "_allowed_days": [
+        1,
+        3,
+        4
+      ],
+      "_employees": [
+        "dan@gmail.com",
+        "gshauli99@gmail.com",
+        "britney@gmail.com"
+      ]
+    }
+  },
+  {
+    "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
+    "_points": 500,
+    "_intervalBonus": 1090,
+    "_additionalInfo": {
+      "_username": "nofnof.c@gmail.com",
+      "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+      "_name": "Nufar",
+      "_directed_manager": "admin",
+      "_totalManagerPoints": 1400,
+      "_allowed_days": [
+        1,
+        2,
+        4
+      ],
+      "_employees": [
+        "shenhav.carmel1@gmail.com",
+        "johny@gmail.com",
+        "linda@gmail.com"
+      ]
+    }
+  },
+  {
+    "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
+    "_points": 200,
+    "_intervalBonus": 110,
+    "_additionalInfo": {
+      "_username": "johny@gmail.com",
+      "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+      "_name": "Johny",
+      "_directed_manager": "nofnof.c@gmail.com",
+      "_totalManagerPoints": 0,
+      "_allowed_days": [
+        2,
+        4
+      ],
+      "_employees": []
+    }
+  },
+  {
+    "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e10",
+    "_points": 300,
+    "_intervalBonus": 100,
+    "_additionalInfo": {
+      "_username": "linda@gmail.com",
+      "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+      "_name": "Linda",
+      "_directed_manager": "nofnof.c@gmail.com",
+      "_totalManagerPoints": 0,
+      "_allowed_days": [
+        1,
+        2,
+        4
+      ],
+      "_employees": []
+    }
+  },
+  {
+    "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
+    "_points": 150,
+    "_intervalBonus": 110,
+    "_additionalInfo": {
+      "_username": "dan@gmail.com",
+      "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+      "_name": "Dan",
+      "_directed_manager": "noyezra27@gmail.com",
+      "_totalManagerPoints": 0,
+      "_allowed_days": [
+        1,
+        3,
+        4
+      ],
+      "_employees": []
+    }
+  },
+  {
+    "_id": "c094a597-92c7-4f43-aec9-3d8c39e29e08",
+    "_points": 300,
+    "_intervalBonus": 100,
+    "_additionalInfo": {
+      "_username": "britney@gmail.com",
+      "_password": "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+      "_name": "Britney",
+      "_directed_manager": "noyezra27@gmail.com",
+      "_totalManagerPoints": 0,
+      "_allowed_days": [
+        1,
+        3,
+        4
+      ],
+      "_employees": []
+    }
+  }
 ]

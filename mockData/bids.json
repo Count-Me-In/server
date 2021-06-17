@@ -1,317 +1,317 @@
 [
-    {
-        "_id": "76c5e2d1-cf65-11eb-9384-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
-        "_percent": 0
-    },
-    {
-        "_id": "76c5e2d2-cf65-11eb-a683-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
-        "_percent": 0
-    },
-    {
-        "_id": "76c5e2d3-cf65-11eb-b6ab-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
-        "_percent": 0
-    },
-    {
-        "_id": "76c5e2d4-cf65-11eb-aaaf-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
-        "_percent": 0
-    },
-    {
-        "_id": "76c5e2d5-cf65-11eb-8b31-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609c6-cf65-11eb-9829-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609c7-cf65-11eb-90f7-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609c8-cf65-11eb-a89d-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609c9-cf65-11eb-86df-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609ca-cf65-11eb-a0d3-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609cb-cf65-11eb-b90d-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609cc-cf65-11eb-99ca-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609cd-cf65-11eb-b800-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609ce-cf65-11eb-b938-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609cf-cf65-11eb-abee-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609d0-cf65-11eb-985e-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609d1-cf65-11eb-a4cb-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609d2-cf65-11eb-9e4c-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609d3-cf65-11eb-8f74-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609d4-cf65-11eb-b04c-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609d5-cf65-11eb-9ca1-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609d6-cf65-11eb-9a74-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609d7-cf65-11eb-9216-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609d8-cf65-11eb-8013-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609d9-cf65-11eb-8bc1-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609da-cf65-11eb-b38c-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609db-cf65-11eb-be61-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
-        "_percent": 20
-    },
-    {
-        "_id": "76c609dc-cf65-11eb-805d-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609dd-cf65-11eb-a1ec-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
-        "_percent": 30
-    },
-    {
-        "_id": "76c609de-cf65-11eb-9cfa-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609df-cf65-11eb-95e1-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e10",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609e0-cf65-11eb-8758-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e10",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609e1-cf65-11eb-b905-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e10",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609e2-cf65-11eb-af7c-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e10",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609e3-cf65-11eb-8cfd-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e10",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609e4-cf65-11eb-9f47-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
-        "_percent": 10
-    },
-    {
-        "_id": "76c609e5-cf65-11eb-9a60-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609e6-cf65-11eb-88c1-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
-        "_percent": 20
-    },
-    {
-        "_id": "76c609e7-cf65-11eb-ac9f-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
-        "_percent": 30
-    },
-    {
-        "_id": "76c609e8-cf65-11eb-9cf2-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609e9-cf65-11eb-b68e-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e08",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609ea-cf65-11eb-96a4-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e08",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609eb-cf65-11eb-bf3a-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e08",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609ec-cf65-11eb-bbf0-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e08",
-        "_percent": 0
-    },
-    {
-        "_id": "76c609ed-cf65-11eb-90d7-5800e3cf1730",
-        "_date": "Jun 15, 2021, 1:22:58 PM",
-        "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
-        "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e08",
-        "_percent": 0
-    }
+  {
+    "_id": "76c5e2d1-cf65-11eb-9384-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
+    "_percent": 0
+  },
+  {
+    "_id": "76c5e2d2-cf65-11eb-a683-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
+    "_percent": 0
+  },
+  {
+    "_id": "76c5e2d3-cf65-11eb-b6ab-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
+    "_percent": 0
+  },
+  {
+    "_id": "76c5e2d4-cf65-11eb-aaaf-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
+    "_percent": 0
+  },
+  {
+    "_id": "76c5e2d5-cf65-11eb-8b31-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e16",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609c6-cf65-11eb-9829-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
+    "_percent": 60
+  },
+  {
+    "_id": "76c609c7-cf65-11eb-90f7-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
+    "_percent": 40
+  },
+  {
+    "_id": "76c609c8-cf65-11eb-a89d-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609c9-cf65-11eb-86df-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609ca-cf65-11eb-a0d3-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e15",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609cb-cf65-11eb-b90d-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
+    "_percent": 10
+  },
+  {
+    "_id": "76c609cc-cf65-11eb-99ca-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609cd-cf65-11eb-b800-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
+    "_percent": 30
+  },
+  {
+    "_id": "76c609ce-cf65-11eb-b938-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
+    "_percent": 30
+  },
+  {
+    "_id": "76c609cf-cf65-11eb-abee-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e14",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609d0-cf65-11eb-985e-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
+    "_percent": 60
+  },
+  {
+    "_id": "76c609d1-cf65-11eb-a4cb-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609d2-cf65-11eb-9e4c-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
+    "_percent": 20
+  },
+  {
+    "_id": "76c609d3-cf65-11eb-8f74-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
+    "_percent": 20
+  },
+  {
+    "_id": "76c609d4-cf65-11eb-b04c-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e13",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609d5-cf65-11eb-9ca1-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
+    "_percent": 30
+  },
+  {
+    "_id": "76c609d6-cf65-11eb-9a74-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
+    "_percent": 30
+  },
+  {
+    "_id": "76c609d7-cf65-11eb-9216-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609d8-cf65-11eb-8013-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
+    "_percent": 20
+  },
+  {
+    "_id": "76c609d9-cf65-11eb-8bc1-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e12",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609da-cf65-11eb-b38c-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609db-cf65-11eb-be61-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
+    "_percent": 25
+  },
+  {
+    "_id": "76c609dc-cf65-11eb-805d-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609dd-cf65-11eb-a1ec-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
+    "_percent": 30
+  },
+  {
+    "_id": "76c609de-cf65-11eb-9cfa-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609df-cf65-11eb-95e1-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e10",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609e0-cf65-11eb-8758-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e10",
+    "_percent": 20
+  },
+  {
+    "_id": "76c609e1-cf65-11eb-b905-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e10",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609e2-cf65-11eb-af7c-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e10",
+    "_percent": 50
+  },
+  {
+    "_id": "76c609e3-cf65-11eb-8cfd-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e10",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609e4-cf65-11eb-9f47-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
+    "_percent": 10
+  },
+  {
+    "_id": "76c609e5-cf65-11eb-9a60-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609e6-cf65-11eb-88c1-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
+    "_percent": 20
+  },
+  {
+    "_id": "76c609e7-cf65-11eb-ac9f-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
+    "_percent": 30
+  },
+  {
+    "_id": "76c609e8-cf65-11eb-9cf2-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609e9-cf65-11eb-b68e-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e08",
+    "_percent": 25
+  },
+  {
+    "_id": "76c609ea-cf65-11eb-96a4-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e08",
+    "_percent": 0
+  },
+  {
+    "_id": "76c609eb-cf65-11eb-bf3a-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e08",
+    "_percent": 25
+  },
+  {
+    "_id": "76c609ec-cf65-11eb-bbf0-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e08",
+    "_percent": 15
+  },
+  {
+    "_id": "76c609ed-cf65-11eb-90d7-5800e3cf1730",
+    "_date": "Jun 15, 2021, 1:22:58 PM",
+    "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1b",
+    "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e08",
+    "_percent": 0
+  }
 ]
