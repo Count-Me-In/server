@@ -43,7 +43,6 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
         this.daysCapacity[3] = 20;
         this.daysCapacity[4] = 10;
 
-
     }
 
     private Employee generateEmployee(String username) {
@@ -126,14 +125,14 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
     @Override
     public void deleteEmployee(String username) {
         Employee toDelete = null;
-        for(Employee emp: this.employees){
-            if(emp.getUsername() == username){
+        for (Employee emp : this.employees) {
+            if (emp.getUsername() == username) {
                 toDelete = emp;
                 break;
             }
         }
 
-        if(toDelete != null)
+        if (toDelete != null)
             this.employees.remove(toDelete);
     }
 
@@ -145,6 +144,11 @@ public class EmployeeRepositoryMock implements EmployeeRepository {
     @Override
     public void editDays(Integer[] days) {
         this.daysCapacity = days;
+    }
+
+    @Override
+    public void updateEmployeePassword(String username, String password) {
+
     }
 
 }

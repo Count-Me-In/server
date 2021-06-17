@@ -16,15 +16,18 @@ import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
 import server.restservice.repository.EngineAPI.model.Actor;
 import server.restservice.repository.EngineAPI.model.Assignment;
 import server.restservice.repository.EngineAPI.model.Bid;
 import server.restservice.repository.EngineAPI.model.Item;
 
+@AllArgsConstructor
 @Component("mockAPI")
 public class apiMock implements engineAPIInterface {
 
     private Gson gson = new Gson();
+
     @Value("${mockData}")
     private String mockData;
 
@@ -33,6 +36,7 @@ public class apiMock implements engineAPIInterface {
 
     @Value("${bidsFile}")
     private String bidsFile;
+
     @Value("${assignmensFile}")
     private String assignmensFile;
 

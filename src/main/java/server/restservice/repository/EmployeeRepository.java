@@ -27,4 +27,6 @@ public interface EmployeeRepository {
 
     void editDays(Integer[] days);
 
+    void updateEmployeePassword(String username, String password);
+
 }

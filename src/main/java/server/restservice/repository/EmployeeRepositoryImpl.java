@@ -74,7 +74,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         synchronized (emp) {
             Actor actor = new Actor(emp.getID(), emp.getTotalPoints(), emp.getWeeklyPoints(), emp.getUsername(),
                     emp.getName(), emp.getManager(), emp.getManagerPoints(), emp.getRestriction().get_allowed_days(),
-                    emp.getEmployees());
+                    emp.getEmployees(), getUsernamePass(emp.getUsername()));
             engineAPI.editActor(actor.getId(), actor);
 
             Bid[] bids = emp.getBids();
@@ -145,15 +145,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     @Override
-    public void addEmployee(Employee emp, String manager) {
+    public void addEmployee(Employee emp, String password) {
         Actor actor = new Actor(UUID.randomUUID(), emp.getTotalPoints(), emp.getWeeklyPoints(), emp.getUsername(),
-                emp.getName(), manager, emp.getManagerPoints(), emp.getRestriction().get_allowed_days(),
-                emp.getEmployees());
+                emp.getName(), emp.getManager(), emp.getManagerPoints(), emp.getRestriction().get_allowed_days(),
+                emp.getEmployees(), password);
         engineAPI.addActor(actor);
-        actor = getActorByUsername(manager);
-        actor.getAdditionalInfo().getEmployees().add(emp.getUsername());
-        engineAPI.editActor(actor.getId(), actor);
-        _employee_cacheMap.remove(manager);
     }
 
     @Override
@@ -179,6 +175,16 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
             engineAPI.editItem(item.getId(), item);
         }
     }
+
+    
+    @Override
+    public void updateEmployeePassword(String username, String password) {
+        Actor actor = getActorByUsername(username);
+        actor.getAdditionalInfo().setPassword(password);
+        engineAPI.editActor(actor.getId(), actor);
+    }
+
+    /* private functions */
 
     private Employee _getEmployeeFromSource(String username) {
         Actor actor = getActorByUsername(username);
