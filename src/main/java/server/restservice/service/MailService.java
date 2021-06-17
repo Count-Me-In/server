@@ -61,7 +61,7 @@ public class MailService {
     }
 
     private String mailText(String username, int day) {
-        return "Hello,\n" + username + " wanted to invite you to arrive to the office on next " + getDay(day);
+        return "Hello,\n" + username + " has invited you to the office next " + getDay(day);
     }
 
     public void sendEmail(String username, int day, String[] mails) {
@@ -81,9 +81,9 @@ public class MailService {
     private String assignmentText(List<Long> days) {
         String output = "Hello,\n";
         if (days.size() == 0) {
-            output += "We are sorry to inform you weren't allocated in the office on any day for the coming week,\n";
+            output += "We are sorry to inform you that you weren't allocated in the office any day for the coming week,\n";
         } else {
-            output += "Your were allocated in the office in the coming week on the following days:\n";
+            output += "You were allocated in the office in the coming week on the following days:\n";
             for (Long day : days) {
                 output += ("\t* " + getDay(day.intValue()) + "\n");
             }

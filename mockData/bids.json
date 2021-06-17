@@ -186,7 +186,7 @@
         "_date": "Jun 15, 2021, 1:22:58 PM",
         "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e18",
         "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
-        "_percent": 0
+        "_percent": 20
     },
     {
         "_id": "76c609dc-cf65-11eb-805d-5800e3cf1730",
@@ -200,7 +200,7 @@
         "_date": "Jun 15, 2021, 1:22:58 PM",
         "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
         "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e11",
-        "_percent": 0
+        "_percent": 30
     },
     {
         "_id": "76c609de-cf65-11eb-9cfa-5800e3cf1730",
@@ -249,7 +249,7 @@
         "_date": "Jun 15, 2021, 1:22:58 PM",
         "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e17",
         "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
-        "_percent": 0
+        "_percent": 10
     },
     {
         "_id": "76c609e5-cf65-11eb-9a60-5800e3cf1730",
@@ -263,14 +263,14 @@
         "_date": "Jun 15, 2021, 1:22:58 PM",
         "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e19",
         "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
-        "_percent": 0
+        "_percent": 20
     },
     {
         "_id": "76c609e7-cf65-11eb-ac9f-5800e3cf1730",
         "_date": "Jun 15, 2021, 1:22:58 PM",
         "_itemID": "c094a597-92c7-4f43-aec9-3d8c39e29e1a",
         "_actorID": "c094a597-92c7-4f43-aec9-3d8c39e29e09",
-        "_percent": 0
+        "_percent": 30
     },
     {
         "_id": "76c609e8-cf65-11eb-9cf2-5800e3cf1730",

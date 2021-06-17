@@ -31,7 +31,7 @@ public class ManagerService {
 
         if (emp != null) {
             emp.writelock();
-            if ((emp.getManager() == null) || !emp.getManager().equals(manager.getName())) {
+            if ((emp.getManager() == null) || !emp.getManager().equals(manager.getUsername())) {
                 emp.writeunlock();
                 throw new InvalidParameterException("Can't update employee");
             } else {
@@ -134,7 +134,7 @@ public class ManagerService {
         if (emp != null) {
             emp.readlock();
 
-            if ((emp.getManager() == null) || !emp.getManager().equals(manager.getName())) {
+            if ((emp.getManager() == null) || !emp.getManager().equals(manager.getUsername())) {
                 emp.readunlock();
                 throw new InvalidParameterException("Can't access employee");
             } else {
